@@ -5,4 +5,5 @@ app_name = 'gaana'
 
 urlpatterns = [
     path('', views.home , name='home'),
+    path('songs/' , views.index , name="index")
 ]

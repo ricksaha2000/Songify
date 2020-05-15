@@ -9,3 +9,11 @@ def home(request):
     }
 
     return render(request , 'songs/index.html' , context)
+
+def index(request):
+    songs = Music.objects.order_by('?')[:9][0]
+    context = {
+        'title':'Home',
+        'songs':songs,
+    }
+    return render(request , 'index.html',context)
