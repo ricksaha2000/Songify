@@ -1,0 +1,15 @@
+{% load static %}
+
+{{title}}
+
+
+{%for song in songs%}
+<p>{{song.title}}</p>
+<audio controls>
+
+
+<source src="{{song.audio.url}}" type="audio/mpeg">
+
+
+</audio>
+{%endfor%}
