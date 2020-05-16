@@ -15,10 +15,10 @@ noUiSlider.create(sliders, {
 var slider = document.getElementById('song-volume');
 
 noUiSlider.create(slider, {
-	start: [ 90 ],
+	start: [ 0.9],
 	range: {
-		'min': [   0 ],
-		'max': [ 100 ]
+		'min': [ 0],
+		'max': [ 1]
 	}
 });
 
@@ -90,10 +90,10 @@ $(window).on("resize load", function(){
 
 
 var music = document.getElementById('music');
-var array = [];
+var array = [0,];
 // var prog = document.getElementByClassName('noUi-origin');
 
-console.log(music);
+// console.log(music);
 function playAudio() {
 	if (music.paused) {
 		music.play();
@@ -103,26 +103,50 @@ function playAudio() {
     var progress = document.getElementById('progress-bar');
     music.addEventListener("timeupdate" , timeUpdate , false);
 
+
     function timeUpdate(){
       if(music.currentTime<music.duration){
       var playPercent = 100*((music.currentTime) / music.duration);
       // console.log(playPercent);
-      // console.log(music.currentTime);
+      // console.log("CURRENT"+music.currentTime);
+      changevolume();
       // console.log(music.duration);
     document.getElementById("trackstart").innerHTML = fancyTimeFormat(music.currentTime);
     document.getElementById("trackend").innerHTML = fancyTimeFormat(music.duration);
     var prev = sliders.noUiSlider.get();
-    console.log(prev);
-    
+    var prevPercent = 100*((prev)/music.duration)
+    // console.log("PREV"+prev);
+
     // console.log(sliders.noUiSlider.get());
-        sliders.noUiSlider.destroy();
-      noUiSlider.create(sliders, {
-        start: [playPercent],
-        range: {
-          'min': [0],
-          'max': [ 100 ]
-        }
-      });
+    var lastItem = array.pop();
+    difference =music.currentTime-lastItem ;
+
+
+    // console.log("LAST ITEM"+lastItem);
+    // console.log("DIFFERENCE"+difference);
+    if(difference<0.27 || difference==undefined){
+sliders.noUiSlider.set(playPercent);
+    }
+    else{
+      // console.log("FUCKKKKKKKKKKK")
+      sliders.noUiSlider.set();
+      var x = sliders.noUiSlider.get();
+      // console.log(x);
+
+      music.currentTime = x;
+
+    }
+        // sliders.noUiSlider.destroy();
+      // noUiSlider.create(sliders, {
+      //   start: [playPercent],
+      //   range: {
+      //     'min': [0],
+      //     'max': [ 100 ]
+      //   }
+      // });
+    // }
+      array.push(music.currentTime);
+
       // prog.style.marginLeft = playPercent+"%";
       }
     }
@@ -140,6 +164,65 @@ function playAudio() {
 		play.className = "";
 		play.className = "ion-ios-play play";
 	}
+
+
+}
+var conter_refresh = 0;
+var refreshing = document.getElementById('refresh');
+function refresh(){
+
+  switch(conter_refresh){
+
+    case 0:
+      music.currentTime = 0;
+      refreshing.style.color="#1ed760";
+      conter_refresh=conter_refresh+1
+      console.log(conter_refresh);
+      break;
+    case 1:
+      if(music.loop==true){
+        music.loop = false;
+        refreshing.style.color="";
+
+        console.log("FALSE " +conter_refresh);
+
+      }
+      else{
+        music.loop = true;
+        refreshing.style.color="#297BC1";
+
+        console.log("TRUE " +conter_refresh);
+
+      }
+      conter_refresh = 0;
+      break;
+    }
+
+
+
+
+
+  // if(conter_refresh==1){
+  //   if(music.loop==true){
+  //     music.loop = false;
+  //     console.log("FALSE " +conter_refresh);
+
+  //   }
+  //   else{
+  //     music.loop = true;
+  //     console.log("TRUE " +conter_refresh);
+
+  //   }
+  //   conter_refresh = 0;
+  //   break;
+  // }
+  //   if(conter_refresh==0){
+
+  //     music.currentTime = 0;
+  //     conter_refresh=conter_refresh+1
+  //     console.log(conter_refresh);
+  //   }
+
 
 
 }
@@ -164,6 +247,14 @@ function fancyTimeFormat(time)
     ret += "" + mins + ":" + (secs < 10 ? "0" : "");
     ret += "" + secs;
     return ret;
+}
+
+// window.setInterval(changevolume(),1000);
+function changevolume(){
+
+  audio = slider.noUiSlider.get();
+  console.log("AUDIO "+ audio);
+  music.volume = audio;
 }
 
 
