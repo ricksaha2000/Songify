@@ -1,15 +1,17 @@
 // Sliders
 
-var slider = document.getElementById('song-progress');
-
-noUiSlider.create(slider, {
+var sliders = document.getElementById('song-progress');
+var counter = 0;
+if(counter == 0){
+  counter = counter+1;
+noUiSlider.create(sliders, {
 	start: [ 0 ],
 	range: {
 		'min': [   0 ],
 		'max': [ 100 ]
 	}
 });
-
+}
 var slider = document.getElementById('song-volume');
 
 noUiSlider.create(slider, {

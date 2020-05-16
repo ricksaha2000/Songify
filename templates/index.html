@@ -1499,7 +1499,7 @@
 
   <div class="current-track__progress">
 
-    <div class="current-track__progress__start">0:01</div>
+    <div class="current-track__progress__start" id="trackstart">0:01</div>
 
     <div class="current-track__progress__bar">
 
@@ -1550,18 +1550,68 @@
 <!-- partial -->
 <script>
 var music = document.getElementById('music');
+var prog = document.getElementByClassName('noUi-origin');
 
+console.log(prog);
 function playAudio() {
 	if (music.paused) {
 		music.play();
 		play.className = "";
 		play.className = "ion-ios-pause pause";
+    var duration;
+    var progress = document.getElementById('progress-bar');
+    music.addEventListener("timeupdate" , timeUpdate , false);
+
+    function timeUpdate(){
+      if(music.currentTime<music.duration){
+      var playPercent = 100*((music.currentTime) / music.duration);
+      console.log(playPercent);
+      console.log(music.currentTime);
+      console.log(music.duration);
+    document.getElementById("trackstart").innerHTML = fancyTimeFormat(music.currentTime);
+
+        sliders.noUiSlider.destroy();
+      noUiSlider.create(sliders, {
+        start: [playPercent],
+        range: {
+          'min': [   0 ],
+          'max': [ 100 ]
+        }
+      });
+      // prog.style.marginLeft = playPercent+"%";
+      }
+    }
+    music.addEventListener("canplaythrough", function () {
+	duration = music.duration;
+  console.log(duration);
+  console.log(music.duration);
+}, false);
 	} else {
 		music.pause();
 		play.className = "";
 		play.className = "ion-ios-play play";
 	}
 
+}
+
+
+function fancyTimeFormat(time)
+{
+    // Hours, minutes and seconds
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
 }
 </script>
 
