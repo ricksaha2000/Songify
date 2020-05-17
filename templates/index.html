@@ -436,7 +436,7 @@
 {%for song in songs%}
 
                     {% comment %} <div  class="track__number" >{{song.musicid}}</div> {% endcomment %}
-                    <a href="javascript:firescript('{{song.musicid}}')" class="track__number">{{song.musicid}}</a>
+                    <a href="javascript:firescript('{{song.musicid}}')"   class="track__number">{{song.musicid}}</a>
                     {% comment %} <button href="javascript:{}" onClick="document.getElementById('{{song.musicid}}').submit();"></a> {% endcomment %}
                     {% comment %} <form method="POST" id="{{song.musicid}}" >
                     <input type="submit" name="song" value={{song.musicid}} />

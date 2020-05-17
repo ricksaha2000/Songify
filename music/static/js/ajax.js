@@ -20,4 +20,5 @@ function searchSuccess(data , textStatus,jqXHR)
     console.log(data)
     music.load();
     $('#music').html(data);
+    // music.play;
 }
