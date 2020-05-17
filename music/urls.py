@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
+from gaana.views import song
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('music/',include('gaana.urls')),
+    path('song/',song , name="song")
 
 ]
 

@@ -430,6 +430,53 @@
 
                     </div>
 
+
+
+
+{%for song in songs%}
+
+                    {% comment %} <div  class="track__number" >{{song.musicid}}</div> {% endcomment %}
+                    <a href="javascript:firescript('{{song.musicid}}')" class="track__number">{{song.musicid}}</a>
+                    {% comment %} <button href="javascript:{}" onClick="document.getElementById('{{song.musicid}}').submit();"></a> {% endcomment %}
+                    {% comment %} <form method="POST" id="{{song.musicid}}" >
+                    <input type="submit" name="song" value={{song.musicid}} />
+                    </form> {% endcomment %}
+                    <div class="track__added">
+
+                      <i class="ion-checkmark-round added"></i>
+
+                    </div>
+
+                    <div class="track__title">{{song.title}}</div>
+
+                    <div class="track__explicit">
+
+                      <span class="label">Explicit</span>
+
+                    </div>
+
+                    <div class="track__plays">147,544,165</div>
+
+                  </div>
+
+                  <div class="track">
+
+                    <div class="track__art">
+
+                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg" alt="These Things Happen" />
+
+                    </div>
+{%endfor%}
+
+
+
+
+
+
+
+
+
+
                     <div class="track__number">1</div>
 
                     <div class="track__added">
@@ -1478,11 +1525,11 @@
 
 </section>
 
-<section class="current-track">
+<section class="current-track" style="height:61.2px !important">
 <audio id="music" class="current-track" >
 
 
-<source src="{{songs.audio.url}}" type="audio/mpeg">
+{% comment %} <source src="{{songs.audio.url}}" type="audio/mpeg"> {% endcomment %}
 
 
 </audio>
@@ -1556,6 +1603,8 @@
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.3.0/nouislider.min.js'></script>
  <script src="/static/js/script.js"></script>
+  <script src="/static/js/ajax.js"></script>
+
 
 </body>
 </html>
