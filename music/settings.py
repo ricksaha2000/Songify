@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gaana',
+    'crispy_forms',
+    'users',
+    'album',
+    'genre',
+    
+
 ]
 
 MIDDLEWARE = [
@@ -114,6 +120,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

@@ -23,7 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name="home"),
     path('music/',include('gaana.urls')),
-    path('song/',song , name="song")
+    path('song/',song , name="song"),
+    path('users/',include('users.urls')),
+
 
 ]
 
