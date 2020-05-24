@@ -17,6 +17,7 @@ class ArtistSignUpForm(UserCreationForm):
             user.save()
         return user
 
+
 # class StudentSignUpForm(UserCreationForm):
 #     interests = forms.ModelMultipleChoiceField(
 #         queryset=Subject.objects.all(),
