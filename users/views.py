@@ -15,7 +15,7 @@ from users.models import Profile,User
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView, UpdateView)
 
 from django.shortcuts import get_object_or_404, redirect, render
-from users.forms import SellerSignUpForm
+from users.forms import ArtistSignUpForm
 import base64
 from PIL import Image
 from io import BytesIO
@@ -81,7 +81,7 @@ def login_customer(request):
 
 			user = auth.authenticate(username=username , password=password)
 			is_customer = User.objects.filter(username = username).values("is_user")[0]["is_user"]
-			is_seller = User.objects.filter(username = username).values("is_artist")[0]["is_artist"]
+			is_artist = User.objects.filter(username = username).values("is_artist")[0]["is_artist"]
 
 			if user is not None and is_customer:
 				# res = face_detect.check(user)
@@ -94,13 +94,13 @@ def login_customer(request):
 				return render(request,'users/login.html')
 
 
-			elif user is not None and is_seller:
+			elif user is not None and is_artist:
 				# res = face_detect.check(user)
 				res = True
 				if res:
 					auth.login(request,user)
 					messages.success(request,'You Are Now LoggedIn')
-					return redirect('users:products')
+					return redirect('users:home')
 				messages.error(request,'Unauthorized access')
 				return render(request,'users/login.html')
 			else:
@@ -123,10 +123,10 @@ def logout_customer(request):
 	return redirect('/')
 
 
-class SellerSignUpView(CreateView):
+class ArtistSignUpView(CreateView):
     model = User
-    form_class = SellerSignUpForm
-    template_name = 'seller/signup_form.html'
+    form_class = ArtistSignUpForm
+    template_name = 'artist/signup_form.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'ARTIST'
@@ -138,7 +138,7 @@ class SellerSignUpView(CreateView):
         return redirect('/')
 
 @login_required(login_url="/users/login")
-def seller_product(request):
+def artist_view(request):
 	if(request.user):
 		if(request.user.is_artist):
 			user_id = request.user.id
@@ -151,13 +151,13 @@ def seller_product(request):
 				'products':products,
 				'category':categories,
 			}
-			return render(request ,'seller/home.html' , context)
+			return render(request ,'artist/home.html' , context)
 		else:
 			return render(request,'users/login.html')
 
 
 @login_required(login_url="/users/login")
-def seller_product_song(request,albumid):
+def artist_view_song(request,albumid):
 	if(request.user):
 		if(request.user.is_artist):
 			user_id = request.user.id
@@ -169,8 +169,62 @@ def seller_product_song(request,albumid):
 				# 'title':request.user.name,
 				'products':products,
 				'category':categories,
+				'album_id':albumid
 			}
-			return render(request ,'seller/songlist.html' , context)
+			return render(request ,'artist/songlist.html' , context)
 		else:
 			return render(request,'users/login.html')
 
+@login_required(login_url="/users/login")
+def add_album(request):
+	genre = Genre.objects.all()
+	context = {
+		'category':genre,
+	}
+	if request.method == 'POST':
+		try:
+			image = request.FILES['image']
+		except MultiValueDictKeyError:
+			image = False
+		title = request.POST['title']
+		description = request.POST['description']
+		genre_selected = request.POST.get('category1')
+
+		genre1 = Genre.objects.filter(title=genre_selected)[0]
+
+
+		album = Album.objects.create(title = title ,
+		user=request.user ,
+		description = description ,
+		genre=genre1 ,
+		photo = image )
+
+		album.save()
+
+		return redirect('users:home')
+
+	else:
+		return render(request ,"artist/add.html" , context )
+@login_required(login_url="/users/login")
+def add_song(request,albumid):
+	if request.method == 'POST':
+		try:
+			audio = request.FILES['audio']
+		except MultiValueDictKeyError:
+			audio = False
+		title = request.POST['title']
+
+
+		# genre1 = Genre.objects.filter(title=genre_selected)[0]
+
+		album = Album.objects.filter(albumid =albumid)[0]
+		music = Music.objects.create(title = title ,
+		album=album ,
+		audio = audio )
+
+		music.save()
+
+		return redirect('users:home')
+
+	else:
+		return render(request ,"artist/add_song.html")

@@ -6,7 +6,7 @@ from django.forms.utils import ValidationError
 from users.models import (User)
 
 
-class SellerSignUpForm(UserCreationForm):
+class ArtistSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
 
