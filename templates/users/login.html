@@ -79,22 +79,7 @@
   <!-- CSS Files -->
   <link href="/static/assets/css/argon-design-system.min.css?v=1.2.0" rel="stylesheet" />
   <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
+
   <!-- End Google Tag Manager -->
 </head>
 
@@ -106,7 +91,7 @@
   <!-- Navbar -->
   <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
-      <a class="navbar-brand mr-lg-5" href="../index.html">
+      <a class="navbar-brand mr-lg-5" href="{%url 'gaana:home' %}">
         {% comment %} <img src="/static/assets/img/brand/white.png"> {% endcomment %}
 		Songify
       </a>

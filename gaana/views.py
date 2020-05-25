@@ -2,20 +2,22 @@ from django.shortcuts import render
 from gaana.models import Music
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
-
+from album.models import Album
+# from gaana.models import Music
 # Create your views here.
 def home(request):
-    songs = Music.objects.order_by('?')[:9]
+    # songs = Music.objects.order_by('?')[:9]
+    albums = Album.objects.all()
     context = {
         'title':'Home',
-        'songs':songs,
+        'albums':albums,
     }
 
     return render(request , 'songs/index.html' , context)
 @csrf_exempt
-def index(request):
+def index(request,albumid):
 
-    songs = Music.objects.all()
+    songs = Music.objects.filter(album =albumid)
     context = {
         'title':'Home',
         'songs':songs,
