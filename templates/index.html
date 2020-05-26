@@ -436,7 +436,7 @@
 {%for song in songs%}
 
                     {% comment %} <div  class="track__number" >{{song.musicid}}</div> {% endcomment %}
-                    <a href="javascript:firescript('{{song.musicid}}')"   class="track__number">{{song.musicid}}</a>
+                    <a href="javascript:firescript('{{song.musicid}}')" id ="{{song.musicid}}"   class="track__number">{{song.musicid}}</a>
                     {% comment %} <button href="javascript:{}" onClick="document.getElementById('{{song.musicid}}').submit();"></a> {% endcomment %}
                     {% comment %} <form method="POST" id="{{song.musicid}}" >
                     <input type="submit" name="song" value={{song.musicid}} />
@@ -1525,7 +1525,7 @@
 
 </section>
 
-<section class="current-track" style="height:61.2px !important">
+<section class="current-track" style="height:61.2px !important;bottom:0;">
 <audio id="music" class="current-track" >
 
 
@@ -1594,6 +1594,10 @@
   </div>
 
 </section>
+
+
+
+
 <!-- partial -->
 <script>
 
@@ -1613,7 +1617,15 @@ function goToSong(){
 
 }
 
+
+
+
 </script>
+
+
+
+
+
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
@@ -1622,5 +1634,8 @@ function goToSong(){
   <script src="/static/js/ajax.js"></script>
 
 
+<script>
+
+</script>
 </body>
 </html>

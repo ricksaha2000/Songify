@@ -43,11 +43,36 @@ $.ajax({
 
 
 });
+
+$(document).ready(function() {
+    console.log("NIGGA")
+    $("#"+y).click(function() {
+        $("html, body").animate({
+            scrollTop: $(
+              'html, body').get(0).scrollHeight
+        }, 2000);
+    });
+});
 };
 
 function searchSuccess1(data , textStatus,jqXHR)
 {
+    console.log(data)
    console.log("FIRESCRIPT1");
    $('#current_song_playing').html(data);
-    // music.play;
+
+}
+
+function song(y){
+    console.log("FUCK");
+  console.log(y);
+
+$(document).ready(function() {
+      $("#"+y).click(function() {
+          $("html, body").animate({
+              scrollTop: $(
+                'html, body').get(0).scrollHeight
+          }, 2000);
+      });
+  });
 }
