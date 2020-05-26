@@ -76,3 +76,35 @@ $(document).ready(function() {
       });
   });
 }
+
+
+
+
+//FOR SELECTED ALBUM AJAX
+
+var variable1;
+function displaySelectedAlbum(y){
+    variable1 = y;
+    console.log(variable1)
+$.ajax({
+    type:"POST",
+    url:"/song_selected_album/",
+    data:{
+        'songid':variable1,
+    },
+    success:searchSuccess_displaySelectedAlbum,
+    dataType:'html',
+
+
+});
+
+
+
+};
+
+function searchSuccess_displaySelectedAlbum(data , textStatus,jqXHR)
+{
+    console.log(data);
+    $('#selected-album-ajax').html(data);
+    // music.play;
+}

@@ -346,13 +346,17 @@
               <a href="#artist-overview" id="related-song" aria-controls="artist-overview" role="tab" data-toggle="tab">Overview</a>
             </li>
 
+             <li role="presentation">
+              <a href="#related-albums" aria-controls="related-albums" role="tab" data-toggle="tab">Related Albums</a>
+            </li>
+
             <li role="presentation">
               <a href="#related-artists" id="related-id" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
             </li>
 
-            <!--<li role="presentation">
-              <a href="#artist-about" aria-controls="artist-about" role="tab" data-toggle="tab">About</a>
-            </li>-->
+            <li role="presentation">
+              <a href="#album-selected" id="album-id" aria-controls="album-selected" role="tab" data-toggle="tab">ALBUM</a>
+            </li>
 
           </ul>
 
@@ -709,6 +713,10 @@
                 </div>
 
               </div>
+
+
+
+
 
               <div class="overview__albums">
 
@@ -1453,6 +1461,87 @@
             <!--<div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
           <!-- / -->
 
+
+
+
+
+           <div role="tabpanel" class="tab-pane" id="related-albums">
+
+            <div class="media-cards">
+{%for album in albums%}
+              <div class="media-card">
+
+                <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);justify-content:center;" >
+
+                  <a  href="javascript:displaySelectedAlbum('{{album.albumid}}');goToSelectedAlbum();" >
+                  <i class="ion-ios-play" >
+                  </i>
+
+                  </a>
+
+                </div>
+
+                <a class="media-card__footer">{{album.title}}</a>
+
+              </div>
+
+{%endfor%}
+
+            </div>
+
+          </div>
+
+
+
+
+
+
+
+
+          <div role="tabpanel" class="tab-pane active" id="album-selected">
+
+
+         
+
+
+                   <div id="selected-album-ajax">
+
+                   </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
 
       </div>
@@ -1614,6 +1703,15 @@ function goToSong(){
  $(document).ready(function() {
   $('a#related-song').trigger('click');
 });
+}
+
+function goToSelectedAlbum(){
+
+  console.log("HEYOO");
+ $(document).ready(function() {
+  $('a#album-id').trigger('click');
+});
+
 
 }
 
