@@ -1,3 +1,13 @@
+
+// function goToAlbum(){
+//   console.log("HEYOO");
+//   x = document.getElementById("related-artists");
+//   console.log(x);
+//   x.click();
+
+// }
+
+
 // Sliders
 
 var sliders = document.getElementById('song-progress');

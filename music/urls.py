@@ -17,13 +17,19 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
-from gaana.views import song
+from gaana.views import song,player_song_view
 from music import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name="home"),
     path('music/',include('gaana.urls')),
+
+    # AJAX VIEW
     path('song/',song , name="song"),
+    path('song_player/',player_song_view , name="song_player"),
+
+
+    #AJAX VIEWS END
     path('users/',include('users.urls')),
 
 
