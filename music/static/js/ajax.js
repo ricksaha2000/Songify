@@ -108,3 +108,72 @@ function searchSuccess_displaySelectedAlbum(data , textStatus,jqXHR)
     $('#selected-album-ajax').html(data);
     // music.play;
 }
+
+
+
+
+
+var variable2;
+function openmodal(y){
+    variable2 = y;
+    console.log(variable2)
+$.ajax({
+    type:"POST",
+    url:"/display_modal/",
+    data:{
+        'songid':variable2,
+    },
+    success:displaymodal,
+    dataType:'html',
+
+
+});
+
+
+
+};
+
+function displaymodal(data , textStatus,jqXHR)
+{
+    console.log(data);
+    $('#displaymodal').html(data);
+    $("#exampleModalCenter").modal('show');
+
+
+}
+var variable3;
+var variable4;
+function addToPlaylist(x,y){
+    variable3 = x;
+    variable4 = y;
+    console.log(variable3);
+    console.log(variable4);
+
+$.ajax({
+    type:"POST",
+    url:"/add_to_playlist/",
+    data:{
+        'songid':variable3,
+        'playlistid':variable4,
+
+    },
+    success:playlist_add,
+    dataType:'html',
+
+
+});
+
+
+
+};
+
+function playlist_add(data , textStatus,jqXHR)
+{
+    console.log(data);
+    $('#displaymodalsuccess').html(data);
+    $("#exampleModalCenter").modal('hide');
+
+
+}
+
+

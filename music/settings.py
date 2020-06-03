@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'users',
     'album',
     'genre',
-    
+    'playlist',
+    'playlist_song',
+
 
 ]
 

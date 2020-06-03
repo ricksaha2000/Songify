@@ -13,7 +13,15 @@
 <body>
 <!-- partial:index.partial.html -->
 <section class="header">
+<!-- Button trigger modal -->
+{% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button> {% endcomment %}
 
+<!-- Modal -->
+<div id="displaymodal" >
+
+</div>
   <!--
   <div class="window__actions">
     <i class="ion-record red"></i>
@@ -64,9 +72,9 @@
 
       <span class="user__info__name">
 
-        <span class="first">Adam</span>
+        <span class="first">User</span>
 
-        <span class="last">Lowenthal</span>
+        <span class="last">{{user_username}}</span>
 
       </span>
 
@@ -185,65 +193,14 @@
 
           <div class="collapse in" id="playlists">
 
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Doo Wop</span>
-            </a>
 
+  {%for playlist in playlists%}
             <a href="#" class="navigation__list__item">
               <i class="ion-ios-musical-notes"></i>
-              <span>Pop Classics</span>
+              <span>{{playlist.title}}</span>
             </a>
+{%endfor%}
 
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Love $ongs</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Hipster</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>New Music Friday</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Techno Poppers</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Summer Soothers</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Hard Rap</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Pop Rap</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>5 Stars</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Dope Dancin</span>
-            </a>
-
-            <a href="#" class="navigation__list__item">
-              <i class="ion-ios-musical-notes"></i>
-              <span>Sleep</span>
-            </a>
 
           </div>
 
@@ -251,6 +208,9 @@
         <!-- / -->
 
       </section>
+
+
+
 
     <section class="playlist">
 
@@ -355,7 +315,7 @@
             </li>
 
             <li role="presentation">
-              <a href="#album-selected" id="album-id" aria-controls="album-selected" role="tab" data-toggle="tab">ALBUM</a>
+              <a href="#album-selected" style="display:none" id="album-id" aria-controls="album-selected" role="tab" data-toggle="tab">ALBUM</a>
             </li>
 
           </ul>
@@ -445,11 +405,13 @@
                     {% comment %} <form method="POST" id="{{song.musicid}}" >
                     <input type="submit" name="song" value={{song.musicid}} />
                     </form> {% endcomment %}
-                    <div class="track__added">
+          <div class="track__added">
 
-                      <i class="ion-checkmark-round added"></i>
+                <a href="javascript:openmodal('{{song.musicid}}')">
 
-                    </div>
+                      <i class="ion-plus not-added"></i>
+                </a>
+            </div>
 
                     <div class="track__title">{{song.title}}</div>
 
@@ -1501,7 +1463,7 @@
           <div role="tabpanel" class="tab-pane active" id="album-selected">
 
 
-         
+
 
 
                    <div id="selected-album-ajax">
