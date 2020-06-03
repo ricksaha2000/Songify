@@ -194,12 +194,14 @@
           <div class="collapse in" id="playlists">
 
 
-  {%for playlist in playlists%}
-            <a href="#" class="navigation__list__item">
+    {%for playlist in playlists%}
+            <a href="javascript:displaySelectedPlaylist('{{playlist.playlistid}}');gotoSelectedPlaylist();" class="navigation__list__item">
+
+
               <i class="ion-ios-musical-notes"></i>
               <span>{{playlist.title}}</span>
             </a>
-{%endfor%}
+    {%endfor%}
 
 
           </div>
@@ -316,6 +318,10 @@
 
             <li role="presentation">
               <a href="#album-selected" style="display:none" id="album-id" aria-controls="album-selected" role="tab" data-toggle="tab">ALBUM</a>
+            </li>
+
+             <li role="presentation">
+              <a href="#playlist-selected" style="display:none" id="playlist-id" aria-controls="playlist-selected" role="tab" data-toggle="tab">PLAYLIST</a>
             </li>
 
           </ul>
@@ -1447,7 +1453,7 @@
 
               </div>
 
-{%endfor%}
+        {%endfor%}
 
             </div>
 
@@ -1471,6 +1477,23 @@
                    </div>
 
                     </div>
+
+
+
+            <div role="tabpanel" class="tab-pane active" id="playlist-selected">
+
+
+
+
+
+                   <div id="playlistselected">
+<button>WOWW</button>
+                   </div>
+
+              </div>
+
+
+
 
                   </div>
 
@@ -1677,6 +1700,15 @@ function goToSelectedAlbum(){
 
 }
 
+function gotoSelectedPlaylist(){
+
+  console.log("HEYOO");
+ $(document).ready(function() {
+  $('a#playlist-id').trigger('click');
+});
+
+
+}
 
 
 

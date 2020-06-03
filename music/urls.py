@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
-from gaana.views import song,player_song_view,player_album_selected,modal_open,add_to_playlist
+from gaana.views import song,player_song_view,player_album_selected,modal_open,add_to_playlist,playlist_selected
 from music import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +30,8 @@ urlpatterns = [
     path('song_selected_album/',player_album_selected , name="album_selected"),
     path('display_modal/',modal_open , name="modal_open"),
     path('add_to_playlist/',add_to_playlist , name="add_to_playlist"),
+    path('playlist_selected/',playlist_selected , name="playlist_selected"),
+
 
 
 

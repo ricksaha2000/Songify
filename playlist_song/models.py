@@ -11,4 +11,4 @@ class PlaylistSong(models.Model):
     songid = models.ForeignKey(Music, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.songid.title)
+        return str(self.playlistsongid)

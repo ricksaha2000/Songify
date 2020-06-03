@@ -99,3 +99,17 @@ def add_to_playlist(request):
         # song = Music.objects.filter(musicid = input_text)
 
     return render_to_response('modal_view_success.html',{})
+
+@csrf_exempt
+def playlist_selected(request):
+
+    if request.method == "POST":
+        playlistid = request.POST['playlistid']
+        print("HII")
+        print(playlistid)
+        playlist = Playlist.objects.filter(playlistid = playlistid)
+        print(playlist)
+        playlist_songs = PlaylistSong.objects.filter(playlistid = playlist[0])
+        print(playlist_songs)
+
+    return render_to_response('playlist_selected.html',{'playlistsongs':playlist_songs})

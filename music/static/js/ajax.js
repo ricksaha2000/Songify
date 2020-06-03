@@ -177,3 +177,31 @@ function playlist_add(data , textStatus,jqXHR)
 }
 
 
+
+
+var variable6;
+function displaySelectedPlaylist(y){
+    variable6 = y;
+    console.log(variable6);
+$.ajax({
+    type:"POST",
+    url:"/playlist_selected/",
+    data:{
+        'playlistid':variable6,
+    },
+    success:searchSuccess_displaySelectedPlaylist,
+    dataType:'html',
+
+
+});
+
+
+
+};
+
+function searchSuccess_displaySelectedPlaylist(data , textStatus,jqXHR)
+{
+    console.log(data);
+    $('#playlistselected').html(data);
+    // music.play;
+}
