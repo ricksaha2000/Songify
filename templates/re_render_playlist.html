@@ -1,0 +1,8 @@
+{%for playlist in playlists%}
+            <a href="javascript:displaySelectedPlaylist('{{playlist.playlistid}}');gotoSelectedPlaylist();" class="navigation__list__item">
+
+
+              <i class="ion-ios-musical-notes"></i>
+              <span>{{playlist.title}}</span>
+            </a>
+    {%endfor%}

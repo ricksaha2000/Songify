@@ -6,6 +6,8 @@ from album.models import Album
 from users.models import User
 from playlist.models import Playlist
 from playlist_song.models import PlaylistSong
+from django.http import JsonResponse
+
 def home(request):
     # songs = Music.objects.order_by('?')[:9]
     albums = Album.objects.all()
@@ -113,3 +115,28 @@ def playlist_selected(request):
         print(playlist_songs)
 
     return render_to_response('playlist_selected.html',{'playlistsongs':playlist_songs})
+@csrf_exempt
+def add_playlist_basic(request):
+    if request.is_ajax():
+        title = request.POST.get('title', None) # getting data from input first_name id
+        description = request.POST.get('description', None)  # getting data from input last_name id
+        image = request.POST.get('image', None)
+        print(title)
+        print(description)
+        print(image)
+
+        if title and description: #cheking if first_name and last_name have value
+           Playlist.objects.create(title = title,
+           user = request.user,
+           description=description,photo = image)
+           response = {
+                         'msg':'Your form has been submitted successfully' # response message
+            }
+        return JsonResponse(response) # return response as JSON
+
+
+@csrf_exempt
+def re_render_playlist(request):
+    playlists = Playlist.objects.filter(user = request.user.id)
+
+    return render_to_response('re_render_playlist.html',{'playlists':playlists})

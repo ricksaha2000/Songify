@@ -205,3 +205,66 @@ function searchSuccess_displaySelectedPlaylist(data , textStatus,jqXHR)
     $('#playlistselected').html(data);
     // music.play;
 }
+
+
+
+$('#my-form').on('submit', function(e){
+
+    e.preventDefault();
+
+        $.ajax({
+                                           type : "POST",
+                                           url: "/add_playlist_basic/",
+                                           data: {
+                                            title : $('#title-add-playlist').val(),
+                                            description : $('#description-add-playlist').val(),
+                                            image : document.getElementById("image-add-playlist").files[0].name,
+
+
+
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                             dataType: "json",
+
+
+
+                                           },
+
+                                           success: function(data){
+                                            $("#addtoplaylistmodal").modal('hide');
+                                            re_render_playlist();
+
+
+                                           $('#output h1').html(data.msg) /* response message */
+                                           },
+                                           failure: function() {
+
+                                           }
+
+
+                                       });
+
+
+            });
+
+            function re_render_playlist(){
+            $.ajax({
+                type:"POST",
+                url:"/re_render_playlist/",
+                data:{
+                },
+                success:re_render_playlist_success,
+                dataType:'html',
+
+
+            });
+
+
+
+            };
+
+            function re_render_playlist_success(data , textStatus,jqXHR)
+            {
+                console.log(data);
+                $('#playlists').html(data);
+                // music.play;
+            }
