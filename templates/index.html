@@ -36,7 +36,7 @@
 .my-form input,
 .my-form textarea,
 .my-form button {
-  width:40%;
+  width:80%;
   line-height: 1.5;
   padding: 15px 10px;
   border: 1px solid var(--borderFormEls);
@@ -1913,16 +1913,16 @@ footer span {
 
 
 
-<form class="my-form" id="my-form" enctype="multipart/form-data">
+<form class="my-form" id="my-form" enctype="multipart/form-data" style="justify-content:center">
   {% csrf_token %}
-  <div class="container">
+  <div  >
     <h1 style="color:#afafaf;padding-bottom:10px;">Add A New Playlist</h1>
     <ul>
 
       <li>
-        <div class="grid grid-1">
-          <input type="text" placeholder="Title" id="title-add-playlist" name="title" class="form-control"  required>
-          <input type="text" placeholder="Description" id="description-add-playlist" name="description" class="form-control" required>
+        <div class="grid grid-1" style="text-align: center;">
+          <input type="text" placeholder="Title" id="title-add-playlist" name="title" class="form-control" style="display:flex"  required>
+          <input type="text" placeholder="Description" id="description-add-playlist" name="description" style="display:flex" class="form-control" required>
         </div>
       </li>
       <li>
@@ -1944,7 +1944,9 @@ footer span {
           <div class="required-msg" style="color:#afafaf">REQUIRED FIELDS</div>
           <button class="btn-grid" type="submit" >
             <span class="back">
-              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/email-icon.svg" alt="">
+                      <i class="ion-ios-musical-notes" style="font-size:20px"></i>
+
+              {% comment %} <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/email-icon.svg" alt=""> {% endcomment %}
             </span>
             <span class="front">SUBMIT</span>
           </button>
