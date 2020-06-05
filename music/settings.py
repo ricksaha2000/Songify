@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'playlist',
     'playlist_song',
     'artist_follow',
+    'user_follow',
 
 
 

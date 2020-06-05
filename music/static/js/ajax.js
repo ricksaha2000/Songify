@@ -299,17 +299,17 @@ $('#my-form').on('submit', function(e){
                 // music.play;
             }
 
-            var variable8;
-            function FollowArtist(y){
-                variable8 = y;
-                console.log(variable8);
+            var variable9;
+            function FollowUser(y){
+                variable9 = y;
+                console.log(variable9);
             $.ajax({
                 type:"POST",
-                url:"/follow_artist/",
+                url:"/follow_user/",
                 data:{
-                    'artist_id':variable8,
+                    'follow_user_id':variable9,
                 },
-                success:searchSuccess_FollowArtist,
+                success:searchSuccess_FollowUser,
                 dataType:'html',
 
 
@@ -319,9 +319,11 @@ $('#my-form').on('submit', function(e){
 
             };
 
-            function searchSuccess_FollowArtist(data , textStatus,jqXHR)
+            function searchSuccess_FollowUser(data , textStatus,jqXHR)
             {
                 console.log(data);
-                $('#artist_added').html(data);
+                $('#user_added').html(data);
                 // music.play;
             }
+
+

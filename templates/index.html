@@ -1846,22 +1846,33 @@
 
             <div class="friends">
 
-              <a href="#" class="friend">
+      {% for user in all_users %}
+
+              <div class="user_follow">
+
+              <a href="#">
 
                 <i class="ion-android-person"></i>
 
-                Sam
-
+                {{user.username}}
               </a>
 
+    <a href="javascript:FollowUser('{{user.id}}')" id="user_added" >
+                  {% comment %} <button class="button-light">Follow</button> {% endcomment %}
 
-              <a href="#" class="friend">
+                  {% comment %} {%if added%}
+                  <button class="button-light">Following</button>
+                  {%else%} {% endcomment %}
+                  <button class="button-light">Follow</button>
+                  {% comment %} {%endif%} {% endcomment %}
 
-                <i class="ion-android-person"></i>
 
-                Ron
+                </a>
 
-              </a>
+              </div>
+
+{%endfor%}
+
 
             </div>
 

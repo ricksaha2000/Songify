@@ -5,6 +5,8 @@ from django.shortcuts import render_to_response
 from album.models import Album
 from users.models import User
 from artist_follow.models import ArtistFollow
+from user_follow.models import UserFollow
+
 from playlist.models import Playlist
 from playlist_song.models import PlaylistSong
 from django.http import JsonResponse
@@ -30,7 +32,7 @@ def index(request,albumid):
     album_all = Album.objects.filter(user__username =album_username)
     playlists = Playlist.objects.filter(user = request.user.id)
 
-
+    all_user = User.objects.all()
     artist_id = album.user.id
     artist = User.objects.filter(id = artist_id).values()
     # print(artist)
@@ -47,6 +49,7 @@ def index(request,albumid):
         'playlists':playlists,
         'user_username':user_username,
         'added':True,
+        'all_users':all_user,
         }
     else:
         context = {
@@ -58,8 +61,13 @@ def index(request,albumid):
         'playlists':playlists,
         'user_username':user_username,
         'added':False,
+        'all_users':all_user,
+
 
         }
+
+
+    
 
     return render(request , 'index.html',context)
 
@@ -212,30 +220,33 @@ def follow_artist(request):
 def follow_user(request):
     response = {}
     if request.method == "POST":
-        artist_id = request.POST['artist_id']
+        followuserids = request.POST['follow_user_id']
+        print(followuserids)
         # print(artist_id)
-    artist = User.objects.filter(id = artist_id).values()
-    # print(artist)
-    x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
-    # print(x)
-    if(x):
-        # print("BOOYEAH")
-        artist_new = User.objects.filter(id = artist_id)[0]
+        wanttofollowuser = User.objects.filter(id = followuserids).values()
+        print(wanttofollowuser)
+        x = UserFollow.objects.filter(user = request.user,follow_user=followuserids)
+        print(x)
+        if(x):
+            print("BOOYEAH")
+            user_new = User.objects.filter(id = followuserids)[0]
+            print("YOMAMAMAM")
+            to_be_deleted = UserFollow.objects.filter(user = request.user,follow_user = user_new)
+            to_be_deleted.delete()
+            response = {
+                'user_added':False
+            }
 
-        to_be_deleted = ArtistFollow.objects.filter(user = request.user,artist = artist_new)
-        to_be_deleted.delete()
-        response = {
-            'added':False
-        }
+        else:
+            user_new = User.objects.filter(id = followuserids)[0]
+            # print(user_new)
+            print("HII")
+            UserFollow.objects.create(user = request.user,follow_user = user_new)
 
-    else:
-        artist_new = User.objects.filter(id = artist_id)[0]
+            response = {
+                'user_added':True
+            }
+            # print("LOLO")
 
-        ArtistFollow.objects.create(user = request.user,artist = artist_new)
+    return render_to_response('user_follow.html',response)
 
-        response = {
-            'added':True
-        }
-        # print("LOLO")
-
-    return render_to_response('artist_follow.html',response)

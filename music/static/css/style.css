@@ -1177,3 +1177,15 @@ button:hover {
   font-size: 13.2px;
   margin-bottom: 10px;
 }
+
+.user_follow{
+
+  align-items: center;
+  padding-bottom: 20px;;
+}
+
+.user_follow a {
+
+  margin-right: 20px;
+
+}
