@@ -361,7 +361,13 @@ $('#my-form').on('submit', function(e){
                     if(x=='')
                     {
                         x = "NONE"
+
+
                     }
+                    $(document).ready(function () {
+                        $('a#user-search-success').trigger('click');
+                      });
+
 
                     $.ajax({
 
@@ -384,4 +390,20 @@ $('#my-form').on('submit', function(e){
             {
                 console.log(data)
                 $('#search-user-results').html(data);
+                checkempty();
+
             }
+
+function checkempty(){
+    var x = $('#search_user').val();
+    if(x==''){
+        $(document).ready(function () {
+            $('a#friend-list').trigger('click');
+          });
+    }
+    else{
+        console.log("OKAY");
+    }
+
+
+}

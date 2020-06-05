@@ -1808,10 +1808,10 @@
 
       <!-- <div class="artist__navigation"> -->
 <div>
-        <ul class="nav nav-tabs" role="tablist" style="padding:10px">
+        <ul class="nav nav-tabs" role="tablist" style="padding:10px;align-items:center;">
 
           {% comment %} <li role="presentation" class="active" style = ""> {% endcomment %}
-            <a href="#user-friends" aria-controls="user-friends" role="tab" data-toggle="tab">
+            <a href="#user-friends" aria-controls="user-friends" id="friend-list" role="tab" data-toggle="tab">
 
             <button class="button-dark" >
 
@@ -1824,7 +1824,7 @@
 
           {% comment %} </li> {% endcomment %}
           {% comment %} <li role="presentation"> {% endcomment %}
-            <a href="#user-search" aria-controls="user-search" role="tab" data-toggle="tab">
+            <a href="#user-search" aria-controls="user-search" id="user-search-success" style="display:none" role="tab" data-toggle="tab">
 
             <button class="button-dark" >
             <i class="ion-ios-play"></i>
