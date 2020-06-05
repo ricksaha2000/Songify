@@ -299,6 +299,33 @@ $('#my-form').on('submit', function(e){
                 // music.play;
             }
 
+            var variable8;
+            function FollowArtist(y){
+                variable8 = y;
+                console.log(variable8);
+            $.ajax({
+                type:"POST",
+                url:"/follow_artist/",
+                data:{
+                    'artist_id':variable8,
+                },
+                success:searchSuccess_FollowArtist,
+                dataType:'html',
+
+
+            });
+
+
+
+            };
+
+            function searchSuccess_FollowArtist(data , textStatus,jqXHR)
+            {
+                console.log(data);
+                $('#artist_added').html(data);
+                // music.play;
+            }
+
             var variable9;
             function FollowUser(y){
                 variable9 = y;
