@@ -327,3 +327,34 @@ $('#my-form').on('submit', function(e){
             }
 
 
+            $(function(){
+
+                $('#search_user').keyup(function(){
+                    var x = $('#search_user').val()
+                    if(x=='')
+                    {
+                        x = "NONE"
+                    }
+
+                    $.ajax({
+
+                        type:"POST",
+                        url:"/search_user/",
+                        data:{
+                            'search_text':x,
+                            //  $('#search').val(),
+                            // 'csrfmiddlewaretoken':$("input|name=csrfmiddlewaretoken").val()
+
+                        },
+                        success:searchSuccessUser,
+                        dataType:'html',
+
+                    });
+                 });
+            });
+
+            function searchSuccessUser(data , textStatus,jqXHR)
+            {
+                console.log(data)
+                $('#search-user-results').html(data);
+            }

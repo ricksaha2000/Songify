@@ -1,0 +1,20 @@
+{% if results.count > 0%}
+
+
+
+{%for result in results%}
+
+
+
+     <a href="#" class="friend">
+
+                <i class="ion-android-person"></i>
+
+                {{result.username}}
+              </a>
+
+
+{% endfor %}
+{%else%}
+<li>!  Nothing Found  !</li>
+{%endif%}

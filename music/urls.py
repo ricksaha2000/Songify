@@ -25,7 +25,8 @@ from gaana.views import (song,
                         add_playlist_basic,
                         re_render_playlist,
                         follow_artist,
-                        follow_user)
+                        follow_user,
+                        search_user)
 from music import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,6 +44,7 @@ urlpatterns = [
     path('re_render_playlist/',re_render_playlist , name="re_render_playlist"),
     path('follow_artist/',follow_artist , name="follow_artist"),
     path('follow_user/',follow_user , name="follow_user"),
+    path('search_user/',search_user , name="search_user"),
 
 
 

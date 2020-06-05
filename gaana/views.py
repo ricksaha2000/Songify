@@ -67,7 +67,7 @@ def index(request,albumid):
         }
 
 
-    
+
 
     return render(request , 'index.html',context)
 
@@ -250,3 +250,15 @@ def follow_user(request):
 
     return render_to_response('user_follow.html',response)
 
+@csrf_exempt
+def search_user(request):
+    if request.method == "POST":
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+    results = User.objects.filter(username__contains = search_text , username__isnull = False)
+
+
+
+
+    return render(None,'search_users.html',{"results":results})
