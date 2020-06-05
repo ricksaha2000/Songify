@@ -115,8 +115,10 @@ def playlist_selected(request):
         print(playlist_songs)
 
     return render_to_response('playlist_selected.html',{'playlistsongs':playlist_songs})
+l=[]
 @csrf_exempt
 def add_playlist_basic(request):
+    songid = False
     if request.is_ajax():
         title = request.POST.get('title', None) # getting data from input first_name id
         description = request.POST.get('description', None)  # getting data from input last_name id
@@ -124,14 +126,26 @@ def add_playlist_basic(request):
         print(title)
         print(description)
         print(image)
+    if(request.method == 'POST'):
+        if(request.POST.get('songid',None)):
+            print("FOUNDDDD")
+            songid = request.POST['songid']
+            print(songid)
+            l.append(songid)
 
-        if title and description: #cheking if first_name and last_name have value
-           Playlist.objects.create(title = title,
-           user = request.user,
-           description=description,photo = image)
-           response = {
-                         'msg':'Your form has been submitted successfully' # response message
-            }
+    if title and description and l:
+        get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description,photo = image)
+        song = Music.objects.filter(musicid = l[0])[0]
+        PlaylistSong.objects.create(playlistid = get_new_playlist, songid = song)
+        l.pop()
+        print("YOO")
+        response ={'msg':'Your form has been submitted successfully'}
+        return JsonResponse(response) # return response as JSON
+
+    elif (title and description and len(l)==0):
+        get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description,photo = image)
+        response ={'msg':'Your form has been submitted successfully'}
+        print("YOLOOOOO")
         return JsonResponse(response) # return response as JSON
 
 

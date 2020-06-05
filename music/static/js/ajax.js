@@ -174,6 +174,7 @@ function playlist_add(data , textStatus,jqXHR)
     $("#exampleModalCenter").modal('hide');
 
 
+
 }
 
 
@@ -231,6 +232,8 @@ $('#my-form').on('submit', function(e){
 
                                            success: function(data){
                                             $("#addtoplaylistmodal").modal('hide');
+                                            $("#exampleModalCenter").modal('hide');
+
                                             re_render_playlist();
 
 
@@ -266,5 +269,32 @@ $('#my-form').on('submit', function(e){
             {
                 console.log(data);
                 $('#playlists').html(data);
+                // music.play;
+            }
+
+            var variable7;
+            function addSongToNewPlaylist(y){
+                variable7 = y;
+                console.log(variable7);
+            $.ajax({
+                type:"POST",
+                url:"/add_playlist_basic/",
+                data:{
+                    'songid':variable7,
+                },
+                success:searchSuccess_addSongToNewPlaylist,
+                dataType:'html',
+
+
+            });
+
+
+
+            };
+
+            function searchSuccess_addSongToNewPlaylist(data , textStatus,jqXHR)
+            {
+                console.log(data);
+                // $('#playlistselected').html(data);
                 // music.play;
             }
