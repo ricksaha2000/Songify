@@ -128,8 +128,16 @@ body a:hover {
     width: 80%;
   }
   .content__right {
-    display: none;
+    width: 100%;
+    display: inline-block !important;
+    text-align: center;
   }
+  .social{
+    justify-content: center;
+
+  }
+
+
 }
 @media (max-width: 768px) {
   .content__left {
@@ -991,6 +999,16 @@ body a:hover {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+}
+
+@media (max-width: 1200px) {
+
+  .social .friends .friend {
+    padding: 15px 0;
+    display: block;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
 }
 .social .friends .friend:first-child {
   padding-top: 0;

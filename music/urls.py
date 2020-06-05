@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
-from gaana.views import song,player_song_view,player_album_selected,modal_open,add_to_playlist,playlist_selected,add_playlist_basic,re_render_playlist
+from gaana.views import song,player_song_view,player_album_selected,modal_open,add_to_playlist,playlist_selected,add_playlist_basic,re_render_playlist,follow_artist
 from music import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +33,9 @@ urlpatterns = [
     path('playlist_selected/',playlist_selected , name="playlist_selected"),
     path('add_playlist_basic/',add_playlist_basic , name="add_playlist_basic"),
     path('re_render_playlist/',re_render_playlist , name="re_render_playlist"),
+    path('follow_artist/',follow_artist , name="follow_artist"),
+
+
 
 
 

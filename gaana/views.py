@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
 from album.models import Album
 from users.models import User
+from artist_follow.models import ArtistFollow
 from playlist.models import Playlist
 from playlist_song.models import PlaylistSong
 from django.http import JsonResponse
@@ -26,21 +27,40 @@ def index(request,albumid):
     album_username = album.user.username
     user_username = request.user.username
 
-
     album_all = Album.objects.filter(user__username =album_username)
     playlists = Playlist.objects.filter(user = request.user.id)
 
-    context = {
+
+    artist_id = album.user.id
+    artist = User.objects.filter(id = artist_id).values()
+    # print(artist)
+    x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
+    # print(x)
+    if(x):
+        print("BOOYEAH")
+        context = {
         'title':'Home',
         'songs':songs,
         'username':album_username,
+        'artist_id':album.user.id,
         'albums':album_all,
         'playlists':playlists,
         'user_username':user_username,
+        'added':True,
+        }
+    else:
+        context = {
+        'title':'Home',
+        'songs':songs,
+        'username':album_username,
+        'artist_id':album.user.id,
+        'albums':album_all,
+        'playlists':playlists,
+        'user_username':user_username,
+        'added':False,
 
+        }
 
-
-    }
     return render(request , 'index.html',context)
 
 @csrf_exempt
@@ -154,3 +174,68 @@ def re_render_playlist(request):
     playlists = Playlist.objects.filter(user = request.user.id)
 
     return render_to_response('re_render_playlist.html',{'playlists':playlists})
+
+@csrf_exempt
+def follow_artist(request):
+    response = {}
+    if request.method == "POST":
+        artist_id = request.POST['artist_id']
+        # print(artist_id)
+    artist = User.objects.filter(id = artist_id).values()
+    # print(artist)
+    x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
+    # print(x)
+    if(x):
+        # print("BOOYEAH")
+        artist_new = User.objects.filter(id = artist_id)[0]
+
+        to_be_deleted = ArtistFollow.objects.filter(user = request.user,artist = artist_new)
+        to_be_deleted.delete()
+        response = {
+            'added':False
+        }
+
+    else:
+        artist_new = User.objects.filter(id = artist_id)[0]
+
+        ArtistFollow.objects.create(user = request.user,artist = artist_new)
+
+        response = {
+            'added':True
+        }
+        # print("LOLO")
+
+    return render_to_response('artist_follow.html',response)
+
+
+@csrf_exempt
+def follow_user(request):
+    response = {}
+    if request.method == "POST":
+        artist_id = request.POST['artist_id']
+        # print(artist_id)
+    artist = User.objects.filter(id = artist_id).values()
+    # print(artist)
+    x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
+    # print(x)
+    if(x):
+        # print("BOOYEAH")
+        artist_new = User.objects.filter(id = artist_id)[0]
+
+        to_be_deleted = ArtistFollow.objects.filter(user = request.user,artist = artist_new)
+        to_be_deleted.delete()
+        response = {
+            'added':False
+        }
+
+    else:
+        artist_new = User.objects.filter(id = artist_id)[0]
+
+        ArtistFollow.objects.create(user = request.user,artist = artist_new)
+
+        response = {
+            'added':True
+        }
+        # print("LOLO")
+
+    return render_to_response('artist_follow.html',response)

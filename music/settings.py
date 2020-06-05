@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'genre',
     'playlist',
     'playlist_song',
+    'artist_follow',
+
 
 
 ]
