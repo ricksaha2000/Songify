@@ -302,3 +302,25 @@ def refresh_search_list(request):
 
 
     return render_to_response('refresh_search_list.html',{"results":results})
+
+@csrf_exempt
+def showfolloweduserplaylist(request):
+
+    if request.method == "POST":
+        follow_user_id = request.POST['follow_user_id']
+        print(follow_user_id)
+    playlists = Playlist.objects.filter(user = follow_user_id)
+    print(playlists)
+
+    return render_to_response('showfolloweduserplaylist.html',{'playlists':playlists})
+
+@csrf_exempt
+def showfolloweduserSongs(request):
+
+    if request.method == "POST":
+        follow_user_playlist_id = request.POST['follow_user_playlist_id']
+        print(follow_user_playlist_id)
+    playlists_songs = PlaylistSong.objects.filter(playlistid = follow_user_playlist_id)
+    print(playlists_songs)
+
+    return render_to_response('showfolloweduserSongs.html',{'playlist_songs':playlists_songs})

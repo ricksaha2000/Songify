@@ -561,6 +561,17 @@
                   role="tab" data-toggle="tab">PLAYLIST</a>
               </li>
 
+
+                <li role="presentation">
+                <a href="#follower-playlist-selected" style="display:none"  id="follwer-playlist-id" aria-controls="follower-playlist-selected"
+                  role="tab" data-toggle="tab">FOLLWER PLAYLIST</a>
+              </li>
+
+              <li role="presentation">
+                <a href="#follower-playlist-song-selected" style="display:none" id="follwer-playlist-song-id" aria-controls="follower-playlist-song-selected"
+                  role="tab" data-toggle="tab">PLAYLIST SONG</a>
+              </li>
+
             </ul>
 
             <div class="artist__navigation__friends">
@@ -1752,6 +1763,31 @@
 
 
 
+   <div role="tabpanel" class="tab-pane" id="follower-playlist-selected">
+
+              <div class="media-cards" id="showfolloweduserplaylist">
+
+
+              </div>
+
+            </div>
+
+
+
+   <div role="tabpanel" class="tab-pane" id="follower-playlist-song-selected">
+
+              <div class="media-cards" id="showfolloweduserSongs">
+
+
+              </div>
+
+            </div>
+
+
+
+
+
+
 
           </div>
 
@@ -1831,7 +1867,7 @@
 
               <div class="user_follow">
 
-              <a href="#">
+              <a href="javascript:showfolloweduserplaylist('{{user.follow_user.id}}');goToFollowerPlaylist();">
 
                 <i class="ion-android-person"></i>
 
@@ -2070,6 +2106,24 @@
 
 
       }
+      function goToFollowerPlaylist() {
+
+        $(document).ready(function () {
+          $('a#follwer-playlist-id').trigger('click');
+        });
+
+
+      }
+
+         function goToFollowerPlaylistSong() {
+
+        $(document).ready(function () {
+          $('a#follwer-playlist-song-id').trigger('click');
+        });
+
+
+      }
+
     </script>
 
 

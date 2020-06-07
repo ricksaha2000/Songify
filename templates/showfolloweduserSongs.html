@@ -1,0 +1,19 @@
+{%for playlist_song in playlist_songs %}
+                <div class="media-card">
+
+                  <div class="media-card__image"
+                    style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);justify-content:center;">
+
+                    <a href="#">
+                      <i class="ion-ios-play">
+                      </i>
+
+                    </a>
+
+                  </div>
+
+                  <a class="media-card__footer">{{playlist_song.title}}</a>
+
+                </div>
+
+                {%endfor%}

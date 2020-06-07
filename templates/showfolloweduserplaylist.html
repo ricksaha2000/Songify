@@ -1,0 +1,19 @@
+{%for playlist in playlists %}
+                <div class="media-card">
+
+                  <div class="media-card__image"
+                    style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);justify-content:center;">
+
+                    <a href="javascript:showfolloweduserSongs('{{playlist.playlistid}}');goToFollowerPlaylistSong();">
+                      <i class="ion-ios-play">
+                      </i>
+
+                    </a>
+
+                  </div>
+
+                  <a class="media-card__footer">{{playlist.title}}</a>
+
+                </div>
+
+                {%endfor%}

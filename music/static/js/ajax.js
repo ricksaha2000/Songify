@@ -459,3 +459,59 @@ function refresh_search_list(){
     }
 
 
+    var variable10;
+    function showfolloweduserplaylist(y){
+        variable10 = y;
+        console.log(variable10);
+    $.ajax({
+        type:"POST",
+        url:"/showfolloweduserplaylist/",
+        data:{
+            'follow_user_id':variable10,
+        },
+        success:searchSuccess_showfolloweduserplaylist,
+        dataType:'html',
+
+
+    });
+
+
+
+    };
+
+    function searchSuccess_showfolloweduserplaylist(data , textStatus,jqXHR)
+    {
+        console.log(data);
+        $('#showfolloweduserplaylist').html(data);
+        // music.play;
+    }
+
+
+    var variable11;
+    function showfolloweduserSongs(y){
+        variable11 = y;
+        console.log(variable11);
+    $.ajax({
+        type:"POST",
+        url:"/showfolloweduserSongs/",
+        data:{
+            'follow_user_playlist_id':variable11,
+        },
+        success:searchSuccess_showfolloweduserSongs,
+        dataType:'html',
+
+
+    });
+
+
+
+    };
+
+    function searchSuccess_showfolloweduserSongs(data , textStatus,jqXHR)
+    {
+        console.log(data);
+        $('#showfolloweduserSongs').html(data);
+        // music.play;
+    }
+
+
