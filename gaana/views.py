@@ -32,7 +32,8 @@ def index(request,albumid):
     album_all = Album.objects.filter(user__username =album_username)
     playlists = Playlist.objects.filter(user = request.user.id)
 
-    all_user = User.objects.all()
+    all_user = UserFollow.objects.filter(user = request.user)
+
     artist_id = album.user.id
     artist = User.objects.filter(id = artist_id).values()
     # print(artist)
@@ -252,11 +253,26 @@ def follow_user(request):
 
 @csrf_exempt
 def search_user(request):
+    result=''
     if request.method == "POST":
         search_text = request.POST['search_text']
     else:
         search_text = ''
     results = User.objects.filter(username__contains = search_text , username__isnull = False)
+    result_copy = User.objects.filter(username__contains = search_text , username__isnull = False)
+    length = len(results.values())
+    # print(length)
+    for i in range(length):
+       userid =  (result_copy.values())[i]['id']
+       x = UserFollow.objects.filter(user = request.user,follow_user=userid)
+       if x:
+           print(userid)
+
+           results = results.exclude(id=userid)
+           print(results)
+
+
+
 
 
 

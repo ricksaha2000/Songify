@@ -1766,25 +1766,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
 
     </div>
@@ -1854,16 +1835,16 @@
 
                 <i class="ion-android-person"></i>
 
-                {{user.username}}
+                {{user.follow_user.username}}
               </a>
 
-    <a href="javascript:FollowUser('{{user.id}}')" id="user_added" >
+    <a href="javascript:FollowUser('{{user.follow_user.id}}')" id="user_added" >
                   {% comment %} <button class="button-light">Follow</button> {% endcomment %}
 
                   {% comment %} {%if added%}
                   <button class="button-light">Following</button>
                   {%else%} {% endcomment %}
-                  <button class="button-light">Follow</button>
+                  <button class="button-light">Following</button>
                   {% comment %} {%endif%} {% endcomment %}
 
 

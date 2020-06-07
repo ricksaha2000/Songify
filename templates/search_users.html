@@ -5,14 +5,26 @@
 {%for result in results%}
 
 
+              <div class="user_follow">
 
-     <a href="#" class="friend">
+     <a href="#">
 
                 <i class="ion-android-person"></i>
 
                 {{result.username}}
               </a>
+ <a href="javascript:FollowUser('{{result.id}}')" id="user_added" >
+                  {% comment %} <button class="button-light">Follow</button> {% endcomment %}
 
+                   {%if user_added%}
+                  <button class="button-light">Following</button>
+                  {%else%}
+                  <button class="button-light">Follow</button>
+                   {%endif%}
+
+
+                </a>
+</div>
 
 {% endfor %}
 {%else%}
