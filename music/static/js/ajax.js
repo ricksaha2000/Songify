@@ -351,6 +351,7 @@ $('#my-form').on('submit', function(e){
                 console.log(data);
                 $('#user_added').html(data);
                 // music.play;
+                refresh_user_list();
             }
 
 
@@ -407,3 +408,54 @@ function checkempty(){
 
 
 }
+
+function refresh_user_list(){
+$.ajax({
+    type:"POST",
+    url:"/refresh_user_list/",
+    data:{
+    },
+    success:searchSuccess_refresh_user_list,
+    dataType:'html',
+
+
+});
+
+
+
+};
+
+function searchSuccess_refresh_user_list(data , textStatus,jqXHR)
+{
+    console.log(data);
+    $('#user-already-follows').html(data);
+    refresh_search_list();
+    // music.play;
+}
+
+
+function refresh_search_list(){
+    var x = $('#search_user').val();
+
+    $.ajax({
+        type:"POST",
+        url:"/refresh_search_list/",
+        data:{
+            "x":x,
+        },
+        success:searchSuccess_refresh_search_list,
+        dataType:'html',
+
+
+    });
+
+    };
+
+    function searchSuccess_refresh_search_list(data , textStatus,jqXHR)
+    {
+        console.log(data);
+        $('#search-user-results').html(data);
+
+    }
+
+

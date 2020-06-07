@@ -167,14 +167,14 @@ def add_playlist_basic(request):
         song = Music.objects.filter(musicid = l[0])[0]
         PlaylistSong.objects.create(playlistid = get_new_playlist, songid = song)
         l.pop()
-        print("YOO")
+        # print("YOO")
         response ={'msg':'Your form has been submitted successfully'}
         return JsonResponse(response) # return response as JSON
 
     elif (title and description and len(l)==0):
         get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description,photo = image)
         response ={'msg':'Your form has been submitted successfully'}
-        print("YOLOOOOO")
+        # print("YOLOOOOO")
         return JsonResponse(response) # return response as JSON
 
 
@@ -227,11 +227,11 @@ def follow_user(request):
         wanttofollowuser = User.objects.filter(id = followuserids).values()
         print(wanttofollowuser)
         x = UserFollow.objects.filter(user = request.user,follow_user=followuserids)
-        print(x)
+        # print(x)
         if(x):
-            print("BOOYEAH")
+            # print("BOOYEAH")
             user_new = User.objects.filter(id = followuserids)[0]
-            print("YOMAMAMAM")
+            # print("YOMAMAMAM")
             to_be_deleted = UserFollow.objects.filter(user = request.user,follow_user = user_new)
             to_be_deleted.delete()
             response = {
@@ -241,7 +241,7 @@ def follow_user(request):
         else:
             user_new = User.objects.filter(id = followuserids)[0]
             # print(user_new)
-            print("HII")
+            # print("HII")
             UserFollow.objects.create(user = request.user,follow_user = user_new)
 
             response = {
@@ -266,15 +266,39 @@ def search_user(request):
        userid =  (result_copy.values())[i]['id']
        x = UserFollow.objects.filter(user = request.user,follow_user=userid)
        if x:
-           print(userid)
+        #    print(userid)
 
            results = results.exclude(id=userid)
-           print(results)
-
-
-
-
-
+        #    print(results)
 
 
     return render(None,'search_users.html',{"results":results})
+
+@csrf_exempt
+def refresh_user_list(request):
+    all_user = UserFollow.objects.filter(user = request.user)
+
+    return render_to_response('refresh_user_list.html',{'all_users':all_user})
+
+@csrf_exempt
+def refresh_search_list(request):
+    if request.method == "POST":
+        x = request.POST['x']
+        print(x)
+        results = User.objects.filter(username__contains = x , username__isnull = False)
+        result_copy = User.objects.filter(username__contains = x , username__isnull = False)
+
+        length = len(results.values())
+    for i in range(length):
+        userid =  (result_copy.values())[i]['id']
+        print(userid)
+        x = UserFollow.objects.filter(user = request.user,follow_user=userid)
+        if x:
+            print(userid)
+
+            results = results.exclude(id=userid)
+        print(results)
+
+
+
+    return render_to_response('refresh_search_list.html',{"results":results})

@@ -1,0 +1,26 @@
+ {% for user in all_users %}
+
+              <div class="user_follow">
+
+              <a href="#">
+
+                <i class="ion-android-person"></i>
+
+                {{user.follow_user.username}}
+              </a>
+
+    <a href="javascript:FollowUser('{{user.follow_user.id}}')" id="user_added" >
+                  {% comment %} <button class="button-light">Follow</button> {% endcomment %}
+
+                  {% comment %} {%if added%}
+                  <button class="button-light">Following</button>
+                  {%else%} {% endcomment %}
+                  <button class="button-light">Following</button>
+                  {% comment %} {%endif%} {% endcomment %}
+
+
+                </a>
+
+              </div>
+
+{%endfor%}
