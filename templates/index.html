@@ -688,7 +688,7 @@
                       {%for song in songs%}
 
                       {% comment %} <div class="track__number">{{song.musicid}}</div> {% endcomment %}
-                      <a href="javascript:firescript('{{song.musicid}}')" id="{{song.musicid}}" class="track__number">
+                      <a href="javascript:firescript('{{song.musicid}}');" id="{{song.musicid}}" class="track__number">
 
                         <i style="margin-left:5px" class="fa fa-play">
                         </i>
@@ -882,10 +882,10 @@
 
                 <div class="overview__related">
 
-                  <div class="section-title">Related Artists</div>
+                  <div class="section-title">Recently Played</div>
 
-                  <div class="related-artists">
-
+                  <div class="related-artists" id="refresh_recently_played">
+    {%for recently_played_song in recently_played_songs%}
                     <a href="#" class="related-artist">
 
                       <span class="related-artist__img">
@@ -894,81 +894,11 @@
 
                       </span>
 
-                      <span class="related-artist__name">Hoodie Allen</span>
+                      <span class="related-artist__name">{{recently_played_song.songid.title}}</span>
 
                     </a>
+      {%endfor%}
 
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/mikestud.jpg" alt="Mike Stud" />
-
-                      </span>
-
-                      <span class="related-artist__name">Mike Stud</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/drake.jpeg" alt="Drake" />
-
-                      </span>
-
-                      <span class="related-artist__name">Drake</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/jcole.jpg" alt="J. Cole" />
-
-                      </span>
-
-                      <span class="related-artist__name">J. Cole</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/bigsean.jpg" alt="Big Sean" />
-
-                      </span>
-
-                      <span class="related-artist__name">Big Sean</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/wiz.jpeg" alt="Wiz Khalifa" />
-
-                      </span>
-
-                      <span class="related-artist__name">Wiz Khalifa</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg" alt="Yonas" />
-
-                      </span>
-
-                      <span class="related-artist__name">Yonas</span>
-
-                    </a>
 
                   </div>
 

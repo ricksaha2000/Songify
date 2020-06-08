@@ -1,0 +1,13 @@
+ {%for recently_played_song in recently_played_songs%}
+                    <a href="#" class="related-artist">
+
+                      <span class="related-artist__img">
+
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg" alt="Hoodie Allen" />
+
+                      </span>
+
+                      <span class="related-artist__name">{{recently_played_song.songid.title}}</span>
+
+                    </a>
+      {%endfor%}

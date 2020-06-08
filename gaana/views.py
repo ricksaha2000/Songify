@@ -10,7 +10,7 @@ from saveUserPlaylist.models import SaveUserPlaylist
 from playlist.models import Playlist
 from playlist_song.models import PlaylistSong
 from django.http import JsonResponse
-
+from recently_played.models import RecentlyPlayed
 def home(request):
     # songs = Music.objects.order_by('?')[:9]
     albums = Album.objects.all()
@@ -39,6 +39,7 @@ def index(request,albumid):
     # print(artist)
     x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
     # print(x)
+    recently_played_songs = RecentlyPlayed.objects.filter(user = request.user).order_by('-published_at')
 
     followed_playlist = SaveUserPlaylist.objects.filter(user = request.user)
 
@@ -55,6 +56,8 @@ def index(request,albumid):
         'added':True,
         'all_users':all_user,
         'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
+
         }
     else:
         context = {
@@ -68,6 +71,7 @@ def index(request,albumid):
         'added':False,
         'all_users':all_user,
         'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
 
 
 
@@ -343,4 +347,49 @@ def SaveFollowedUserPlaylist(request):
     SaveUserPlaylist.objects.create(playlistid =playlist ,user = request.user , belongsTo=user)
 
     return render_to_response('showfolloweduserSongs.html',{"follow_user_playlist_id":follow_user_playlist_id})
+@csrf_exempt
+def recently_played(request):
 
+    if request.method == "POST":
+        song_id = request.POST['song_id']
+        music = Music.objects.filter(musicid = song_id)[0]
+        # print("YOLOO")
+        # print(song_id)
+        count_objects = RecentlyPlayed.objects.filter(user = request.user)
+        length = len(count_objects)
+        # print(count_objects)
+        print(length)
+        if(RecentlyPlayed.objects.filter(user = request.user , songid = music).count() > 0):
+                print("1st")
+                temp_duplicates = RecentlyPlayed.objects.filter(user = request.user , songid = music).order_by('published_at')
+                temp_duplicate = temp_duplicates.values()[0]['songid_id']
+
+                music_temp_duplicate = Music.objects.filter(musicid = temp_duplicate)[0]
+                temp = RecentlyPlayed.objects.filter(user = request.user).exclude(songid = music_temp_duplicate).order_by('published_at')
+                # print(temp)
+                temp_delete_duplicate = RecentlyPlayed.objects.filter(user = request.user , songid = music_temp_duplicate)
+                temp_delete_duplicate.delete()
+                RecentlyPlayed.objects.create(user = request.user ,songid = music)
+
+        elif(length>=3):
+            print("2nd")
+            temp = RecentlyPlayed.objects.filter(user = request.user).order_by('published_at')
+            # print(temp)
+            temps = temp.values()[0]['songid_id']
+            # print("YOLOO")
+            # print(temps)
+            music_temp = Music.objects.filter(musicid = temps)[0]
+            temp = RecentlyPlayed.objects.filter(user = request.user).exclude(songid = music_temp).order_by('published_at')
+            # print(temp)
+            temp_delete = RecentlyPlayed.objects.filter(user = request.user , songid = music_temp)
+            temp_delete.delete()
+            RecentlyPlayed.objects.create(user = request.user ,songid = music)
+
+        else:
+            print("3rd")
+            RecentlyPlayed.objects.create(user = request.user ,songid = music)
+
+    updated_recently_played_songs = RecentlyPlayed.objects.filter(user = request.user).order_by('-published_at')
+
+
+    return render_to_response('recently_played_songs.html',{"recently_played_songs":updated_recently_played_songs})

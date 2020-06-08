@@ -53,6 +53,9 @@ $(document).ready(function() {
         }, 2000);
     });
 });
+
+recently_played(y);
+
 };
 
 function searchSuccess1(data , textStatus,jqXHR)
@@ -547,4 +550,31 @@ function refresh_search_list(){
         // music.play;
     }
 
-    SaveUserPlaylist
+
+
+    var variable14;
+    function recently_played(y){
+        variable14 = y;
+        console.log(variable14);
+    $.ajax({
+        type:"POST",
+        url:"/recently_played/",
+        data:{
+            'song_id':variable14,
+        },
+        success:searchSuccess_recently_played,
+        dataType:'html',
+
+
+    });
+
+
+
+    };
+
+    function searchSuccess_recently_played(data , textStatus,jqXHR)
+    {
+        console.log(data);
+        $('#refresh_recently_played').html(data);
+        // music.play;
+    }
