@@ -39,6 +39,9 @@ def index(request,albumid):
     # print(artist)
     x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
     # print(x)
+
+    followed_playlist = SaveUserPlaylist.objects.filter(user = request.user)
+
     if(x):
         print("BOOYEAH")
         context = {
@@ -51,6 +54,7 @@ def index(request,albumid):
         'user_username':user_username,
         'added':True,
         'all_users':all_user,
+        'followed_playlist':followed_playlist,
         }
     else:
         context = {
@@ -63,6 +67,8 @@ def index(request,albumid):
         'user_username':user_username,
         'added':False,
         'all_users':all_user,
+        'followed_playlist':followed_playlist,
+
 
 
         }

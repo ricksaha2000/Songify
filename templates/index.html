@@ -434,6 +434,38 @@
         </div>
         <!-- / -->
 
+
+
+
+ <div class="navigation__list">
+
+          <div class="navigation__list__header" role="button" data-toggle="collapse" href="#followedplaylists"
+            aria-expanded="true" aria-controls="followedplaylists">
+            Followed Playlists
+          </div>
+
+          <div class="collapse in" id="followedplaylists">
+
+
+            {%for playlist in followed_playlist%}
+            <a href="javascript:displaySelectedPlaylist('{{playlist.playlistid.playlistid}}');gotoSelectedPlaylist();"
+              class="navigation__list__item">
+
+
+              <i class="ion-ios-musical-notes"></i>
+              <span>{{playlist.playlistid.title}}</span>
+            </a>
+            {%endfor%}
+
+
+          </div>
+
+        </div>
+
+
+
+
+
       </section>
 
 
