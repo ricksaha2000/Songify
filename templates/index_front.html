@@ -174,9 +174,13 @@
 </div>
 <ul class="nav navbar-nav navbar-right toggle-menu">
 <li><a href="#">HOME </a></li>
+
+{%if user.is_authenticated %}
+<li><a href="{% url 'users:logout' %}">LOGOUT</a></li>
+{%else%}
 <li><a href="{% url 'users:login' %}">LOGIN</a></li>
 <li><a href="{% url 'users:choose_user_type' %}">REGISTER</a></li>
-
+{%endif%}
 {% comment %} <li><a href="events.html">EVENTS</a></li>
 <li><a href="albums.html">ALBUMS</a></li>
 <li><a href="media.html">MEDIA</a></li>
