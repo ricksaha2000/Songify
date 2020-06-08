@@ -30,6 +30,11 @@ from genre.models import Genre
 from album.models import Album
 from gaana.models import Music
 
+
+
+def choose_user_type(request):
+
+	return render(request,'users/choose.html')
 def register_customer(request):
 	if request.user.is_authenticated == False:
 		if request.method == 'POST':

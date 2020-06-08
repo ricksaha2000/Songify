@@ -174,8 +174,8 @@
 </div>
 <ul class="nav navbar-nav navbar-right toggle-menu">
 <li><a href="#">HOME </a></li>
-<li><a href="#">LOGIN</a></li>
-<li><a href="#">REGISTER</a></li>
+<li><a href="{% url 'users:login' %}">LOGIN</a></li>
+<li><a href="{% url 'users:choose_user_type' %}">REGISTER</a></li>
 
 {% comment %} <li><a href="events.html">EVENTS</a></li>
 <li><a href="albums.html">ALBUMS</a></li>
