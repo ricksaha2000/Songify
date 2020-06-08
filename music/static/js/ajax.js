@@ -515,3 +515,33 @@ function refresh_search_list(){
     }
 
 
+
+
+    var variable12;
+    function SaveUserPlaylist(y){
+        variable12 = y;
+        console.log(variable12);
+    $.ajax({
+        type:"POST",
+        url:"/SaveUserPlaylist/",
+        data:{
+            'follow_user_playlist_id':variable12,
+        },
+        success:searchSuccess_SaveUserPlaylist,
+        dataType:'html',
+
+
+    });
+
+
+
+    };
+
+    function searchSuccess_SaveUserPlaylist(data , textStatus,jqXHR)
+    {
+        console.log(data);
+        $('#').html(data);
+        // music.play;
+    }
+
+    SaveUserPlaylist

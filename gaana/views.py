@@ -6,7 +6,7 @@ from album.models import Album
 from users.models import User
 from artist_follow.models import ArtistFollow
 from user_follow.models import UserFollow
-
+from saveUserPlaylist.models import SaveUserPlaylist
 from playlist.models import Playlist
 from playlist_song.models import PlaylistSong
 from django.http import JsonResponse
@@ -323,4 +323,16 @@ def showfolloweduserSongs(request):
     playlists_songs = PlaylistSong.objects.filter(playlistid = follow_user_playlist_id)
     print(playlists_songs)
 
-    return render_to_response('showfolloweduserSongs.html',{'playlist_songs':playlists_songs})
+    return render_to_response('showfolloweduserSongs.html',{'playlist_songs':playlists_songs,"follow_user_playlist_id":follow_user_playlist_id})
+
+@csrf_exempt
+def SaveUserPlaylist(request):
+
+    if request.method == "POST":
+        follow_user_playlist_id = request.POST['follow_user_playlist_id']
+
+
+
+
+    return render_to_response('showfolloweduserSongs.html',{"follow_user_playlist_id":follow_user_playlist_id})
+

@@ -1,22 +1,3 @@
-{% comment %} {%for playlist_song in playlist_songs %}
-                <div class="media-card">
-
-                  <div class="media-card__image"
-                    style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);justify-content:center;">
-
-                    <a href="#">
-                      <i class="ion-ios-play">
-                      </i>
-
-                    </a>
-
-                  </div>
-
-                  <a class="media-card__footer">{{playlist_song.title}}</a>
-
-                </div>
-
-                {%endfor%} {% endcomment %}
 
 
     <div class="overview__albums">
@@ -53,9 +34,9 @@
                       {% comment %} <div class="album__name">{{artist}}</div> {% endcomment %}
 
                       <div class="album__actions">
-
+                <a href="javascript:SaveUserPlaylist('{{follow_user_playlist_id}}');">
                         <button class="button-light save">Save</button>
-
+</a>
                         <button class="button-light more">
                           <i class="ion-ios-more"></i>
                         </button>
