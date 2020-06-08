@@ -518,16 +518,19 @@ function refresh_search_list(){
 
 
     var variable12;
-    function SaveUserPlaylist(y){
-        variable12 = y;
+    var variable13;
+    function SaveFollowedUserPlaylist(x,y){
+        variable12 = x;
+        variable13 = y;
         console.log(variable12);
     $.ajax({
         type:"POST",
-        url:"/SaveUserPlaylist/",
+        url:"/SaveFollowedUserPlaylist/",
         data:{
             'follow_user_playlist_id':variable12,
+            'user_id':variable13,
         },
-        success:searchSuccess_SaveUserPlaylist,
+        success:searchSuccess_SaveFollowedUserPlaylist,
         dataType:'html',
 
 
@@ -537,7 +540,7 @@ function refresh_search_list(){
 
     };
 
-    function searchSuccess_SaveUserPlaylist(data , textStatus,jqXHR)
+    function searchSuccess_SaveFollowedUserPlaylist(data , textStatus,jqXHR)
     {
         console.log(data);
         $('#').html(data);

@@ -320,19 +320,21 @@ def showfolloweduserSongs(request):
     if request.method == "POST":
         follow_user_playlist_id = request.POST['follow_user_playlist_id']
         print(follow_user_playlist_id)
+    playlist_user = Playlist.objects.filter(playlistid =follow_user_playlist_id).values()[0]['user_id']
     playlists_songs = PlaylistSong.objects.filter(playlistid = follow_user_playlist_id)
-    print(playlists_songs)
+    print(playlist_user)
 
-    return render_to_response('showfolloweduserSongs.html',{'playlist_songs':playlists_songs,"follow_user_playlist_id":follow_user_playlist_id})
+    return render_to_response('showfolloweduserSongs.html',{'playlist_songs':playlists_songs,"follow_user_playlist_id":follow_user_playlist_id,"user_id":playlist_user})
 
 @csrf_exempt
-def SaveUserPlaylist(request):
+def SaveFollowedUserPlaylist(request):
 
     if request.method == "POST":
         follow_user_playlist_id = request.POST['follow_user_playlist_id']
-
-
-
+        user_id = request.POST['user_id']
+    user = User.objects.filter(id = user_id)[0]
+    playlist = Playlist.objects.filter(playlistid = follow_user_playlist_id)[0]
+    SaveUserPlaylist.objects.create(playlistid =playlist ,user = request.user , belongsTo=user)
 
     return render_to_response('showfolloweduserSongs.html',{"follow_user_playlist_id":follow_user_playlist_id})
 
