@@ -14,9 +14,11 @@ from recently_played.models import RecentlyPlayed
 def home(request):
     # songs = Music.objects.order_by('?')[:9]
     albums = Album.objects.all()
+    playlists = Playlist.objects.filter(user=request.user)
     context = {
         'title':'Home',
         'albums':albums,
+        'playlists':playlists,
     }
 
     return render(request , 'songs/index.html' , context)
@@ -24,7 +26,7 @@ def home(request):
 @csrf_exempt
 def index(request,albumid):
 
-    songs = Music.objects.filter(album = albumid)
+    songs = Music.objects.filter(album = albumid).order_by('serialid')
     album = Album.objects.get(albumid = albumid)
     album_username = album.user.username
     user_username = request.user.username
@@ -81,6 +83,70 @@ def index(request,albumid):
 
 
     return render(request , 'index.html',context)
+
+
+
+@csrf_exempt
+def index_playlist(request,playlistid):
+
+    songs = PlaylistSong.objects.filter(playlistid = playlistid)
+    album = Playlist.objects.get(playlistid = playlistid)
+    album_username = album.user.username
+    user_username = request.user.username
+
+    album_all = Album.objects.filter(user__username =album_username)
+    playlists = Playlist.objects.filter(user = request.user.id)
+
+    all_user = UserFollow.objects.filter(user = request.user)
+
+    artist_id = album.user.id
+    artist = User.objects.filter(id = artist_id).values()
+    # print(artist)
+    x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
+    # print(x)
+    recently_played_songs = RecentlyPlayed.objects.filter(user = request.user).order_by('-published_at')
+
+    followed_playlist = SaveUserPlaylist.objects.filter(user = request.user)
+
+    if(x):
+        print("BOOYEAH")
+        context = {
+        'title':'Home',
+        'songs':songs,
+        'username':album_username,
+        'artist_id':album.user.id,
+        'albums':album_all,
+        'playlists':playlists,
+        'user_username':user_username,
+        'added':True,
+        'all_users':all_user,
+        'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
+
+        }
+    else:
+        context = {
+        'title':'Home',
+        'songs':songs,
+        'username':album_username,
+        'artist_id':album.user.id,
+        'albums':album_all,
+        'playlists':playlists,
+        'user_username':user_username,
+        'added':False,
+        'all_users':all_user,
+        'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
+
+
+
+        }
+
+
+
+
+    return render(request , 'index_playlist.html',context)
+
 
 @csrf_exempt
 def song(request):

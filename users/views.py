@@ -212,6 +212,7 @@ def add_album(request):
 		return render(request ,"artist/add.html" , context )
 @login_required(login_url="/users/login")
 def add_song(request,albumid):
+	serialid=0
 	if request.method == 'POST':
 		try:
 			audio = request.FILES['audio']
@@ -219,13 +220,21 @@ def add_song(request,albumid):
 			audio = False
 		title = request.POST['title']
 
-
 		# genre1 = Genre.objects.filter(title=genre_selected)[0]
 
 		album = Album.objects.filter(albumid =albumid)[0]
+		music_exists = Music.objects.filter(album = album).values('serialid')
+		length = (len(music_exists))
+
+		if(not music_exists):
+			serialid = 1
+		else:
+			serialid = length+1
+		# print(serialid)
+
 		music = Music.objects.create(title = title ,
 		album=album ,
-		audio = audio )
+		audio = audio,serialid=serialid)
 
 		music.save()
 

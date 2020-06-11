@@ -10,6 +10,7 @@ class Music(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='category')
     audio = models.FileField(upload_to='music/')
     published_at = models.DateTimeField(default=datetime.now , blank=True)
+    serialid = models.IntegerField()
 
 
     def __str__(self):
