@@ -68,7 +68,7 @@ $(document).ready(function() {
     });
 });
 
-recently_played(z);
+recently_played(x,y);
 
 };
 
@@ -565,16 +565,18 @@ function refresh_search_list(){
     }
 
 
-
+    var albumid_recent;
     var variable14;
-    function recently_played(y){
+    function recently_played(x,y){
+        albumid_recent = x;
         variable14 = y;
         console.log(variable14);
     $.ajax({
         type:"POST",
         url:"/recently_played/",
         data:{
-            'song_id':variable14,
+            'songid':variable14,
+            'albumid':albumid_recent,
         },
         success:searchSuccess_recently_played,
         dataType:'html',

@@ -427,8 +427,11 @@ def SaveFollowedUserPlaylist(request):
 def recently_played(request):
 
     if request.method == "POST":
-        song_id = request.POST['song_id']
-        music = Music.objects.filter(musicid = song_id)[0]
+        albumid = request.POST['albumid']
+        song_id = request.POST['songid']
+        album = Album.objects.filter(albumid = albumid)[0]
+        # song = Music.objects.filter(serialid=songid,album=album)
+        music = Music.objects.filter(serialid=song_id,album=album)[0]
         # print("YOLOO")
         # print(song_id)
         count_objects = RecentlyPlayed.objects.filter(user = request.user)
