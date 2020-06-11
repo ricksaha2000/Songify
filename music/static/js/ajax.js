@@ -1,12 +1,24 @@
+var current_album;
+var current_song;
 var variable;
-function firescript(y){
-    variable = y;
-    console.log(variable)
+function firescript(x,y,z){
+    current_album = x;
+    current_song = y;
+    variable = z
+
+    console.log("ALBUM");
+    console.log(current_album);
+    console.log("CURR SONG");
+    console.log(current_song);
+    console.log("ID");
+    console.log(variable);
+
 $.ajax({
     type:"POST",
     url:"/song/",
     data:{
-        'songid':variable,
+        'songid':current_song,
+        'albumid':current_album,
     },
     success:searchSuccess,
     dataType:'html',
@@ -15,28 +27,30 @@ $.ajax({
 });
 
 
-firescript1(y);
+firescript1(x,y,z);
 
 };
 
 function searchSuccess(data , textStatus,jqXHR)
 {
-    console.log(data)
+    // console.log(data)
     music.load();
     $('#music').html(data);
     // music.play;
 }
 
 
-function firescript1(y){
+function firescript1(x,y,z){
 
-    variable = y;
-    console.log(variable)
+    current_album = x;
+    current_song = y;
+    variable = z;
 $.ajax({
     type:"POST",
     url:"/song_player/",
     data:{
-        'songid':variable,
+        'songid':current_song,
+        'albumid':current_album
     },
     success:searchSuccess1,
     dataType:'html',
@@ -54,13 +68,13 @@ $(document).ready(function() {
     });
 });
 
-recently_played(y);
+recently_played(z);
 
 };
 
 function searchSuccess1(data , textStatus,jqXHR)
 {
-    console.log(data)
+    // console.log(data)
    console.log("FIRESCRIPT1");
    $('#current_song_playing').html(data);
 
@@ -574,7 +588,7 @@ function refresh_search_list(){
 
     function searchSuccess_recently_played(data , textStatus,jqXHR)
     {
-        console.log(data);
+        // console.log(data);
         $('#refresh_recently_played').html(data);
         // music.play;
     }

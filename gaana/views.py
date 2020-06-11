@@ -27,6 +27,7 @@ def home(request):
 def index(request,albumid):
 
     songs = Music.objects.filter(album = albumid).order_by('serialid')
+    number_of_songs = len(songs)
     album = Album.objects.get(albumid = albumid)
     album_username = album.user.username
     user_username = request.user.username
@@ -59,6 +60,7 @@ def index(request,albumid):
         'all_users':all_user,
         'followed_playlist':followed_playlist,
         "recently_played_songs":recently_played_songs,
+        "number_of_songs":number_of_songs,
 
         }
     else:
@@ -74,6 +76,7 @@ def index(request,albumid):
         'all_users':all_user,
         'followed_playlist':followed_playlist,
         "recently_played_songs":recently_played_songs,
+        "number_of_songs":number_of_songs,
 
 
 
@@ -90,6 +93,8 @@ def index(request,albumid):
 def index_playlist(request,playlistid):
 
     songs = PlaylistSong.objects.filter(playlistid = playlistid)
+    number_of_songs = len(songs)
+
     album = Playlist.objects.get(playlistid = playlistid)
     album_username = album.user.username
     user_username = request.user.username
@@ -122,6 +127,7 @@ def index_playlist(request,playlistid):
         'all_users':all_user,
         'followed_playlist':followed_playlist,
         "recently_played_songs":recently_played_songs,
+        "number_of_songs":number_of_songs,
 
         }
     else:
@@ -137,6 +143,7 @@ def index_playlist(request,playlistid):
         'all_users':all_user,
         'followed_playlist':followed_playlist,
         "recently_played_songs":recently_played_songs,
+        "number_of_songs":number_of_songs,
 
 
 
@@ -151,16 +158,19 @@ def index_playlist(request,playlistid):
 @csrf_exempt
 def song(request):
     if request.method == "POST":
-        input_text = request.POST['songid']
-        song = Music.objects.filter(musicid = input_text)
-
+        songid = request.POST['songid']
+        albumid = request.POST['albumid']
+        album = Album.objects.filter(albumid = albumid)[0]
+        song = Music.objects.filter(serialid=songid,album=album)
+        print(song)
     return render_to_response('player.html',{"songs":song})
 @csrf_exempt
 def player_song_view(request):
     if request.method == "POST":
-        input_text = request.POST['songid']
-        # song = Music.objects.filter(musicid = input_text)
-        song = Music.objects.get(musicid = input_text)
+        songid = request.POST['songid']
+        albumid = request.POST['albumid']
+        album = Album.objects.filter(albumid = albumid)[0]
+        song = Music.objects.get(serialid=songid,album=album)
         title = song.title
         artist = song.album.user.username
     return render_to_response('player_song_view.html',{"title":title,"artist":artist})

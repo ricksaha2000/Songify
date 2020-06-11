@@ -688,7 +688,7 @@
                       {%for song in songs%}
 
                       {% comment %} <div class="track__number">{{song.musicid}}</div> {% endcomment %}
-                      <a href="javascript:firescript('{{song.musicid}}');" id="{{song.musicid}}" class="track__number">
+                      <a href="javascript:firescript('{{song.album.albumid}}','{{song.serialid}}','{{song.musicid}}');" id="{{song.musicid}}" class="track__number">
 
                         <i style="margin-left:5px" class="fa fa-play">
                         </i>
@@ -1894,11 +1894,13 @@
 
       <div class="current-track__actions">
 
-        <a class="ion-ios-skipbackward"></a>
+        <a class="ion-ios-skipbackward" onclick="goToPreviousSong()"></a>
 
         <a class="ion-ios-play play" id="play" onclick="playAudio()"></a>
 
-        <a class="ion-ios-skipforward"></a>
+        <a class="ion-ios-skipforward" onclick="goToNextSong()"></a>
+      {% comment %} <a href="javascript:firescript('{{song.album.albumid}}','{{song.serialid}}','{{song.musicid}}');" id="{{song.musicid}}" class="track__number"> {% endcomment %}
+
 
       </div>
 
@@ -2085,6 +2087,37 @@
 
 
       }
+
+
+      function goToNextSong(){
+       var length = {{number_of_songs}};
+       console.log("Length");
+       console.log(length);
+        if(current_song==length){
+          console.log("FULL BRUH");
+          current_song = 1;
+          firescript(current_album,(parseInt(current_song)),variable);
+
+        }
+        else{
+          console.log("Normal Next");
+
+        firescript(current_album,(parseInt(current_song)+1),variable);
+        }
+
+      }
+   function goToPreviousSong(){
+
+     if(current_song==1){
+       console.log("FIRST SONG")
+     }
+     else{
+        firescript(current_album,(parseInt(current_song)-1),variable);
+     }
+
+
+      }
+
 
     </script>
 
