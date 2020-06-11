@@ -113,10 +113,10 @@ function playAudio() {
     var progress = document.getElementById('progress-bar');
     music.addEventListener("timeupdate" , timeUpdate , false);
 
-
+    var playPercent;
     function timeUpdate(){
       if(music.currentTime<music.duration){
-      var playPercent = 100*((music.currentTime) / music.duration);
+      playPercent = 100*((music.currentTime) / music.duration);
       // console.log(playPercent);
       // console.log("CURRENT"+music.currentTime);
       changevolume();
@@ -133,17 +133,18 @@ function playAudio() {
 
 
     // console.log("LAST ITEM"+lastItem);
-    // console.log("DIFFERENCE"+difference);
+    console.log("DIFFERENCE");
     if(difference<0.27 || difference==undefined){
-sliders.noUiSlider.set(playPercent);
+        sliders.noUiSlider.set(playPercent);
+        console.log(playPercent);
     }
     else{
-      // console.log("FUCKKKKKKKKKKK")
+      console.log("FUCKKKKKKKKKKK")
       sliders.noUiSlider.set();
       var x = sliders.noUiSlider.get();
       // console.log(x);
 
-      music.currentTime = x;
+      // music.currentTime = x;
 
     }
         // sliders.noUiSlider.destroy();
@@ -267,9 +268,37 @@ function changevolume(){
   music.volume = audio;
 }
 
+$(".current-track__progress__bar").click(function()
+  {
+  //   String.prototype.splice = function(idx, rem, str) {
+  //     return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+  // };
 
-var timeline = sliders.getElementsByClassName('noUi-origin');
-console.log(timeline);
+  music.pause();
+  var timeline = document.getElementsByClassName('noUi-origin');
+  console.log(timeline);
+  var value = timeline[0].attributes[1].value;
+  console.log(value);
+
+  // value = value.replace(/\D/g, '');
+  value = value.replace(/[^0-9.]/g, '');
+  console.log(value);
+
+  // value = value.splice(2,0,".");
+
+      sliders.noUiSlider.destroy();
+      noUiSlider.create(sliders, {
+        start: [value],
+        range: {
+          'min': [0],
+          'max': [ 100 ]
+        }
+      });
+      playPercent = value;
+      music.currentTime = ((value * music.duration)/100);
+  console.log(playPercent)
+});
+
 // timeline.addEventListener("click", function (event) {
 // 	moveplayhead(event);
 // 	music.currentTime = duration * clickPercent(event);
