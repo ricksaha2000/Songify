@@ -36,6 +36,7 @@ function searchSuccess(data , textStatus,jqXHR)
     // console.log(data)
     music.load();
     $('#music').html(data);
+    $('#play')[0].click();
     // music.play;
 }
 
