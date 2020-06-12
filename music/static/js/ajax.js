@@ -1,3 +1,25 @@
+function displayradio(){
+
+    $.ajax({
+        type:"POST",
+        url:"/radio/",
+        data:{
+
+        },
+        success:searchSuccess_radio,
+        dataType:'html',
+
+
+    });
+
+};
+function searchSuccess_radio(data , textStatus,jqXHR)
+{
+    // console.log(data)
+    $('#selected-radio-ajax').html(data);
+    // music.play;
+}
+
 var current_album;
 var current_song;
 var variable;

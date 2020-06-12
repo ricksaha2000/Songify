@@ -32,7 +32,8 @@ from gaana.views import (song,
                         showfolloweduserplaylist,
                         showfolloweduserSongs,
                         SaveFollowedUserPlaylist,
-                        recently_played,)
+                        recently_played,
+                        radio,)
 from music import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -57,6 +58,7 @@ urlpatterns = [
     path('showfolloweduserSongs/',showfolloweduserSongs , name="showfolloweduserSongs"),
     path('SaveFollowedUserPlaylist/',SaveFollowedUserPlaylist , name="SaveFollowedUserPlaylist"),
     path('recently_played/',recently_played , name="recently_played"),
+    path('radio/',radio,name="radio"),
 
 
 

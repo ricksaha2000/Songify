@@ -472,3 +472,10 @@ def recently_played(request):
 
 
     return render_to_response('recently_played_songs.html',{"recently_played_songs":updated_recently_played_songs})
+
+@csrf_exempt
+def radio(request):
+
+
+    return render_to_response('radio_ajax.html')
+
