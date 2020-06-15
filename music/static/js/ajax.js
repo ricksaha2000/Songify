@@ -617,3 +617,58 @@ function refresh_search_list(){
         $('#refresh_recently_played').html(data);
         // music.play;
     }
+
+    $(function(){
+
+        $('#search-mosambi-song').keyup(function(){
+            var x = $('#search-mosambi-song').val()
+            // console.log(x);
+            if(x=='')
+            {
+                x = "NONE"
+
+
+            }
+            $(document).ready(function () {
+                $('a#related-rai-search').trigger('click');
+              });
+
+
+            $.ajax({
+
+                type:"POST",
+                url:"/search_song/",
+                data:{
+                    'search_text':x,
+                    //  $('#search').val(),
+                    // 'csrfmiddlewaretoken':$("input|name=csrfmiddlewaretoken").val()
+
+                },
+                success:searchSuccessSong,
+                dataType:'html',
+
+            });
+         });
+    });
+
+    function searchSuccessSong(data , textStatus,jqXHR)
+    {
+        console.log(data)
+        $('#rai-search-ajax').html(data);
+        checkemptySong();
+
+    }
+
+    function checkemptySong(){
+        var x = $('#search-mosambi-song').val();
+        if(x==''){
+            $(document).ready(function () {
+                $('a#related-song').trigger('click');
+              });
+        }
+        else{
+            console.log("OKAY");
+        }
+
+
+    }

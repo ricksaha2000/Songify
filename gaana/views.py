@@ -337,6 +337,8 @@ def follow_user(request):
 
     return render_to_response('user_follow.html',response)
 
+
+
 @csrf_exempt
 def search_user(request):
     result=''
@@ -479,3 +481,24 @@ def radio(request):
 
     return render_to_response('radio_ajax.html')
 
+
+
+
+
+
+
+
+
+
+@csrf_exempt
+def search_song(request):
+    result=''
+    if request.method == "POST":
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+    results = Music.objects.filter(title__contains = search_text , title__isnull = False)
+
+
+
+    return render(None,'search_song.html',{"results":results})
