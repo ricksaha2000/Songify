@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from gaana.models import Music
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
@@ -12,6 +12,8 @@ from playlist_song.models import PlaylistSong
 from django.http import JsonResponse
 from recently_played.models import RecentlyPlayed
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('/')
     # songs = Music.objects.order_by('?')[:9]
     albums = Album.objects.all()
     playlists = Playlist.objects.filter(user=request.user)
@@ -25,7 +27,8 @@ def home(request):
 
 @csrf_exempt
 def index(request,albumid):
-
+    if not request.user.is_authenticated:
+        return redirect('/')
     songs = Music.objects.filter(album = albumid).order_by('serialid')
     number_of_songs = len(songs)
     album = Album.objects.get(albumid = albumid)
@@ -91,7 +94,8 @@ def index(request,albumid):
 
 @csrf_exempt
 def index_playlist(request,playlistid):
-
+    if not request.user.is_authenticated:
+        return redirect('/')
     songs = PlaylistSong.objects.filter(playlistid = playlistid)
     number_of_songs = len(songs)
 
