@@ -83,10 +83,12 @@ def login_customer(request):
 		if request.method == 'POST':
 			username = request.POST['username']
 			password = request.POST['password']
-
+			is_customer = False
+			is_artist = False
 			user = auth.authenticate(username=username , password=password)
-			is_customer = User.objects.filter(username = username).values("is_user")[0]["is_user"]
-			is_artist = User.objects.filter(username = username).values("is_artist")[0]["is_artist"]
+			if(User.objects.filter(username = username)):
+				is_customer = User.objects.filter(username = username).values("is_user")[0]["is_user"]
+				is_artist = User.objects.filter(username = username).values("is_artist")[0]["is_artist"]
 
 			if user is not None and is_customer:
 				# res = face_detect.check(user)
