@@ -2212,9 +2212,11 @@
       }
 
 var is_playlist_current;
+var length;
+length = {{number_of_songs}};
 
       function goToNextSong(){
-       var length = {{number_of_songs}};
+
        console.log("Length");
        console.log(length);
        {% comment %} console.log("IS PLAYLIST"); {% endcomment %}

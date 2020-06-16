@@ -165,9 +165,11 @@ def song(request):
         songid = request.POST['songid']
         albumid = request.POST['albumid']
         album = Album.objects.filter(albumid = albumid)[0]
+        songs = Music.objects.filter(album = album).order_by('serialid')
+        number_of_songs = len(songs)
         song = Music.objects.filter(serialid=songid,album=album)
         print(song)
-    return render_to_response('player.html',{"songs":song})
+    return render_to_response('player.html',{"songs":song,"number_of_songs":number_of_songs})
 @csrf_exempt
 def player_song_view(request):
     if request.method == "POST":
@@ -533,9 +535,12 @@ def song_playlist_song(request):
         songid = request.POST['songid']
         albumid = request.POST['albumid']
         album = Playlist.objects.filter(playlistid = albumid)[0]
+        songs = PlaylistSong.objects.filter(playlistid=album).order_by('serialid')
+        number_of_songs = len(songs)
+
         song = PlaylistSong.objects.filter(serialid=songid,playlistid=album)
         print(song)
-    return render_to_response('player_playlist.html',{"songs":song})
+    return render_to_response('player_playlist.html',{"songs":song,"number_of_songs":number_of_songs})
 
 @csrf_exempt
 def song_player_playlist(request):

@@ -62,7 +62,7 @@ $.ajax({
         current_song = y;
         variable = z
 
-        console.log("ALBUM");
+        console.log("PLAYLIST");
         console.log(current_album);
         console.log("CURR SONG");
         console.log(current_song);
