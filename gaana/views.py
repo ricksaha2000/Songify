@@ -568,3 +568,20 @@ def re_render_user_followed_playlist(request):
     playlists = SaveUserPlaylist.objects.filter(user = request.user.id)
 
     return render_to_response('re_render_user_followed_playlist.html',{'followed_playlists':playlists})
+
+
+@csrf_exempt
+def search_homepage(request):
+    result=''
+    if request.method == "POST":
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+    results = Album.objects.filter(title__contains = search_text , title__isnull = False)
+    result_playlist = Playlist.objects.filter(title__contains = search_text , title__isnull = False)
+    # albums = Album.objects.all()
+    print(results)
+
+
+
+    return render(None,'search_homepage.html',{"albums":results,"playlists":result_playlist})
