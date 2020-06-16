@@ -204,7 +204,8 @@ def modal_open(request):
 @csrf_exempt
 def add_to_playlist(request):
     playlists = Playlist.objects.filter(user = request.user.id)
-
+    serialid=0
+    print("I AM IN ADD_TO_PLAYLIST")
     if request.method == "POST":
         songid = request.POST['songid']
         playlistid = request.POST['playlistid']
@@ -213,9 +214,15 @@ def add_to_playlist(request):
 
         print(songid)
         print(playlistid)
+        playlistsong_exists = PlaylistSong.objects.filter(playlistid=playlistid).values('serialid')
+        length = (len(playlistsong_exists))
 
+        if(not playlistsong_exists):
+            serialid = 1
+        else:
+            serialid = length+1
 
-        PlaylistSong.objects.create(playlistid = playlist, songid = song)
+        PlaylistSong.objects.create(playlistid = playlist, songid = song,serialid = serialid)
 
         # song = Music.objects.filter(musicid = input_text)
 
@@ -253,16 +260,28 @@ def add_playlist_basic(request):
             l.append(songid)
 
     if title and description and l:
+        print("I AM IN 1")
+        serialid=0
         get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description,photo = image)
         song = Music.objects.filter(musicid = l[0])[0]
-        PlaylistSong.objects.create(playlistid = get_new_playlist, songid = song)
+        playlistsong_exists = PlaylistSong.objects.filter(playlistid=get_new_playlist).values('serialid')
+        length = (len(playlistsong_exists))
+
+        if(not playlistsong_exists):
+            serialid = 1
+        else:
+            serialid = length+1
+        PlaylistSong.objects.create(playlistid = get_new_playlist, songid = song,serialid = serialid)
         l.pop()
         # print("YOO")
         response ={'msg':'Your form has been submitted successfully'}
         return JsonResponse(response) # return response as JSON
 
     elif (title and description and len(l)==0):
+        print("I AM IN 2")
+
         get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description,photo = image)
+
         response ={'msg':'Your form has been submitted successfully'}
         # print("YOLOOOOO")
         return JsonResponse(response) # return response as JSON
