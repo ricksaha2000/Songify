@@ -72,19 +72,23 @@
                       </div>
 
 
-  {%for playlist_song in playlist_songs %}
+  {%for playlistsong in playlist_songs %}
 
    <div class="track">
 
-                        <div class="track__number">1</div>
+ <a href="javascript:firescript('{{playlistsong.playlistid}}','{{playlistsong.serialid}}','{{playlistsong.songid.musicid}}','true');" id="{{playlistsong.songid.musicid}}" class="track__number">
+   <i style="margin-left:5px" class="fa fa-play">
+                        </i>
+                      </a>
+                         <div class="track__added">
 
-                        <div class="track__added">
+                          <a href="javascript:openmodal('{{playlistsong.songid.musicid}}')">
 
-                          <i class="ion-checkmark-round added"></i>
-
+                            <i class="ion-plus not-added"></i>
+                          </a>
                         </div>
 
-                        <div class="track__title">{{playlist_song.songid.title}}</div>
+                        <div class="track__title">{{playlistsong.songid.title}}</div>
 
                         <div class="track__explicit">
 

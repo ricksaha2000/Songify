@@ -1,0 +1,9 @@
+ {%for playlist in followed_playlists%}
+            <a href="javascript:displaySelectedPlaylist('{{playlist.playlistid.playlistid}}');gotoSelectedPlaylist();"
+              class="navigation__list__item">
+
+
+              <i class="ion-ios-musical-notes"></i>
+              <span>{{playlist.playlistid.title}}</span>
+            </a>
+            {%endfor%}

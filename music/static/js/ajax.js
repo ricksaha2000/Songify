@@ -666,6 +666,7 @@ function refresh_search_list(){
     {
         console.log(data);
         $('#').html(data);
+        re_render_user_followed_playlist();
         // music.play;
     }
 
@@ -754,3 +755,27 @@ function refresh_search_list(){
 
 
     }
+
+
+    function re_render_user_followed_playlist(){
+        $.ajax({
+            type:"POST",
+            url:"/re_render_user_followed_playlist/",
+            data:{
+            },
+            success:re_render_user_followed_playlist_success,
+            dataType:'html',
+
+
+        });
+
+
+
+        };
+
+        function re_render_user_followed_playlist_success(data , textStatus,jqXHR)
+        {
+            console.log(data);
+            $('#followedplaylists').html(data);
+            // music.play;
+        }
