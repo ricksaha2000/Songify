@@ -19,11 +19,15 @@ function searchSuccess_radio(data , textStatus,jqXHR)
     $('#selected-radio-ajax').html(data);
     // music.play;
 }
-
 var current_album;
 var current_song;
 var variable;
-function firescript(x,y,z){
+function firescript(x,y,z,is_playlist=false){
+    console.log(is_playlist);
+    is_playlist_current = is_playlist;
+
+    if(!is_playlist){
+    console.log("NOT PLAYLIST AJAX");
     current_album = x;
     current_song = y;
     variable = z
@@ -48,8 +52,42 @@ $.ajax({
 
 });
 
+    }
 
-firescript1(x,y,z);
+
+    else{
+        console.log("IS PLAYLIST AJAX");
+
+        current_album = x;
+        current_song = y;
+        variable = z
+
+        console.log("ALBUM");
+        console.log(current_album);
+        console.log("CURR SONG");
+        console.log(current_song);
+        console.log("ID");
+        console.log(variable);
+
+    $.ajax({
+        type:"POST",
+        url:"/song_playlist_song/",
+        data:{
+            'songid':current_song,
+            'albumid':current_album,
+        },
+        success:searchSuccess_playlist_song,
+        dataType:'html',
+
+
+    });
+
+    }
+firescript1(x,y,z,is_playlist);
+
+
+
+
 
 };
 
@@ -61,10 +99,19 @@ function searchSuccess(data , textStatus,jqXHR)
     $('#play')[0].click();
     // music.play;
 }
+function searchSuccess_playlist_song(data , textStatus,jqXHR)
+{
+    // console.log(data)
+    music.load();
+    $('#music').html(data);
+    $('#play')[0].click();
+    // music.play;
+}
 
-
-function firescript1(x,y,z){
-
+function firescript1(x,y,z,is_playlist){
+    console.log(is_playlist);
+if(!is_playlist){
+    console.log("FIRESCRIPT1 NOT PLAYLIST")
     current_album = x;
     current_song = y;
     variable = z;
@@ -92,6 +139,41 @@ $(document).ready(function() {
 });
 
 recently_played(x,y);
+
+}
+
+else{
+    console.log("FIRESCRIPT1 IS PLAYLIST")
+
+    current_album = x;
+    current_song = y;
+    variable = z;
+$.ajax({
+    type:"POST",
+    url:"/song_player_playlist/",
+    data:{
+        'songid':current_song,
+        'albumid':current_album,
+    },
+    success:searchSuccess1,
+    dataType:'html',
+
+
+});
+
+$(document).ready(function() {
+    console.log("NIGGA")
+    $("#"+y).click(function() {
+        $("html, body").animate({
+            scrollTop: $(
+              'html, body').get(0).scrollHeight
+        }, 2000);
+    });
+});
+
+}
+
+// recently_played(x,y);
 
 };
 

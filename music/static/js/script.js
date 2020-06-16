@@ -53,7 +53,7 @@ $(window).on("resize load", function(){
   var navHeight = totalHeight - (headerHeight + footerHeight + playlistHeight + nowPlaying);
   var artistHeight = totalHeight - (headerHeight + footerHeight);
 
-  console.log(totalHeight);
+  // console.log(totalHeight);
 
   $(".navigation").css("height" , navHeight);
   $(".artist").css("height" , artistHeight);
@@ -100,6 +100,8 @@ $(window).on("resize load", function(){
 
 
 var music = document.getElementById('music');
+music.onended = function (e) {return goToNextSong();};
+
 var array = [0,];
 // var prog = document.getElementByClassName('noUi-origin');
 
@@ -133,13 +135,13 @@ function playAudio() {
 
 
     // console.log("LAST ITEM"+lastItem);
-    console.log("DIFFERENCE");
+    // console.log("DIFFERENCE");
     if(difference<0.27 || difference==undefined){
         sliders.noUiSlider.set(playPercent);
-        console.log(playPercent);
+        // console.log(playPercent);
     }
     else{
-      console.log("FUCKKKKKKKKKKK")
+      // console.log("FUCKKKKKKKKKKK")
       sliders.noUiSlider.set();
       var x = sliders.noUiSlider.get();
       // console.log(x);
@@ -188,7 +190,7 @@ function refresh(){
       music.currentTime = 0;
       refreshing.style.color="#1ed760";
       conter_refresh=conter_refresh+1
-      console.log(conter_refresh);
+      // console.log(conter_refresh);
       break;
     case 1:
       if(music.loop==true){
@@ -202,7 +204,7 @@ function refresh(){
         music.loop = true;
         refreshing.style.color="#297BC1";
 
-        console.log("TRUE " +conter_refresh);
+        // console.log("TRUE " +conter_refresh);
 
       }
       conter_refresh = 0;
@@ -264,7 +266,7 @@ function fancyTimeFormat(time)
 function changevolume(){
 
   audio = slider.noUiSlider.get();
-  console.log("AUDIO "+ audio);
+  // console.log("AUDIO "+ audio);
   music.volume = audio;
 }
 
@@ -276,13 +278,13 @@ $(".current-track__progress__bar").click(function()
 
   music.pause();
   var timeline = document.getElementsByClassName('noUi-origin');
-  console.log(timeline);
+  // console.log(timeline);
   var value = timeline[0].attributes[1].value;
-  console.log(value);
+  // console.log(value);
 
   // value = value.replace(/\D/g, '');
   value = value.replace(/[^0-9.]/g, '');
-  console.log(value);
+  // console.log(value);
 
   // value = value.splice(2,0,".");
 

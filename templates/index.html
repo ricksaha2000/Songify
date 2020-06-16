@@ -2211,21 +2211,24 @@
 
       }
 
+var is_playlist_current;
 
       function goToNextSong(){
        var length = {{number_of_songs}};
        console.log("Length");
        console.log(length);
+       {% comment %} console.log("IS PLAYLIST"); {% endcomment %}
+       console.log(is_playlist_current);
         if(current_song==length){
           console.log("FULL BRUH");
           current_song = 1;
-          firescript(current_album,(parseInt(current_song)),variable);
+          firescript(current_album,(parseInt(current_song)),variable,is_playlist_current);
 
         }
         else{
           console.log("Normal Next");
 
-        firescript(current_album,(parseInt(current_song)+1),variable);
+        firescript(current_album,(parseInt(current_song)+1),variable,is_playlist_current);
         }
 
       }
@@ -2235,7 +2238,7 @@
        console.log("FIRST SONG")
      }
      else{
-        firescript(current_album,(parseInt(current_song)-1),variable);
+        firescript(current_album,(parseInt(current_song)-1),variable,is_playlist_current);
      }
 
 

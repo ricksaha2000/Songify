@@ -237,7 +237,7 @@ def playlist_selected(request):
         print(playlistid)
         playlist = Playlist.objects.filter(playlistid = playlistid)
         print(playlist)
-        playlist_songs = PlaylistSong.objects.filter(playlistid = playlist[0])
+        playlist_songs = PlaylistSong.objects.filter(playlistid = playlist[0]).order_by('serialid')
         print(playlist_songs)
 
     return render_to_response('playlist_selected.html',{'playlistsongs':playlist_songs})
@@ -525,3 +525,31 @@ def search_song(request):
 
 
     return render(None,'search_song.html',{"results":results})
+
+
+@csrf_exempt
+def song_playlist_song(request):
+    if request.method == "POST":
+        songid = request.POST['songid']
+        albumid = request.POST['albumid']
+        album = Playlist.objects.filter(playlistid = albumid)[0]
+        song = PlaylistSong.objects.filter(serialid=songid,playlistid=album)
+        print(song)
+    return render_to_response('player_playlist.html',{"songs":song})
+
+@csrf_exempt
+def song_player_playlist(request):
+    if request.method == "POST":
+        songid = request.POST['songid']
+        albumid = request.POST['albumid']
+        print(songid)
+        print(albumid)
+        album = Playlist.objects.filter(playlistid = albumid)[0]
+        song = PlaylistSong.objects.filter(serialid=songid,playlistid=album)
+        print("YOMAMAMAM")
+        # print(song)
+        # title = song.songid.title
+        # print(title)
+        # artist = song.songid.album.user.username
+        # print(artist)
+        return render_to_response('player_song_view_playlist.html',{"songs":song})

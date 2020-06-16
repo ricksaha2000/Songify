@@ -1,4 +1,4 @@
-
+{%for song in songs%}
 <div class="playing__art">
 
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/cputh.jpg" alt="Album Art" />
@@ -7,9 +7,9 @@
 
       <div class="playing__song">
 
-        <a class="playing__song__name">{{title}}</a>
+        <a class="playing__song__name">{{song.songid.title}}</a>
 
-        <a class="playing__song__artist">{{artist}}</a>
+        <a class="playing__song__artist">{{song.songid.album.user.username}}</a>
 
       </div>
 
@@ -18,3 +18,5 @@
         <i class="ion-checkmark"></i>
 
       </div>
+
+      {%endfor%}
