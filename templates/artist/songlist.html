@@ -114,9 +114,9 @@
             </div>
             <div class="simple-sidebar">
               <ul>
-                <li><a href="javascript:goToDiscover();"><img src="/media/img/discover-icon.png" alt="">
+                  <li><a href="{%url 'users:add_song' album_id%}"><img src="/media/img/songs-icon.png" alt="">
                     <div class="hover-effect">
-                      <div class="text">Discover</div>
+                      <div class="text">Add Songs</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
                 <li><a href="{%url 'users:home'%}"><img src="/media/img/albums-icon.png" alt="">
@@ -124,9 +124,9 @@
                       <div class="text">Albums</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
-                <li><a href="{%url 'users:add_song' album_id%}"><img src="/media/img/songs-icon.png" alt="">
+                <li><a href="javascript:goToDiscover();"><img src="/media/img/discover-icon.png" alt="">
                     <div class="hover-effect">
-                      <div class="text">Add Songs</div>
+                      <div class="text">Discover</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
                      <li><a href="{%url 'users:logout'%}"><i class="fa fa-sign-out fa-3x"></i>
@@ -228,8 +228,8 @@
           <div id="discover" class="discover-container">
             <div class="row no-margin">
               <div class="col-sm-6">
-                <h6>Start to</h6>
-                <h3>Discover</h3>
+                <h6>Discover</h6>
+                <h3>Your Album Songs</h3>
               </div>
               <div class="col-sm-6"><a href="#" class="view-all">View All <i class="music-plus-button"></i></a>
                 <div class="songs-select">

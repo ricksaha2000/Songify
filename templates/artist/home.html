@@ -116,12 +116,7 @@
             </div>
             <div class="simple-sidebar">
               <ul>
-                <li><a href="javascript:goToDiscover();"><img src="/media/img/discover-icon.png" alt="">
-                    <div class="hover-effect">
-                      <div class="text">Discover</div>
-                      <div class="dot"><i class="fa fa-circle"></i></div>
-                    </div></a></li>
-                <li><a href="{%url 'users:add_album'%}"><img src="/media/img/albums-icon.png" alt="">
+                  <li><a href="{%url 'users:add_album'%}"><img src="/media/img/albums-icon.png" alt="">
                     <div class="hover-effect">
                       <div class="text">Add Albums</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
@@ -131,7 +126,12 @@
                       <div class="text">Songs</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
-                                <li><a href="{%url 'users:logout'%}"><i class="fa fa-sign-out fa-3x"></i>
+                <li><a href="javascript:goToDiscover();"><img src="/media/img/discover-icon.png" alt="">
+                    <div class="hover-effect">
+                      <div class="text">Discover</div>
+                      <div class="dot"><i class="fa fa-circle"></i></div>
+                    </div></a></li>
+                <li><a href="{%url 'users:logout'%}"><i class="fa fa-sign-out fa-3x"></i>
                     <div class="hover-effect">
                       <div class="text">Logout</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
@@ -231,8 +231,8 @@
           <div id="discover" class="discover-container">
             <div class="row no-margin">
               <div class="col-sm-6">
-                <h6>Start to</h6>
-                <h3>Discover</h3>
+                <h6>Discover</h6>
+                <h3>Your albums</h3>
               </div>
               <div class="col-sm-6"><a href="#" class="view-all">View All <i class="music-plus-button"></i></a>
                 <div class="songs-select">
