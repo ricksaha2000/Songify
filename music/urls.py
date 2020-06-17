@@ -38,7 +38,8 @@ from gaana.views import (song,
                         song_playlist_song,
                         song_player_playlist,
                         re_render_user_followed_playlist,
-                        search_homepage)
+                        search_homepage,
+                        search_artist_homepage)
 from music import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -70,6 +71,7 @@ urlpatterns = [
     path('re_render_user_followed_playlist/',re_render_user_followed_playlist, name="re_render_user_followed_playlist"),
     path('search_homepage/',search_homepage , name="search_homepage"),
     path('remove_modal/',views.remove_modal,name="remove_modal"),
+    path('search_artist_homepage/',search_artist_homepage , name="search_artist_homepage"),
 
 
 

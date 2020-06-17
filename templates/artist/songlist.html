@@ -11,14 +11,22 @@
 <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.3.0/nouislider.min.css'>
 <link rel="stylesheet" href="/static/css/style.css">
+<style>
+
+.jayit{
+  display:none;
+}
+.jayit.active{
+  display:block;
+}
+</style>
   </head>
   <body class="with-search-header">
-
+{% comment %}
           <section class="current-track" style="height:61.2px !important;position:fixed;bottom:0;left:0;right:0;z-index:9999">
 <audio id="music" class="current-track" >
 
 
-{% comment %} <source src="{{songs.audio.url}}" type="audio/mpeg"> {% endcomment %}
 
 
 </audio>
@@ -82,7 +90,7 @@
 
   </div>
 
-</section>
+</section> {% endcomment %}
     <div class="container-fluid no-padding">
       <div class="row no-margin">
         <div class="col-xs-12 no-padding">
@@ -90,7 +98,7 @@
             <div class="search-header"><a href="/" class="logo"><i class="fa fa-home fa-1x" style="font-size:45px!important;margin-top:-25px!important;"></i></a>
               <div class="input-group search-group">
                 <form action="/">
-                  <input type="text" name="search" placeholder="Start your search here..." class="form-control">
+                  <input type="text" name="search" id="search-home" placeholder="Start your search here..." class="form-control">
                   <input type="submit" value="submit" class="hidden"><span class="input-group-btn">
                     <button type="button" class="btn"><i class="fa fa-search"></i></button></span>
                 </form>
@@ -124,6 +132,25 @@
                      <li><a href="{%url 'users:logout'%}"><i class="fa fa-sign-out fa-3x"></i>
                     <div class="hover-effect">
                       <div class="text">Logout</div>
+                      <div class="dot"><i class="fa fa-circle"></i></div>
+                    </div></a></li>
+
+                     <li style="display:none">
+                     {% comment %} <a href="{%url 'users:logout'%}"> {% endcomment %}
+ <a href="#discover1" id="search-goto-song" aria-controls="discover1" role="tab"
+                  data-toggle="tab">
+                     <i class="fa fa-sign-out fa-3x"></i>
+                    <div class="hover-effect">
+                      <div class="text">MAAYA</div>
+                      <div class="dot"><i class="fa fa-circle"></i></div>
+                    </div></a></li>
+                             <li style="display:none">
+                     {% comment %} <a href="{%url 'users:logout'%}"> {% endcomment %}
+          <a href="#discover22" id="related-songss" aria-controls="discover22" role="tab"
+                  data-toggle="tab">
+                     <i class="fa fa-sign-out fa-3x"></i>
+                    <div class="hover-effect">
+                      <div class="text">LAYS</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
               </ul>
@@ -160,6 +187,44 @@
               </li>
             </ul>
           </div>
+
+
+<div id="discover22" class="tab-pane discover-container jayit" role="tabpanel">
+</div>
+
+
+   <div id="discover1" class="tab-pane discover-container jayit" role="tabpanel">
+            <div class="row no-margin">
+              <div class="col-sm-6">
+                <h6>Start to</h6>
+                <h3>Search</h3>
+              </div>
+               <div class="col-sm-6"><a href="#" class="view-all">View All <i class="music-plus-button"></i></a>
+                <div class="songs-select">
+                  <select class="select">
+                    <option value="1">Songs</option>
+                    <option value="2">Albums</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row no-margin" id="dump-search">
+
+
+
+
+
+
+
+           </div>
+           </div>
+
+
+
+
+
+
+
           <div id="discover" class="discover-container">
             <div class="row no-margin">
               <div class="col-sm-6">
@@ -373,6 +438,8 @@
           <script src="/static/js/libraries.min.js"></script>
           <script src="/static/js/jplayer.playlist.min.js"></script>
           <script src="/static/js/main.js"></script>
+          <script src="/static/js/ajax_artist.js"></script>
+
           <script>
 
               function goToDiscover(){

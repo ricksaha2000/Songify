@@ -581,3 +581,20 @@ def search_homepage(request):
 
 
     return render(None,'search_homepage.html',{"albums":results,"playlists":result_playlist})
+
+@csrf_exempt
+def search_artist_homepage(request):
+    result=''
+    if request.method == "POST":
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+    results = Album.objects.filter(title__contains = search_text , title__isnull = False,user=request.user)
+    result_songs = Music.objects.filter(title__contains = search_text , title__isnull = False,album__user = request.user)
+    # albums = Album.objects.all()
+    print(results)
+    print(result_songs)
+
+
+
+    return render(None,'search_artist_homepage.html',{"albums":results,"songs":result_songs})
