@@ -234,6 +234,9 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
     margin-right: -15px !important;
     margin-left: -15px !important;
 }
+body{
+    padding-right:0px!important;
+}
 
 
 @media(min-width:767px) {
@@ -257,7 +260,7 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
 </style>
 
 </head>
-<body id="top" class="preload">
+<body id="top" class="preload" style="padding-right:0px!important">
 
 
  <a type="button" class="btn btn-primary" id="babyrai" style="display:none" data-toggle="modal" data-target="#modalCoupon">Launch
@@ -288,7 +291,7 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
             {% comment %} <a type="button" class="btn btn-success">Get it
               <i class="fas fa-book ml-1 white-text"></i>
             </a> {% endcomment %}
-            <a type="button" id="close-button-continue" href="javascript:ajax_request();" class="btn btn-outline-success waves-effect rai" style="color:#32325d;font-size:18px;" data-dismiss="modal"><b>CONTINUE</b></a>
+            <a type="button" id="close-button-continue" class="btn btn-outline-success waves-effect rai" style="color:#32325d;font-size:18px;" data-dismiss="modal"><b>CONTINUE</b></a>
           </div>
         </div>
       </div>
@@ -709,6 +712,9 @@ function ajax_request(){
     });
 
 };
+
+
+
 function remove_modal(data , textStatus,jqXHR)
 {
     // console.log(data)
@@ -720,6 +726,33 @@ function remove_modal(data , textStatus,jqXHR)
 
 
 
+</script>
+
+<script>
+$("#close-button-continue").click(function () {
+    var datass="";
+$('modalCoupon').modal('hide');
+console.log("YO MAMAMAMAMAMAMAMMA");
+    $('#removemodal').html(null);
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+{% comment %} remove_all_modals(); {% endcomment %}
+});
+
+
+function remove_all_modals(){
+    $(document).ready(function () {
+        console.log("WHAT UP?");
+
+        {% comment %} $('#removemodal').remove(); {% endcomment %}
+        $('#removemodal').each(function() {
+            $(this).remove();
+                });
+
+ });
+
+
+}
 </script>
 </body>
 </html>
