@@ -69,7 +69,7 @@ urlpatterns = [
     path('song_player_playlist/',song_player_playlist , name="song_player_playlist"),
     path('re_render_user_followed_playlist/',re_render_user_followed_playlist, name="re_render_user_followed_playlist"),
     path('search_homepage/',search_homepage , name="search_homepage"),
-
+    path('remove_modal/',views.remove_modal,name="remove_modal"),
 
 
 

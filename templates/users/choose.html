@@ -1,34 +1,4 @@
-{% comment %} {% extends "base.html" %} {% endcomment %}
 
-{% comment %}
-{% block title %}
-    Login
-{% endblock title %}
-
-{% block content %}
-
- <div class="col-md-6 mx-auto mt-3">
-        <form action="{% url "users:login" %}" method="POST">
-        	{% csrf_token %}
-
-        	<div class="form-group">
-        		<label>UserName</label>
-        		<input type="text" name="username" class="form-control" required="">
-        	</div>
-
-        	<div class="form-group">
-        		<label>Password</label>
-        		<input type="Password" name="password" class="form-control" required="">
-        	</div>
-
-            <div class="form-group">
-        		<input type="submit" value="Login" class="btn btn-dark btn-block">
-        	</div>
-        </form>
-
-   </div>
-
-{% endblock content %} {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +9,8 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
   <title>
-    Argon Design System by Creative Tim
-  </title>
+Songify
+</title>
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/argon-design-system" />
@@ -91,7 +61,7 @@
   <!-- Navbar -->
   <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
-      <a class="navbar-brand mr-lg-5" href="{%url 'gaana:home' %}">
+      <a class="navbar-brand mr-lg-5" href="/">
         {% comment %} <img src="/static/assets/img/brand/white.png"> {% endcomment %}
 		Songify
       </a>
@@ -102,8 +72,8 @@
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="../../../index.html">
-                <img src="/static/assets/img/brand/blue.png">
+              <a href="/">
+                Songify
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -153,16 +123,16 @@
             </div>
           </li> {% endcomment %}
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Examples</span>
-            </a>
-            <div class="dropdown-menu">
-              <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-              <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-              <a href="../examples/login.html" class="dropdown-item">Login</a>
-              <a href="../examples/register.html" class="dropdown-item">Register</a>
-            </div>
+            <!--<a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">-->
+            <!--  <i class="ni ni-collection d-lg-none"></i>-->
+              <!--<span class="nav-link-inner--text">Examples</span>-->
+            <!--</a>-->
+            <!--<div class="dropdown-menu">-->
+            <!--  <a href="../examples/landing.html" class="dropdown-item">Landing</a>-->
+            <!--  <a href="../examples/profile.html" class="dropdown-item">Profile</a>-->
+            <!--  <a href="../examples/login.html" class="dropdown-item">Login</a>-->
+            <!--  <a href="../examples/register.html" class="dropdown-item">Register</a>-->
+            <!--</div>-->
           </li>
         </ul>
         {% comment %} <ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -239,7 +209,7 @@
             </div>
             <div class="card-body px-lg-5 py-lg-5" style="min-height:500.22px!important">
               <div class="text-center text-muted mb-4">
-                <small>A small brief...</small>
+                <!--<small>A small brief...</small>-->
               </div>
                     {%csrf_token%}
                     <div class="form-group mb-3">
@@ -250,12 +220,12 @@
                     {% comment %} <div class="form-group focused"> {% endcomment %}
                     {% comment %} <div class="input-group input-group-alternative"> {% endcomment %}
 
-                        <p>Enthroll Urself in the World of Music</p>
+                        <!--<p>Enthroll Urself in the World of Music</p>-->
                     {% comment %} </div> {% endcomment %}
                     {% comment %} </div> {% endcomment %}
 
                     <div class="text-center">
-                    <button type="submit" class="btn btn-primary my-4">Back to Home</button>
+                    <a href="/"><button type="submit" class="btn btn-primary my-4">Back to Home</button></a>
                     </div>
             </div>
           </div>

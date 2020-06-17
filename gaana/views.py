@@ -295,9 +295,6 @@ def re_render_playlist(request):
 
     return render_to_response('re_render_playlist.html',{'playlists':playlists})
 
-
-
-
 @csrf_exempt
 def follow_artist(request):
     response = {}
@@ -561,7 +558,6 @@ def song_player_playlist(request):
         # artist = song.songid.album.user.username
         # print(artist)
         return render_to_response('player_song_view_playlist.html',{"songs":song})
-
 
 @csrf_exempt
 def re_render_user_followed_playlist(request):

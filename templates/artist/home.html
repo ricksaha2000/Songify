@@ -87,12 +87,12 @@
       <div class="row no-margin">
         <div class="col-xs-12 no-padding">
           <header>
-            <div class="search-header"><a href="#" class="logo"><i class="music-logo"></i></a>
+            <div class="search-header"><a href="/" class="logo"><i class="fa fa-home fa-1x" style="font-size:45px!important;margin-top:-25px!important;"></i></a>
               <div class="input-group search-group">
                 <form action="/">
                   <input type="text" name="search" placeholder="Start your search here..." class="form-control">
                   <input type="submit" value="submit" class="hidden"><span class="input-group-btn">
-                    <button type="button" class="btn"><i class="music-search"></i></button></span>
+                    <button type="button" class="btn"><i class="fa fa-search"></i></button></span>
                 </form>
               </div>
 
@@ -106,7 +106,7 @@
             </div>
             <div class="simple-sidebar">
               <ul>
-                <li><a href="#"><img src="/media/img/discover-icon.png" alt="">
+                <li><a href="javascript:goToDiscover();"><img src="/media/img/discover-icon.png" alt="">
                     <div class="hover-effect">
                       <div class="text">Discover</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
@@ -116,12 +116,12 @@
                       <div class="text">Add Albums</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
-                <li><a href="#"><img src="/media/img/songs-icon.png" alt="">
+                <li><a href="javascript:goToDiscover();"><img src="/media/img/songs-icon.png" alt="">
                     <div class="hover-effect">
                       <div class="text">Songs</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
-                   <li><a href="{%url 'users:logout'%}"><i class="fa fa-sign-out fa-3x"></i>
+                                <li><a href="{%url 'users:logout'%}"><i class="fa fa-sign-out fa-3x"></i>
                     <div class="hover-effect">
                       <div class="text">Logout</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
@@ -137,7 +137,7 @@
                     <h3>Newest</h3>
                     <div class="line"><img src="img/title-underline.png" alt=""></div>
                   </div>
-                  <div class="song-title">Holley Maher - I'm Coming Home</div><a href="#" data-play="12" class="play play-song">Start listening <i class="fa fa-play"></i></a><a href="#discover" class="more more-with-navigation">Discover more songs <i class="fa fa-angle-down"></i></a>
+                  <div class="song-title">Holley Maher - I'm Coming Home</div><a href="#" data-play="12" class="play play-song">Start listening <i class="fa fa-play"></i></a><a id="clickety" href="#discover" class="more more-with-navigation">Discover more songs <i class="fa fa-angle-down"></i></a>
                 </div>
               </li>
               <li>
@@ -347,8 +347,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">{{product.title}}</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="{%url 'users:song_detail' product.albumid %}" class="title">{{product.title}}</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
 {%endfor%}
@@ -373,6 +373,17 @@
           <script src="/static/js/libraries.min.js"></script>
           <script src="/static/js/jplayer.playlist.min.js"></script>
           <script src="/static/js/main.js"></script>
+             <script>
+
+              function goToDiscover(){
+                  console.log("shit");
+                //   $('a#clickety').trigger('click');
+                //   $('#clickety').click();
+                   $(document).ready(function () {
+          $('a#clickety').trigger('click');
+        });
+              }
+          </script>
         </div>
       </div>
     </div>

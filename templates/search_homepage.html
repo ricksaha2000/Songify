@@ -174,7 +174,7 @@
                     </div>
                   </figure>
                   <a href="{%url 'gaana:index' album.albumid %}" class="title">{{album.title}}</a>
-                  <div class="price">$0.00</div>
+                  <!--<div class="price">$0.00</div>-->
                 </div>
               </div>
 
@@ -356,8 +356,8 @@
                       </div>
                     </div>
                   </figure>
-                  </figure><a href="individual-song.html" class="title">{{playlist.title}}</a>
-                  <div class="price">$0.00</div>
+                  </figure><a href="{%url 'gaana:index_playlist' playlist.playlistid %}" class="title">{{playlist.title}}</a>
+                  <!--<div class="price">$0.00</div>-->
                 </div>
               </div>
 

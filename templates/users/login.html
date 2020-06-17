@@ -1,34 +1,4 @@
-{% comment %} {% extends "base.html" %} {% endcomment %}
 
-{% comment %}
-{% block title %}
-    Login
-{% endblock title %}
-
-{% block content %}
-
- <div class="col-md-6 mx-auto mt-3">
-        <form action="{% url "users:login" %}" method="POST">
-        	{% csrf_token %}
-
-        	<div class="form-group">
-        		<label>UserName</label>
-        		<input type="text" name="username" class="form-control" required="">
-        	</div>
-
-        	<div class="form-group">
-        		<label>Password</label>
-        		<input type="Password" name="password" class="form-control" required="">
-        	</div>
-
-            <div class="form-group">
-        		<input type="submit" value="Login" class="btn btn-dark btn-block">
-        	</div>
-        </form>
-
-   </div>
-
-{% endblock content %} {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +9,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
   <title>
-    Argon Design System by Creative Tim
+   Login
   </title>
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
@@ -79,7 +49,9 @@
   <!-- CSS Files -->
   <link href="/static/assets/css/argon-design-system.min.css?v=1.2.0" rel="stylesheet" />
   <!-- Google Tag Manager -->
-<style>
+
+  <!-- End Google Tag Manager -->
+  <style>
 .rai:hover{
 
   background-color:white;
@@ -87,7 +59,6 @@
 
 }
 </style>
-  <!-- End Google Tag Manager -->
 </head>
 
 <body class="login-page">
@@ -96,9 +67,8 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <!-- Navbar -->
-<!--Section: Live preview-->
 
-<a type="button" class="btn btn-primary" id="babyrai" style="display:none" data-toggle="modal" data-target="#modalCoupon">Launch
+  <a type="button" class="btn btn-primary" id="babyrai" style="display:none" data-toggle="modal" data-target="#modalCoupon">Launch
   modal</a>
 
 <!--Modal: modalCoupon-->
@@ -156,10 +126,9 @@
   {% endif %}
   </div>
 {%endif%}
-
   <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
-      <a class="navbar-brand mr-lg-5" href="{%url 'gaana:home' %}">
+      <a class="navbar-brand mr-lg-5" href="/">
         {% comment %} <img src="/static/assets/img/brand/white.png"> {% endcomment %}
 		Songify
       </a>
@@ -170,8 +139,9 @@
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="../../../index.html">
-                <img src="/static/assets/img/brand/blue.png">
+              <a href="/">
+                <!--<img src="/static/assets/img/brand/blue.png">-->
+                Songify
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -221,16 +191,16 @@
             </div>
           </li> {% endcomment %}
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Examples</span>
-            </a>
-            <div class="dropdown-menu">
-              <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-              <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-              <a href="../examples/login.html" class="dropdown-item">Login</a>
-              <a href="../examples/register.html" class="dropdown-item">Register</a>
-            </div>
+            <!--<a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">-->
+            <!--  <i class="ni ni-collection d-lg-none"></i>-->
+              <!--<span class="nav-link-inner--text">Examples</span>-->
+            <!--</a>-->
+            <!--<div class="dropdown-menu">-->
+            <!--  <a href="../examples/landing.html" class="dropdown-item">Landing</a>-->
+            <!--  <a href="../examples/profile.html" class="dropdown-item">Profile</a>-->
+            <!--  <a href="../examples/login.html" class="dropdown-item">Login</a>-->
+            <!--  <a href="../examples/register.html" class="dropdown-item">Register</a>-->
+            <!--</div>-->
           </li>
         </ul>
         {% comment %} <ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -434,6 +404,8 @@
         application: "argon-design-system-pro"
       });
   </script>
+
+    </script>
 
     <script type="text/javascript">
  {% comment %} $( document ).ready(function() {

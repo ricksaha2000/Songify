@@ -46,114 +46,263 @@
     </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1530003103982991&ev=PageView&noscript=1" /></noscript>
 
+<style>
+.about{
+    background-image:none !important;
+}
+
+.rai:hover{
+
+  background-color:white;
+  color:#32325d!important;
+
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal.show .modal-dialog {
+    transform: none;
+}
+.modal.fade .modal-dialog {
+    transition: transform .3s ease-out;
+    transform: translateY(-50px);
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+.modal-success .modal-content{
+    background-color: #2dce89;
+    color: #fff;
+}
+.modal-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: 0 15px 35px rgba(50, 50, 93, .2), 0 5px 15px rgba(0, 0, 0, .17);
+    outline: 0;
+}
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1.5rem;
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: .5rem;
+    pointer-events: none;
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal {
+    z-index: 1072;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+.fade {
+    transition: opacity .15s linear;
+}
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: .5rem;
+    pointer-events: none;
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+.align-items-center {
+    align-items: center !important;
+}
+.justify-content-center {
+    justify-content: center !important;
+}
+.d-flex {
+    display: flex !important;
+}
+{% comment %} .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+} {% endcomment %}
+
+.badges {
+    text-transform: uppercase;
+}
+.badges {
+    display: inline-block !important;
+    padding: .35rem .375rem !important;
+    font-size: 66%!important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    vertical-align: baseline !important;
+    border-radius: .25rem !important;
+    transition: all .15s ease !important;
+    backgr
+}
+.htwo{
+     margin-top: 0;
+    margin-bottom: .5rem;
+    font-family: inherit;
+    line-height: 1.5;
+    color: #32325d;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box
+}
+
+
+.pt-3, .py-3 {
+    padding-top: 1rem !important;
+}
+.ml-4, .mx-4 {
+    margin-left: 1.5rem !important;
+}
+.mr-4, .mx-4 {
+    margin-right: 1.5rem !important;
+}
+.lead, .para {
+    font-weight: 300;
+    line-height: 1.7;
+}
+.para {
+    font-size: 1rem;
+}
+.para {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.para {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+[class*=btn-outline-] {
+    border-width: 1px;
+}
+
+.rows {
+    flex-wrap: wrap !important;
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+}
+
+
+@media(min-width:767px) {
+
+    .menu-trigger{
+        display:none;
+    }
+}
+
+@media(max-width:992px) {
+       .menu-trigger{
+        display:none;
+    }
+}
+
+@media(max-width:480px) {
+        .menu-trigger{
+        display:none;
+    }
+}
+</style>
 
 </head>
 <body id="top" class="preload">
 
-{% comment %} <div id="page-loader" class="loading-wrap">
-<span class="loading-text">Loading Duotone Website</span>
-<div class="loading-bars">
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-</div>
-</div> {% endcomment %}
 
+ <a type="button" class="btn btn-primary" id="babyrai" style="display:none" data-toggle="modal" data-target="#modalCoupon">Launch
+  modal</a>
 
-<!--<div class="audio-player">-->
-<!--<a href="javascript:;" class="hide_player"><i class="fa fa-angle-down"></i> HIDE</a>-->
-<!--<div id="jquery_jplayer_1" class="jp-jplayer"></div>-->
+<!--Modal: modalCoupon-->
 
+{%if messages%}
+<div class="mt" style="padding:0;background-color:black;!important">
+    {% if messages and not user.is_authenticated %} {% for message in messages|slice:":1"  %}
+<div id="removemodal">
+ <div class="modal fade top show" id="modalCoupon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-frame modal-top modal-notify modal-success" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Body-->
+        <div class="modal-body">
+          <div class="row rows d-flex justify-content-center align-items-center">
 
-<!--<div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">-->
-<!--<div class="jp-type-playlist">-->
+            <h2 class="htwo">
+              {% comment %} <span class="badges" style="color:#32325d;"><b>ERROR</b></span> {% endcomment %}
+            </h2>
+            <p class="para" style="font-size:28px;margin-right:100px;text-align:center;margin-left:50px">{{message}}
+              {% comment %} <strong>10% discount</strong>. {% endcomment %}
+              </p>
 
-<!--<div class="jp-gui jp-interface flex-wrap">-->
+            {% comment %} <a type="button" class="btn btn-success">Get it
+              <i class="fas fa-book ml-1 white-text"></i>
+            </a> {% endcomment %}
+            <a type="button" id="close-button-continue" href="javascript:ajax_request();" class="btn btn-outline-success waves-effect rai" style="color:#32325d;font-size:18px;" data-dismiss="modal"><b>CONTINUE</b></a>
+          </div>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+  </div>
+  <!--Modal: modalCoupon-->
 
-<!--<div class="jp-controls flex-item">-->
-<!--<button class="jp-previous" tabindex="0"><i class="fa fa-step-backward"></i></button>-->
-<!--<button class="jp-play" tabindex="0"><i class="fa fa-play"></i></button>-->
-<!--<button class="jp-next" tabindex="0"><i class="fa fa-step-forward"></i></button>-->
-<!--</div>-->
-
-
-<!--<div class="jp-progress-container flex-item">-->
-
-<!--<div class="jp-time-holder">-->
-<!--<span class="jp-current-time" role="timer" aria-label="time">&nbsp;</span>-->
-<!--<span class="jp-duration" role="timer" aria-label="duration">&nbsp;</span>-->
-<!--</div>-->
-
-
-<!--<div class="jp-progress">-->
-<!--<div class="jp-seek-bar">-->
-<!--<div class="jp-play-bar">-->
-<!--<div class="bullet">-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-
-
-<!--<a href="javascript:void(0);" id="playlist-text">-->
-<!--<div class="jp-now-playing flex-item">-->
-<!--<div class="jp-track-name"></div>-->
-<!--<div class="jp-artist-name"></div>-->
-<!--</div>-->
-<!--</a>-->
-
-
-<!--<div class="jp-toggles flex-item">-->
-
-<!--<button id="playlist-toggle" class="jp-show-playlist" tabindex="0" title="Playlist"><i class="fa fa-music"></i></button>-->
-
-<!--<button class="jp-shuffle" tabindex="0" title="Shuffle">-->
-<!--<i class="fa fa-random"></i></button>-->
-
-<!--<button class="jp-repeat" tabindex="0" title="Repeat"><i class="fa fa-exchange"></i></button>-->
-<!--</div>-->
-
-
-<!--<div class="jp-volume-controls flex-item">-->
-<!--<button class="jp-mute" tabindex="0"><i class="fa fa-volume-up"></i></button>-->
-
-<!--<div class="jp-volume-bar">-->
-<!--<div class="jp-volume-bar-value">-->
-<!--<div class="bullet">-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-
-<!--</div>-->
-
-
-<!--<div id="playlist-wrap" class="jp-playlist">-->
-<!--<ul>-->
-<!--<li>&nbsp;</li>-->
-<!--</ul>-->
-<!--</div>-->
-
-
-<!--<div class="jp-no-solution">-->
-<!--<span>Update Required</span> To play the media you will need to either update your browser to a recent version or update your <a href="https://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-
-<!--</div>-->
-
+  <!--Section: Live preview-->
+  {% endfor %}
+  {% endif %}
+  </div>
+{%endif%}
 
 <nav class="navbar navbar-default navbar-fixed-top js-on-scroll">
 <div class="container">
@@ -172,7 +321,7 @@
 </a>
 </div>
 <ul class="nav navbar-nav navbar-right toggle-menu">
-<li><a href="#">HOME </a></li>
+<li><a href="#">HOME</a></li>
 {%if user.is_user %}
 
 <li><a href="{% url 'gaana:home' %}">LISTEN</a></li>
@@ -188,26 +337,7 @@
 <li><a href="{% url 'users:login' %}">LOGIN</a></li>
 <li><a href="{% url 'users:choose_user_type' %}">REGISTER</a></li>
 {%endif%}
-<!--{%if user.is_authenticated and user.is_user %}-->
 
-<!--{%endif%}-->
-{% comment %} <li><a href="events.html">EVENTS</a></li>
-<li><a href="albums.html">ALBUMS</a></li>
-<li><a href="media.html">MEDIA</a></li>
-<li><a href="gallery.html">GALLERY</a></li> {% endcomment %}
-{% comment %} <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PAGES <span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li><a href="index.html">One Page Version</a></li>
-<li><a href="album-single.html">Album Single</a></li>
-<li><a href="event-countdown.html">Event Countdown</a></li>
-<li><a href="coming-soon.html">Coming soon</a></li>
-<li><a href="404.html">404</a></li>
-<li><a href="blog.html">Blog List</a></li>
-<li><a href="blog-single.html">Blog Single</a></li>
-</ul>
-</li> {% endcomment %}
-<!--<li><a href="#">CONTACT</a></li>-->
 </ul>
 </div>
 
@@ -542,5 +672,59 @@ and life to everything.</span>
 <script src="static/js/subscribe.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flat-icons@1.0.0/index.min.js"></script>
 <script src="static/js/script_front.js"></script>
+
+
+     <script type="text/javascript">
+
+    $(window).on('load',function(){
+      console.log("YOMAMA");
+        $('a#babyrai').trigger('click');
+            setTimeout(function() {
+
+    $('a#close-button-continue').trigger('click');
+    }, 3000);
+    });
+
+
+            setTimeout(function() {
+
+        ajax_request();
+
+            },6000);
+
+function ajax_request(){
+
+    console.log("AJAX REQ");
+
+    $.ajax({
+        type:"POST",
+        url:"/remove_modal/",
+        data:{
+
+        },
+        success:remove_modal,
+        dataType:'html',
+
+
+    });
+
+};
+function remove_modal(data , textStatus,jqXHR)
+{
+    // console.log(data)
+    $("#removemodal").nextAll().remove();
+
+    $('#removemodal').html(data);
+    // music.play;
+}
+
+
+
+</script>
 </body>
 </html>
+
+
+ {% comment %} $( document ).ready(function() {
+        console.log( "document loaded" );
+    }); {% endcomment %}

@@ -133,8 +133,8 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
   <title>
-    Argon Design System by Creative Tim
-  </title>
+Songify
+</title>
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/argon-design-system" />
@@ -190,9 +190,12 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <!-- Navbar -->
-<a type="button" class="btn btn-primary" id="babyrai" style="display:none" data-toggle="modal" data-target="#modalCoupon">Launch
+  <a type="button" class="btn btn-primary" id="babyrai" style="display:none" data-toggle="modal" data-target="#modalCoupon">Launch
   modal</a>
-  {%if messages%}
+
+<!--Modal: modalCoupon-->
+
+{%if messages%}
 <div class="mt" style="padding:0;background-color:black;!important">
     {% if messages %} {% for message in messages %}
     {% comment %} <div
@@ -247,7 +250,7 @@
 {%endif%}
   <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
-      <a class="navbar-brand mr-lg-5" href="../index.html">
+      <a class="navbar-brand mr-lg-5" href="/">
         {% comment %} <img src="/static/assets/img/brand/white.png"> {% endcomment %}
 		Songify
       </a>
@@ -258,8 +261,9 @@
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="../../../index.html">
-                <img src="/static/assets/img/brand/blue.png">
+              <a href="/">
+                <!--<img src="/static/assets/img/brand/blue.png">-->
+                Songify
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -309,16 +313,16 @@
             </div>
           </li> {% endcomment %}
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Examples</span>
-            </a>
-            <div class="dropdown-menu">
-              <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-              <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-              <a href="../examples/login.html" class="dropdown-item">Login</a>
-              <a href="../examples/register.html" class="dropdown-item">Register</a>
-            </div>
+            <!--<a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">-->
+            <!--  <i class="ni ni-collection d-lg-none"></i>-->
+              <!--<span class="nav-link-inner--text">Examples</span>-->
+            <!--</a>-->
+            <!--<div class="dropdown-menu">-->
+            <!--  <a href="../examples/landing.html" class="dropdown-item">Landing</a>-->
+            <!--  <a href="../examples/profile.html" class="dropdown-item">Profile</a>-->
+            <!--  <a href="../examples/login.html" class="dropdown-item">Login</a>-->
+            <!--  <a href="../examples/register.html" class="dropdown-item">Register</a>-->
+            <!--</div>-->
           </li>
         </ul>
         {% comment %} <ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -539,7 +543,10 @@
         application: "argon-design-system-pro"
       });
   </script>
-      <script type="text/javascript">
+
+    </script>
+
+    <script type="text/javascript">
  {% comment %} $( document ).ready(function() {
         console.log( "document loaded" );
     }); {% endcomment %}

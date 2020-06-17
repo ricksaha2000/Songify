@@ -23,80 +23,80 @@
   </head>
   <body class="with-search-header">
 
-          <section class="current-track" style="height:61.2px !important;position:fixed;bottom:0;left:0;right:0;z-index:9999">
-<audio id="music" class="current-track" >
+<!--          <section class="current-track" style="height:61.2px !important;position:fixed;bottom:0;left:0;right:0;z-index:9999">-->
+<!--<audio id="music" class="current-track" >-->
 
 
-{% comment %} <source src="{{songs.audio.url}}" type="audio/mpeg"> {% endcomment %}
+<!--{% comment %} <source src="{{songs.audio.url}}" type="audio/mpeg"> {% endcomment %}-->
 
 
-</audio>
+<!--</audio>-->
 
-  <div class="current-track__actions">
+<!--  <div class="current-track__actions">-->
 
-    <a class="ion-ios-skipbackward"></a>
+<!--    <a class="ion-ios-skipbackward"></a>-->
 
-    <a class="ion-ios-play play" id="play" onclick="playAudio()"></a>
+<!--    <a class="ion-ios-play play" id="play" onclick="playAudio()"></a>-->
 
-    <a class="ion-ios-skipforward"></a>
+<!--    <a class="ion-ios-skipforward"></a>-->
 
-  </div>
+<!--  </div>-->
 
-  <div class="current-track__progress">
+<!--  <div class="current-track__progress">-->
 
-    <div class="current-track__progress__start" id="trackstart">0:00</div>
+<!--    <div class="current-track__progress__start" id="trackstart">0:00</div>-->
 
-    <div class="current-track__progress__bar">
+<!--    <div class="current-track__progress__bar">-->
 
-      <div id="song-progress"></div>
+<!--      <div id="song-progress"></div>-->
 
-    </div>
+<!--    </div>-->
 
-    <div class="current-track__progress__finish" id="trackend">0:00</div>
+<!--    <div class="current-track__progress__finish" id="trackend">0:00</div>-->
 
-  </div>
+<!--  </div>-->
 
-  <div class="current-track__options">
+<!--  <div class="current-track__options">-->
 
-    <a href="#" class="lyrics">Lyrics</a>
+<!--    <a href="#" class="lyrics">Lyrics</a>-->
 
-    <span class="controls">
+<!--    <span class="controls">-->
 
-      <a href="#" class="control">
-        <i class="ion-navicon"></i>
-      </a>
+<!--      <a href="#" class="control">-->
+<!--        <i class="ion-navicon"></i>-->
+<!--      </a>-->
 
-      <a href="#" class="control">
-        <i class="ion-shuffle"></i>
-      </a>
+<!--      <a href="#" class="control">-->
+<!--        <i class="ion-shuffle"></i>-->
+<!--      </a>-->
 
-      <a  class="control" onclick="refresh()">
-        <i class="fa fa-refresh" id="refresh"></i>
-      </a>
+<!--      <a  class="control" onclick="refresh()">-->
+<!--        <i class="fa fa-refresh" id="refresh"></i>-->
+<!--      </a>-->
 
-      <a href="#" class="control devices">
-        <i class="ion-iphone"></i>
-        <span>Devices Available</span>
-      </a>
+<!--      <a href="#" class="control devices">-->
+<!--        <i class="ion-iphone"></i>-->
+<!--        <span>Devices Available</span>-->
+<!--      </a>-->
 
-      <a href="#" class="control volume">
+<!--      <a href="#" class="control volume">-->
 
-        <i class="ion-volume-high"></i>
+<!--        <i class="ion-volume-high"></i>-->
 
-        <div id="song-volume"></div>
+<!--        <div id="song-volume"></div>-->
 
-      </a>
+<!--      </a>-->
 
-    </span>
+<!--    </span>-->
 
-  </div>
+<!--  </div>-->
 
-</section>
+<!--</section>-->
     <div class="container-fluid no-padding">
       <div class="row no-margin">
         <div class="col-xs-12 no-padding">
           <header>
-            <div class="search-header"><a href="#" class="logo"><i class="fa fa-home fa-1x" style="font-size:45px!important;margin-top:-25px!important;"></i></a>
+            <div class="search-header"><a href="/" class="logo"><i class="fa fa-home fa-1x" style="font-size:45px!important;margin-top:-25px!important;"></i></a>
               <div class="input-group search-group">
                 <form action="/">
                   <input type="text" name="search" id="search-home" placeholder="Start your search here..." class="form-control">
@@ -115,17 +115,17 @@
             </div>
             <div class="simple-sidebar">
               <ul>
-                <li><a href="#"><img src="/media/img/discover-icon.png" alt="">
+                <li><a href="javascript:goToDiscover();"><img src="/media/img/discover-icon.png" alt="">
                     <div class="hover-effect">
                       <div class="text">Discover</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
-                <li><a href="#"><img src="/media/img/albums-icon.png" alt="">
+                <li><a href="javascript:goToDiscover();"><img src="/media/img/albums-icon.png" alt="">
                     <div class="hover-effect">
                       <div class="text">Albums</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
-                <li><a href="#"><img src="/media/img/songs-icon.png" alt="">
+                <li><a href="javascript:goToDiscover();"><img src="/media/img/songs-icon.png" alt="">
                     <div class="hover-effect">
                       <div class="text">Songs</div>
                       <div class="dot"><i class="fa fa-circle"></i></div>
@@ -137,7 +137,7 @@
                       <div class="dot"><i class="fa fa-circle"></i></div>
                     </div></a></li>
 
-                   <li style="display:none">
+                     <li style="display:none">
                      {% comment %} <a href="{%url 'users:logout'%}"> {% endcomment %}
  <a href="#discover1" id="search-goto-song" aria-controls="discover1" role="tab"
                   data-toggle="tab">
@@ -166,7 +166,7 @@
                     <h3>Newest</h3>
                     <div class="line"><img src="img/title-underline.png" alt=""></div>
                   </div>
-                  <div class="song-title">Holley Maher - I'm Coming Home</div><a href="#" data-play="12" class="play play-song">Start listening <i class="fa fa-play"></i></a><a href="#discover" class="more more-with-navigation">Discover more songs <i class="fa fa-angle-down"></i></a>
+                  <div class="song-title">Holley Maher - I'm Coming Home</div><a href="#" data-play="12" class="play play-song">Start listening <i class="fa fa-play"></i></a><a id="clickety" href="#discover" class="more more-with-navigation">Discover more songs <i class="fa fa-angle-down"></i></a>
                 </div>
               </li>
               <li>
@@ -229,8 +229,8 @@
           <div id="discover" class="discover-container">
             <div class="row no-margin">
               <div class="col-sm-6">
-                <h6>Start to</h6>
-                <h3>Discover</h3>
+                <h6>Discover</h6>
+                <h3>Your Albums</h3>
               </div>
                <div class="col-sm-6"><a href="#" class="view-all">View All <i class="music-plus-button"></i></a>
                 <div class="songs-select">
@@ -415,7 +415,7 @@
                       </div>
                     </div>
                   </figure><a href="{%url 'gaana:index' album.albumid %}" class="title">{{album.title}}</a>
-                  <div class="price">$0.00</div>
+                  <!--<div class="price">$0.00</div>-->
                 </div>
               </div>
 {%endfor%}
@@ -590,8 +590,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">I do</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="#" class="title">I do</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
             </div>
@@ -601,8 +601,8 @@
   <div id="discover" class="discover-container">
             <div class="row no-margin">
               <div class="col-sm-6">
-                <h6>Start to</h6>
-                <h3>Discover</h3>
+                <h6>Discover</h6>
+                <h3>Your Playlists</h3>
               </div>
                <div class="col-sm-6"><a href="#" class="view-all">View All <i class="music-plus-button"></i></a>
                 <div class="songs-select">
@@ -786,8 +786,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">{{playlist.title}}</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="{%url 'gaana:index_playlist' playlist.playlistid %}" class="title">{{playlist.title}}</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
 {%endfor%}
@@ -974,8 +974,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">Always be</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="#" class="title">Always be</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6">
@@ -1148,8 +1148,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">Perfect day</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="#" class="title">Perfect day</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6">
@@ -1323,8 +1323,8 @@
                       </div>
                     </div>
                     <div class="label">Explicit</div>
-                  </figure><a href="individual-song.html" class="title">I'm coming home</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="#" class="title">I'm coming home</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6">
@@ -1497,8 +1497,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">Anywhere you do</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="#" class="title">Anywhere you do</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6">
@@ -1671,8 +1671,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">You will always fin...</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="#" class="title">You will always fin...</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-6">
@@ -1845,8 +1845,8 @@
                         </ul>
                       </div>
                     </div>
-                  </figure><a href="individual-song.html" class="title">I do</a>
-                  <div class="price">$0.99</div>
+                  </figure><a href="#" class="title">I do</a>
+                  <!--<div class="price">$0.99</div>-->
                 </div>
               </div>
             </div>
@@ -1872,6 +1872,17 @@
           <script src="/static/js/ajax_front.js"></script>
 
           <script src="/static/js/main.js"></script>
+                   <script>
+
+              function goToDiscover(){
+                  console.log("shit");
+                //   $('a#clickety').trigger('click');
+                //   $('#clickety').click();
+                   $(document).ready(function () {
+          $('a#clickety').trigger('click');
+        });
+              }
+          </script>
         </div>
       </div>
     </div>
