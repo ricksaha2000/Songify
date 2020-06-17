@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from users.views import ArtistSignUpView
+# from users.views import ArtistSignUpView
 
 
 
@@ -14,11 +14,12 @@ urlpatterns = [
     path('artist/add',views.add_album , name='add_album'),
     path('artist/song/<int:albumid>/add',views.add_song , name='add_song'),
     path('choose/',views.choose_user_type , name='choose_user_type'),
+    path('signup/artist/', views.register_artist, name='artist_signup'),
 
 
     # path('dashboard/', views.dashboard_customer , name='dashboard'),
     # path('<int:user_id>/profile/', views.profile_customer , name='profile'),
-    path('signup/artist/', ArtistSignUpView.as_view(), name='artist_signup'),
+    # path('signup/artist/', ArtistSignUpView.as_view(), name='artist_signup'),
     # path('accounts/signup/student/', StudentSignUpView.as_view(), name='student_signup'),
     path('artist/song/<int:albumid>',views.artist_view_song , name='song_detail'),
     # path('myposts/', views.myposts , name='myposts'),

@@ -173,7 +173,14 @@
   <!-- CSS Files -->
   <link href="/static/assets/css/argon-design-system.min.css?v=1.2.0" rel="stylesheet" />
   <!-- Google Tag Manager -->
+<style>
+.rai:hover{
 
+  background-color:white;
+  color:#32325d!important;
+
+}
+</style>
   <!-- End Google Tag Manager -->
 </head>
 
@@ -183,6 +190,61 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <!-- Navbar -->
+<a type="button" class="btn btn-primary" id="babyrai" style="display:none" data-toggle="modal" data-target="#modalCoupon">Launch
+  modal</a>
+  {%if messages%}
+<div class="mt" style="padding:0;background-color:black;!important">
+    {% if messages %} {% for message in messages %}
+    {% comment %} <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+      role="alert" style="z-index:9999;background-color:black;height:100%;margin-bottom:0;!important"
+    >
+      {{ message }}
+
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+        style="color:white"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div> {% endcomment %}
+ <div class="modal fade top" id="modalCoupon" style="z-index:99999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-frame modal-top modal-notify modal-success" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Body-->
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center align-items-center">
+
+            <h2>
+              <span class="badge"><b>ERROR</b></span>
+            </h2>
+            <p class="pt-3 mx-4" style="font-size:18px">{{message}}
+              {% comment %} <strong>10% discount</strong>. {% endcomment %}
+              </p>
+
+            {% comment %} <a type="button" class="btn btn-success">Get it
+              <i class="fas fa-book ml-1 white-text"></i>
+            </a> {% endcomment %}
+            <a type="button" class="btn btn-outline-success waves-effect rai" style="color:" data-dismiss="modal">CONTINUE</a>
+          </div>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+  <!--Modal: modalCoupon-->
+
+  <!--Section: Live preview-->
+  {% endfor %}
+  {% endif %}
+  </div>
+{%endif%}
   <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
       <a class="navbar-brand mr-lg-5" href="../index.html">
@@ -477,6 +539,15 @@
         application: "argon-design-system-pro"
       });
   </script>
+      <script type="text/javascript">
+ {% comment %} $( document ).ready(function() {
+        console.log( "document loaded" );
+    }); {% endcomment %}
+    $(window).on('load',function(){
+      console.log("YOMAMA");
+        $('a#babyrai').trigger('click');
+    });
+</script>
 </body>
 
 </html>

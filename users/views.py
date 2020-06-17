@@ -69,6 +69,7 @@ def register_customer(request):
 						return redirect('users:login')
 			else:
 				messages.error(request , 'Password Doest Not Match')
+
 				return redirect('users:register')
 
 		else:
@@ -130,19 +131,19 @@ def logout_customer(request):
 	return redirect('/')
 
 
-class ArtistSignUpView(CreateView):
-    model = User
-    form_class = ArtistSignUpForm
-    template_name = 'artist/signup_form.html'
+# class ArtistSignUpView(CreateView):
+#     model = User
+#     form_class = ArtistSignUpForm
+#     template_name = 'artist/signup_form.html'
 
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'ARTIST'
-        return super().get_context_data(**kwargs)
+#     def get_context_data(self, **kwargs):
+#         kwargs['user_type'] = 'ARTIST'
+#         return super().get_context_data(**kwargs)
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('/')
+#     def form_valid(self, form):
+#         user = form.save()
+#         login(self.request, user)
+#         return redirect('/')
 
 @login_required(login_url="/users/login")
 def artist_view(request):
@@ -244,3 +245,47 @@ def add_song(request,albumid):
 
 	else:
 		return render(request ,"artist/add_song.html")
+
+
+def register_artist(request):
+	if request.user.is_authenticated == False:
+		if request.method == 'POST':
+			username = request.POST['username']
+			email = request.POST['email']
+			password = request.POST['password']
+			password2 = request.POST['password2']
+			# img_encoded = request.POST['mydata']
+			# img_decode = base64.b64decode(img_encoded)
+
+
+			if password == password2:
+				if User.objects.filter(username=username).exists():
+						print("NONO")
+						messages.error(request , 'User Name Already Taken')
+						return redirect('users:artist_signup')
+				else:
+					if User.objects.filter(email=email).exists():
+						messages.error(request , 'Email Already Exits ')
+						return redirect('users:artist_signup')
+					else:
+						user = User.objects.create_user(username=username,password=password,email=email,is_artist=True,is_user=False)
+
+						Profile.objects.update_or_create(
+							user=user,
+
+						)
+						user.save()
+						profile = Profile.objects.get(user=user)
+						# profile.image = ContentFile(img_decode, 'profile.jpg')
+						profile.save()
+						messages.success(request,'You Are Now Registered')
+						return redirect('users:login')
+			else:
+				messages.error(request , 'Password Doest Not Match')
+				return redirect('users:artist_signup')
+
+		else:
+			return render(request,'artist/signup_form.html')
+	else:
+		messages.info(request , 'You Are Already Logged In')
+		return redirect('/')
