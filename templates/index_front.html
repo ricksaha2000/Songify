@@ -698,7 +698,11 @@ and life to everything.</span>
 function ajax_request(){
 
     console.log("AJAX REQ");
-
+$('modalCoupon').modal('hide');
+console.log("YO MAMAMAMAMAMAMAMMA");
+    $('#removemodal').html(null);
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
     $.ajax({
         type:"POST",
         url:"/remove_modal/",
