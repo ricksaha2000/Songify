@@ -51,8 +51,8 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
   <title>
-    Argon Design System by Creative Tim
-  </title>
+Songify
+</title>
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/argon-design-system" />
@@ -137,7 +137,7 @@ input[type="file"] {
   <!-- Navbar -->
   <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
-      <a class="navbar-brand mr-lg-5" href="../index.html">
+      <a class="navbar-brand mr-lg-5" href="{% url 'users:home' %}">
         {% comment %} <img src="/static/assets/img/brand/white.png"> {% endcomment %}
 		Songify
       </a>
@@ -149,7 +149,8 @@ input[type="file"] {
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="../../../index.html">
-                <img src="/static/assets/img/brand/blue.png">
+                <!--<img src="/static/assets/img/brand/blue.png">-->
+                Songify
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -162,18 +163,18 @@ input[type="file"] {
         </div>
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
 
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Examples</span>
-            </a>
-            <div class="dropdown-menu">
-              <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-              <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-              <a href="../examples/login.html" class="dropdown-item">Login</a>
-              <a href="../examples/register.html" class="dropdown-item">Register</a>
-            </div>
-          </li>
+          <!--<li class="nav-item dropdown">-->
+          <!--  <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">-->
+          <!--    <i class="ni ni-collection d-lg-none"></i>-->
+          <!--    <span class="nav-link-inner--text">Examples</span>-->
+          <!--  </a>-->
+          <!--  <div class="dropdown-menu">-->
+          <!--    <a href="../examples/landing.html" class="dropdown-item">Landing</a>-->
+          <!--    <a href="../examples/profile.html" class="dropdown-item">Profile</a>-->
+          <!--    <a href="../examples/login.html" class="dropdown-item">Login</a>-->
+          <!--    <a href="../examples/register.html" class="dropdown-item">Register</a>-->
+          <!--  </div>-->
+          <!--</li>-->
         </ul>
 
       </div>
@@ -224,7 +225,7 @@ input[type="file"] {
                     <div class="justify-content-center">
                     <label class="custom-file-upload justify-content-center " id="image_input" placeholder="COVER PIC">
 ADD AUDIO
-                <input  type="file" name="image" class="form-control text-center" style="">
+                <input  type="file" name="audio" class="form-control text-center" style="">
 </label>
 </div>
                   </div>

@@ -341,7 +341,7 @@ $('#my-form').on('submit', function(e){
                                            data: {
                                             title : $('#title-add-playlist').val(),
                                             description : $('#description-add-playlist').val(),
-                                            image : document.getElementById("image-add-playlist").files[0].name,
+                                            image : false,
 
 
 
@@ -666,8 +666,9 @@ function refresh_search_list(){
     {
         console.log(data);
         $('#').html(data);
-        re_render_user_followed_playlist();
         // music.play;
+        re_render_user_followed_playlist();
+
     }
 
 
@@ -756,8 +757,7 @@ function refresh_search_list(){
 
     }
 
-
-    function re_render_user_followed_playlist(){
+ function re_render_user_followed_playlist(){
         $.ajax({
             type:"POST",
             url:"/re_render_user_followed_playlist/",

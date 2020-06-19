@@ -1,5 +1,5 @@
  {%for recently_played_song in recently_played_songs%}
-                    <a href="#" class="related-artist">
+                    <a href="javascript:firescript('{{recently_played_song.songid.album.albumid}}','{{recently_played_song.songid.serialid}}','{{recently_played_song.songid.musicid}}');" id="{{recently_played_song.songid.musicid}}"" class="related-artist">
 
                       <span class="related-artist__img">
 

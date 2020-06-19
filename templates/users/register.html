@@ -224,9 +224,18 @@ Songify
         <div class="modal-body">
           <div class="row d-flex justify-content-center align-items-center">
 
+                {%if message.tags == 'error'%}
+
             <h2>
               <span class="badge"><b>ERROR</b></span>
             </h2>
+            {%endif%}
+            {%if message.tags == 'success'%}
+
+            <h2>
+              <span class="badge"><b>SUCCESS</b></span>
+            </h2>
+            {%endif%}
             <p class="pt-3 mx-4" style="font-size:18px">{{message}}
               {% comment %} <strong>10% discount</strong>. {% endcomment %}
               </p>

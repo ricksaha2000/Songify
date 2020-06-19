@@ -70,7 +70,7 @@
                       </div>
 
 
-  {%for song in songs%}
+ {%for song in songs%}
 
    <div class="track">
 
@@ -86,7 +86,12 @@
                           </a>
                         </div>
 
-                        <div class="track__title">{{song.title}}</div>
+                        <div class="track__title">
+                                                  <a style="color:white!important" href="javascript:firescript('{{song.album.albumid}}','{{song.serialid}}','{{song.musicid}}');" id="{{song.musicid}}" class="track__number">
+
+                            {{song.title}}
+                            </a>
+                            </div>
 
                         <div class="track__explicit">
 

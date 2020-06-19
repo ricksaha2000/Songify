@@ -1053,7 +1053,7 @@ header:before {
 }
 
 .about {
-    /* background-image: url('../../../media/images/ishita.jpg'); */
+    background-image: url('../../../media/images/background-bg-01.jpg');
     background-size: cover;
     background-position: center top;
     padding: 260px 0;
@@ -2617,6 +2617,7 @@ footer {
         width: 100%
     }
 }
+
 
 @media(max-width:768px) {
     .blog-title-wrap {

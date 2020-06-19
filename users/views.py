@@ -68,14 +68,14 @@ def register_customer(request):
 						messages.success(request,'You Are Now Registered')
 						return redirect('users:login')
 			else:
-				messages.error(request , 'Password Doest Not Match')
+				messages.error(request , 'Passwords Do Not Match')
 
 				return redirect('users:register')
 
 		else:
 			return render(request,'users/register.html')
 	else:
-		messages.info(request , 'You Are Already Logged In')
+# 		messages.info(request , 'You Are Already Logged In')
 		return redirect('/')
 
 
@@ -96,7 +96,7 @@ def login_customer(request):
 				res = True
 				if res:
 					auth.login(request,user)
-					messages.success(request,'You Are Now LoggedIn')
+				# 	messages.success(request,'You Are Now Logged In')
 					return redirect('gaana:home')
 				messages.error(request,'Unauthorized access')
 				return render(request,'users/login.html')
@@ -107,7 +107,7 @@ def login_customer(request):
 				res = True
 				if res:
 					auth.login(request,user)
-					messages.success(request,'You Are Now LoggedIn')
+				# 	messages.success(request,'You Are Now Logged In')
 					return redirect('users:home')
 				messages.error(request,'Unauthorized access')
 				return render(request,'users/login.html')
@@ -119,7 +119,7 @@ def login_customer(request):
 			return render(request,'users/login.html')
 
 	else:
-		messages.error(request,'You Are Alredy Logged In')
+# 		messages.error(request,'You Are Already Logged In')
 		return redirect('/')
 
 
@@ -127,7 +127,7 @@ def login_customer(request):
 def logout_customer(request):
 	# if request.method == 'POST':
 	auth.logout(request)
-	messages.success(request,'You Are Now Logged Out')
+# 	messages.success(request,'You Are Now Logged Out')
 	return redirect('/')
 
 
@@ -241,7 +241,7 @@ def add_song(request,albumid):
 
 		music.save()
 
-		return redirect('users:home')
+		return redirect('users:add_song',albumid)
 
 	else:
 		return render(request ,"artist/add_song.html")
@@ -281,11 +281,11 @@ def register_artist(request):
 						messages.success(request,'You Are Now Registered')
 						return redirect('users:login')
 			else:
-				messages.error(request , 'Password Doest Not Match')
+				messages.error(request , 'Passwords Do Not Match')
 				return redirect('users:artist_signup')
 
 		else:
 			return render(request,'artist/signup_form.html')
 	else:
-		messages.info(request , 'You Are Already Logged In')
+# 		messages.info(request , 'You Are Already Logged In')
 		return redirect('/')

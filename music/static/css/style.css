@@ -134,6 +134,7 @@ body a:hover {
   }
   .social{
     justify-content: center;
+    height: auto!important;
 
   }
 
@@ -185,6 +186,9 @@ body a:hover {
 }
 
 @media (max-width: 768px) {
+  .social{
+    height: auto!important;
+  }
   .navigation {
     display: flex;
     flex-flow: row wrap;

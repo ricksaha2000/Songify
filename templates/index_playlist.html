@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Songify</title>
   <link
     href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900'
     rel='stylesheet' type='text/css'>
@@ -402,10 +402,10 @@
             <i class="ion-chevron-down"></i>
           </button>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Private Session</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Log Out</a></li>
+            <!--<li><a href="#">Private Session</a></li>-->
+            <!--<li><a href="#">Account</a></li>-->
+            <!--<li><a href="#">Settings</a></li>-->
+            <li><a href="{%url 'users:logout'%}">Log Out</a></li>
           </ul>
         </div>
 
@@ -431,7 +431,7 @@
 
           <div class="collapse in" id="main">
 
-            <a href="#" class="navigation__list__item">
+            <a href="{% url 'gaana:home' %}" class="navigation__list__item">
               <i class="ion-ios-browsers"></i>
               <span>Browse</span>
             </a>
@@ -471,7 +471,7 @@
               <span>Albums</span>
             </a>
 
-            <a href="#" class="navigation__list__item">
+            <a href="{% url 'gaana:home' %}" class="navigation__list__item">
               <i class="ion-person"></i>
               <span>Artists</span>
             </a>
@@ -562,29 +562,29 @@
 
       </section>
 
-      <section class="playing" id="current_song_playing">
+      <!--<section class="playing" id="current_song_playing">-->
 
-        {% comment %} <div class="playing__art">
+      <!--  <div class="playing__art">-->
 
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/cputh.jpg" alt="Album Art" />
+      <!--    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/cputh.jpg" alt="Album Art" />-->
 
-        </div>
+      <!--  </div>-->
 
-        <div class="playing__song">
+      <!--  <div class="playing__song">-->
 
-          <a class="playing__song__name">Some Type of Love</a>
+      <!--    <a class="playing__song__name">Some Type of Love</a>-->
 
-          <a class="playing__song__artist">Charlie Puth</a>
+      <!--    <a class="playing__song__artist">Charlie Puth</a>-->
 
-        </div>
+      <!--  </div>-->
 
-        <div class="playing__add">
+      <!--  <div class="playing__add">-->
 
-          <i class="ion-checkmark"></i>
+      <!--    <i class="ion-checkmark"></i>-->
 
-        </div> {% endcomment %}
+      <!--  </div> -->
 
-      </section>
+      <!--</section>-->
 
     </div>
 
@@ -604,24 +604,24 @@
 
             <div class="artist__info__meta">
 
-              <div class="artist__info__type">Artist</div>
+              <div class="artist__info__type">Playlist</div>
 
               <div class="artist__info__name">{{username}}</div>
 
               <div class="artist__info__actions">
 
-                <button class="button-dark">
+                <button class="button-dark" onclick="return firstSong();">
                   <i class="ion-ios-play"></i>
                   Play
                 </button>
                 <a href="javascript:FollowArtist('{{artist_id}}')" id="artist_added">
                   {% comment %} <button class="button-light">Follow</button> {% endcomment %}
 
-                  {%if added%}
-                  <button class="button-light">Following</button>
-                  {%else%}
-                  <button class="button-light">Follow</button>
-                  {%endif%}
+                  <!--{%if added%}-->
+                  <!--<button class="button-light">Following</button>-->
+                  <!--{%else%}-->
+                  <!--<button class="button-light">Follow</button>-->
+                  <!--{%endif%}-->
 
 
                 </a>
@@ -658,8 +658,8 @@
               </li>
 
               <li role="presentation">
-                <a href="#related-artists" id="related-id" aria-controls="related-artists" role="tab"
-                  data-toggle="tab">Related Artists</a>
+                <!--<a href="#related-artists" id="related-id" aria-controls="related-artists" role="tab"-->
+                <!--  data-toggle="tab">Related Artists</a>-->
               </li>
 
               <li role="presentation">
@@ -741,15 +741,15 @@
 
                     <div class="latest-release__song">
 
-                      <div class="latest-release__song__title">Drifting (Track Commentary)</div>
+                      <div class="latest-release__song__title">The Final Play</div>
 
                       <div class="latest-release__song__date">
 
-                        <span class="day">4</span>
+                        <span class="day">1</span>
 
                         <span class="month">December</span>
 
-                        <span class="year">2015</span>
+                        <span class="year">2020</span>
 
                       </div>
 
@@ -763,20 +763,27 @@
 
                   <div class="tracks">
 
-                    <div class="track">
+                  <!--  <div class="track">-->
 
-                      <div class="track__art">
+                  <!--    <div class="track__art">-->
 
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
-                          alt="When It's Dark Out" />
+                  <!--      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"-->
+                  <!--        alt="When It's Dark Out" />-->
 
-                      </div>
+                  <!--    </div>-->
 
 
 
 
                        {%for playlistsong in songs%}
+                        <div class="track">
 
+                      <div class="track__art">
+
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"
+                          alt="These Things Happen" />
+
+                      </div>
                       {% comment %} <div class="track__number">{{song.musicid}}</div> {% endcomment %}
                      <a href="javascript:firescript('{{playlistsong.playlistid}}','{{playlistsong.serialid}}','{{playlistsong.songid.musicid}}','true');" id="{{playlistsong.songid.musicid}}" class="track__number">
    <i style="margin-left:5px" class="fa fa-play">
@@ -794,8 +801,8 @@
                             <i class="ion-plus not-added"></i>
                           </a>
                         </div>
-
-                        <div class="track__title">{{playlistsong.songid.title}}</div>
+                        <div class="track__title"><a style="color:white!important" href="javascript:firescript('{{playlistsong.playlistid}}','{{playlistsong.serialid}}','{{playlistsong.songid.musicid}}','true');" id="{{playlistsong.songid.musicid}}" class="track__number">
+{{playlistsong.songid.title}}</a></div>
 
                         <div class="track__explicit">
 
@@ -807,14 +814,7 @@
 
                     </div>
 
-                    <div class="track">
 
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"
-                          alt="These Things Happen" />
-
-                      </div>
                       {%endfor%}
 
 
@@ -826,141 +826,141 @@
 
 
 
-                      <div class="track__number">1</div>
+                    <!--  <div class="track__number">1</div>-->
 
-                      <div class="track__added">
+                    <!--  <div class="track__added">-->
 
-                        <i class="ion-checkmark-round added"></i>
+                    <!--    <i class="ion-checkmark-round added"></i>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__title">Me, Myself & I</div>
+                    <!--  <div class="track__title">Me, Myself & I</div>-->
 
-                      <div class="track__explicit">
+                    <!--  <div class="track__explicit">-->
 
-                        <span class="label">Explicit</span>
+                    <!--    <span class="label">Explicit</span>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__plays">147,544,165</div>
+                    <!--  <div class="track__plays">147,544,165</div>-->
 
-                    </div>
+                    <!--</div>-->
 
-                    <div class="track">
+                    <!--<div class="track">-->
 
-                      <div class="track__art">
+                    <!--  <div class="track__art">-->
 
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"
-                          alt="These Things Happen" />
+                    <!--    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"-->
+                    <!--      alt="These Things Happen" />-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__number">2</div>
+                    <!--  <div class="track__number">2</div>-->
 
-                      <div class="track__added">
+                    <!--  <div class="track__added">-->
 
-                        <i class="ion-plus not-added"></i>
+                    <!--    <i class="ion-plus not-added"></i>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__title">I Mean It</div>
+                    <!--  <div class="track__title">I Mean It</div>-->
 
-                      <div class="track__explicit">
+                    <!--  <div class="track__explicit">-->
 
-                        <span class="label">Explicit</span>
+                    <!--    <span class="label">Explicit</span>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__plays">74,568,782</div>
+                    <!--  <div class="track__plays">74,568,782</div>-->
 
-                    </div>
+                    <!--</div>-->
 
-                    <div class="track">
+                    <!--<div class="track">-->
 
-                      <div class="track__art">
+                    <!--  <div class="track__art">-->
 
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
-                          alt="When It's Dark Out" />
+                    <!--    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"-->
+                    <!--      alt="When It's Dark Out" />-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__number">3</div>
+                    <!--  <div class="track__number">3</div>-->
 
-                      <div class="track__added">
+                    <!--  <div class="track__added">-->
 
-                        <i class="ion-checkmark-round added"></i>
+                    <!--    <i class="ion-checkmark-round added"></i>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__title">Calm Down</div>
+                    <!--  <div class="track__title">Calm Down</div>-->
 
-                      <div class="track__explicit">
+                    <!--  <div class="track__explicit">-->
 
-                        <span class="label">Explicit</span>
+                    <!--    <span class="label">Explicit</span>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__plays">13,737,506</div>
+                    <!--  <div class="track__plays">13,737,506</div>-->
 
-                    </div>
+                    <!--</div>-->
 
-                    <div class="track">
+                    <!--<div class="track">-->
 
-                      <div class="track__art">
+                    <!--  <div class="track__art">-->
 
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
-                          alt="When It's Dark Out" />
+                    <!--    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"-->
+                    <!--      alt="When It's Dark Out" />-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__number">4</div>
+                    <!--  <div class="track__number">4</div>-->
 
-                      <div class="track__added">
+                    <!--  <div class="track__added">-->
 
-                        <i class="ion-plus not-added"></i>
+                    <!--    <i class="ion-plus not-added"></i>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__title">Some Kind Of Drug</div>
+                    <!--  <div class="track__title">Some Kind Of Drug</div>-->
 
-                      <div class="track__explicit">
+                    <!--  <div class="track__explicit">-->
 
-                        <span class="label">Explicit</span>
+                    <!--    <span class="label">Explicit</span>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__plays">12,234,881</div>
+                    <!--  <div class="track__plays">12,234,881</div>-->
 
-                    </div>
+                    <!--</div>-->
 
-                    <div class="track">
+                    <!--<div class="track">-->
 
-                      <div class="track__art">
+                    <!--  <div class="track__art">-->
 
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"
-                          alt="These Things Happen" />
+                    <!--    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg"-->
+                    <!--      alt="These Things Happen" />-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__number">5</div>
+                    <!--  <div class="track__number">5</div>-->
 
-                      <div class="track__added">
+                    <!--  <div class="track__added">-->
 
-                        <i class="ion-checkmark-round added"></i>
+                    <!--    <i class="ion-checkmark-round added"></i>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__title">Let's Get Lost</div>
+                    <!--  <div class="track__title">Let's Get Lost</div>-->
 
-                      <div class="track__explicit">
+                    <!--  <div class="track__explicit">-->
 
-                        <span class="label">Explicit</span>
+                    <!--    <span class="label">Explicit</span>-->
 
-                      </div>
+                    <!--  </div>-->
 
-                      <div class="track__plays">40,882,954</div>
+                    <!--  <div class="track__plays">40,882,954</div>-->
 
-                    </div>
+                    <!--</div>-->
 
                   </div>
 
@@ -1001,628 +1001,620 @@
 
                   <div class="overview__albums__head">
 
-                    <span class="section-title">Albums</span>
 
-                    <span class="view-type">
-
-                      <i class="fa fa-list list active"></i>
-
-                      <i class="fa fa-th-large card"></i>
-
-                    </span>
 
                   </div>
 
-                  <div class="album">
+                  <!--<div class="album">-->
 
-                    <div class="album__info">
+                  <!--  <div class="album__info">-->
 
-                      <div class="album__info__art">
+                  <!--    <div class="album__info__art">-->
 
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"
-                          alt="When It's Dark Out" />
+                  <!--      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg"-->
+                  <!--        alt="When It's Dark Out" />-->
 
-                      </div>
+                  <!--    </div>-->
 
-                      <div class="album__info__meta">
+                  <!--    <div class="album__info__meta">-->
 
-                        <div class="album__year">2015</div>
+                  <!--      <div class="album__year">2015</div>-->
 
-                        <div class="album__name">When It's Dark Out</div>
+                  <!--      <div class="album__name">When It's Dark Out</div>-->
 
-                        <div class="album__actions">
+                  <!--      <div class="album__actions">-->
 
-                          <button class="button-light save">Save</button>
+                  <!--        <button class="button-light save">Save</button>-->
 
-                          <button class="button-light more">
-                            <i class="ion-ios-more"></i>
-                          </button>
+                  <!--        <button class="button-light more">-->
+                  <!--          <i class="ion-ios-more"></i>-->
+                  <!--        </button>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                      </div>
+                  <!--    </div>-->
 
-                    </div>
+                  <!--  </div>-->
 
-                    <div class="album__tracks">
+                  <!--  <div class="album__tracks">-->
 
-                      <div class="tracks">
+                  <!--    <div class="tracks">-->
 
-                        <div class="tracks__heading">
+                  <!--      <div class="tracks__heading">-->
 
-                          <div class="tracks__heading__number">#</div>
+                  <!--        <div class="tracks__heading__number">#</div>-->
 
-                          <div class="tracks__heading__title">Song</div>
+                  <!--        <div class="tracks__heading__title">Song</div>-->
 
-                          <div class="tracks__heading__length">
+                  <!--        <div class="tracks__heading__length">-->
 
-                            <i class="ion-ios-stopwatch-outline"></i>
+                  <!--          <i class="ion-ios-stopwatch-outline"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="tracks__heading__popularity">
+                  <!--        <div class="tracks__heading__popularity">-->
 
-                            <i class="ion-thumbsup"></i>
+                  <!--          <i class="ion-thumbsup"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">1</div>
+                  <!--        <div class="track__number">1</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title">Intro</div>
+                  <!--        <div class="track__title">Intro</div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">1:11</div>
+                  <!--        <div class="track__length">1:11</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">2</div>
+                  <!--        <div class="track__number">2</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title">Random</div>
+                  <!--        <div class="track__title">Random</div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:00</div>
+                  <!--        <div class="track__length">3:00</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">3</div>
+                  <!--        <div class="track__number">3</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Me, Myself & I</span>
-                            <span class="feature">Bebe Rexha</span>
+                  <!--          <span class="title">Me, Myself & I</span>-->
+                  <!--          <span class="feature">Bebe Rexha</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">4:11</div>
+                  <!--        <div class="track__length">4:11</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">4</div>
+                  <!--        <div class="track__number">4</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">One Of Them</span>
-                            <span class="feature">Big Sean</span>
+                  <!--          <span class="title">One Of Them</span>-->
+                  <!--          <span class="feature">Big Sean</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:20</div>
+                  <!--        <div class="track__length">3:20</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-down-right"></i>
+                  <!--          <i class="ion-arrow-graph-down-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">5</div>
+                  <!--        <div class="track__number">5</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Drifting</span>
-                            <span class="feature">Chris Brown</span>
-                            <span class="feature">Tory Lanez</span>
+                  <!--          <span class="title">Drifting</span>-->
+                  <!--          <span class="feature">Chris Brown</span>-->
+                  <!--          <span class="feature">Tory Lanez</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">4:33</div>
+                  <!--        <div class="track__length">4:33</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">6</div>
+                  <!--        <div class="track__number">6</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Of All Things</span>
-                            <span class="feature">Too $hort</span>
+                  <!--          <span class="title">Of All Things</span>-->
+                  <!--          <span class="feature">Too $hort</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:34</div>
+                  <!--        <div class="track__length">3:34</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">7</div>
+                  <!--        <div class="track__number">7</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Order More</span>
-                            <span class="feature">Starrah</span>
+                  <!--          <span class="title">Order More</span>-->
+                  <!--          <span class="feature">Starrah</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:29</div>
+                  <!--        <div class="track__length">3:29</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">8</div>
+                  <!--        <div class="track__number">8</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title">
+                  <!--        <div class="track__title">-->
 
-                            <span>Calm Down</span>
+                  <!--          <span>Calm Down</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">2:07</div>
+                  <!--        <div class="track__length">2:07</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">9</div>
+                  <!--        <div class="track__number">9</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-plus not-added"></i>
+                  <!--          <i class="ion-plus not-added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Don't Let Me Go</span>
-                            <span class="feature">Grace</span>
+                  <!--          <span class="title">Don't Let Me Go</span>-->
+                  <!--          <span class="feature">Grace</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:11</div>
+                  <!--        <div class="track__length">3:11</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-down-right"></i>
+                  <!--          <i class="ion-arrow-graph-down-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">10</div>
+                  <!--        <div class="track__number">10</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title">
+                  <!--        <div class="track__title">-->
 
-                            <span>You Got Me</span>
+                  <!--          <span>You Got Me</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:28</div>
+                  <!--        <div class="track__length">3:28</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">11</div>
+                  <!--        <div class="track__number">11</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">What If</span>
-                            <span class="feature">Gizzle</span>
+                  <!--          <span class="title">What If</span>-->
+                  <!--          <span class="feature">Gizzle</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">4:13</div>
+                  <!--        <div class="track__length">4:13</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">12</div>
+                  <!--        <div class="track__number">12</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title">
+                  <!--        <div class="track__title">-->
 
-                            <span>Sad Boy</span>
+                  <!--          <span>Sad Boy</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:23</div>
+                  <!--        <div class="track__length">3:23</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">13</div>
+                  <!--        <div class="track__number">13</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Some Kind Of Drug</span>
-                            <span class="feature">Marc E. Bassy</span>
+                  <!--          <span class="title">Some Kind Of Drug</span>-->
+                  <!--          <span class="feature">Marc E. Bassy</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">3:42</div>
+                  <!--        <div class="track__length">3:42</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">14</div>
+                  <!--        <div class="track__number">14</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Think About You</span>
-                            <span class="feature">Quin</span>
+                  <!--          <span class="title">Think About You</span>-->
+                  <!--          <span class="feature">Quin</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">2:59</div>
+                  <!--        <div class="track__length">2:59</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">15</div>
+                  <!--        <div class="track__number">15</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Everything Will Be OK</span>
-                            <span class="feature">Kehlani</span>
+                  <!--          <span class="title">Everything Will Be OK</span>-->
+                  <!--          <span class="feature">Kehlani</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">5:11</div>
+                  <!--        <div class="track__length">5:11</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">16</div>
+                  <!--        <div class="track__number">16</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">For This</span>
-                            <span class="feature">Iamnobodi</span>
+                  <!--          <span class="title">For This</span>-->
+                  <!--          <span class="feature">Iamnobodi</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">4:11</div>
+                  <!--        <div class="track__length">4:11</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                        <div class="track">
+                  <!--      <div class="track">-->
 
-                          <div class="track__number">17</div>
+                  <!--        <div class="track__number">17</div>-->
 
-                          <div class="track__added">
+                  <!--        <div class="track__added">-->
 
-                            <i class="ion-checkmark-round added"></i>
+                  <!--          <i class="ion-checkmark-round added"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__title featured">
+                  <!--        <div class="track__title featured">-->
 
-                            <span class="title">Nothing to Me</span>
-                            <span class="feature">Keyshia Cole</span>
-                            <span class="feature">E-40</span>
+                  <!--          <span class="title">Nothing to Me</span>-->
+                  <!--          <span class="feature">Keyshia Cole</span>-->
+                  <!--          <span class="feature">E-40</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__explicit">
+                  <!--        <div class="track__explicit">-->
 
-                            <span class="label">Explicit</span>
+                  <!--          <span class="label">Explicit</span>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                          <div class="track__length">5:30</div>
+                  <!--        <div class="track__length">5:30</div>-->
 
-                          <div class="track__popularity">
+                  <!--        <div class="track__popularity">-->
 
-                            <i class="ion-arrow-graph-up-right"></i>
+                  <!--          <i class="ion-arrow-graph-up-right"></i>-->
 
-                          </div>
+                  <!--        </div>-->
 
-                        </div>
+                  <!--      </div>-->
 
-                      </div>
+                  <!--    </div>-->
 
-                    </div>
+                  <!--  </div>-->
 
-                  </div>
+                  <!--</div>-->
 
                 </div>
 
@@ -1760,7 +1752,7 @@
                 <div class="media-card">
 
                   <div class="media-card__image"
-                    style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);justify-content:center;">
+                    style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg);justify-content:center;">
 
                     <a href="javascript:displaySelectedAlbum('{{album.albumid}}');goToSelectedAlbum();">
                       <i class="ion-ios-play">
@@ -1770,7 +1762,7 @@
 
                   </div>
 
-                  <a class="media-card__footer">{{album.title}}</a>
+                  <a class="media-card__footer" href="javascript:displaySelectedAlbum('{{album.albumid}}');goToSelectedAlbum();">{{album.title}}</a>
 
                 </div>
 
@@ -1994,7 +1986,7 @@
 
   </section>
 
-    <section class="current-track" style="height:61.2px !important;bottom:0;">
+    <section class="current-track" style="height:61.2px !important;bottom:0;left:0;right:0;position:fixed!important;">
       <audio id="music" class="current-track">
 
 
@@ -2032,26 +2024,21 @@
 
       <div class="current-track__options">
 
-        <a href="#" class="lyrics">Lyrics</a>
+        {% comment %} <a href="#" class="lyrics">Lyrics</a> {% endcomment %}
 
-        <span class="controls">
+        <span class="controls" style="width:100%!important">
 
-          <a href="#" class="control">
+          {% comment %} <a href="#" class="control">
             <i class="ion-navicon"></i>
-          </a>
+          </a> {% endcomment %}
 
-          <a href="#" class="control">
+          {% comment %} <a href="#" class="control">
             <i class="ion-shuffle"></i>
-          </a>
+          </a> {% endcomment %}
 
-          <a class="control" onclick="refresh()">
-            <i class="fa fa-refresh" id="refresh"></i>
-          </a>
 
-          <a href="#" class="control devices">
-            <i class="ion-iphone"></i>
-            <span>Devices Available</span>
-          </a>
+
+
 
           <a  class="control volume">
 
@@ -2060,9 +2047,49 @@
             <div id="song-volume"></div>
 
           </a>
+ <a class="control volume" onclick="refresh()">
+            <i class="fa fa-refresh" id="refresh"></i>
+          </a>
+          <section class="playing " id="current_song_playing" style="width: 183.44px;!important">
+<!--          <div class="playing__add">-->
+<!--          <a>-->
+<!--<i class="ion-iphone"></i>-->
+<!--            {% comment %} <span>Devices Available</span> {% endcomment %}-->
+<!--          </a>-->
+<!--          {% comment %} <i class="ion-checkmark"></i> {% endcomment %}-->
+<!--            {% comment %} <i class="ion-shuffle"></i> {% endcomment %}-->
 
+
+<!--        </div>-->
+<!--           <div class="playing__add">-->
+
+<!--          {% comment %} <i class="ion-checkmark"></i> {% endcomment %}-->
+<!--            <i class="ion-shuffle"></i>-->
+
+
+<!--        </div>-->
+<div class="playing__art">
+
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg" alt="Album Art" />
+
+        </div>
+
+        <div class="playing__song">
+
+          <a class="playing__song__name">Some Type of Love</a>
+
+          <a class="playing__song__artist">Yonas</a>
+
+        </div>
+
+
+
+      </section>
         </span>
-
+{% comment %} <a href="#" class="control devices">
+            <i class="ion-iphone"></i>
+            <span>Devices Available</span>
+          </a> {% endcomment %}
       </div>
 
     </section>
@@ -2243,6 +2270,11 @@ length = {{number_of_songs}};
      }
 
 
+      }
+
+      function firstSong(){
+
+          $('.track__number').eq(0)[0].click();
       }
 
 

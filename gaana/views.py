@@ -98,7 +98,7 @@ def index_playlist(request,playlistid):
         return redirect('/')
     songs = PlaylistSong.objects.filter(playlistid = playlistid)
     number_of_songs = len(songs)
-
+    albumies = Album.objects.all()
     album = Playlist.objects.get(playlistid = playlistid)
     album_username = album.user.username
     user_username = request.user.username
@@ -122,9 +122,10 @@ def index_playlist(request,playlistid):
         context = {
         'title':'Home',
         'songs':songs,
-        'username':album_username,
+        'username':album.title,
         'artist_id':album.user.id,
-        'albums':album_all,
+
+        'albums':albumies,
         'playlists':playlists,
         'user_username':user_username,
         'added':True,
@@ -138,9 +139,9 @@ def index_playlist(request,playlistid):
         context = {
         'title':'Home',
         'songs':songs,
-        'username':album_username,
+        'username':album.title,
         'artist_id':album.user.id,
-        'albums':album_all,
+        'albums':albumies,
         'playlists':playlists,
         'user_username':user_username,
         'added':False,
@@ -264,7 +265,7 @@ def add_playlist_basic(request):
     if title and description and l:
         print("I AM IN 1")
         serialid=0
-        get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description,photo = image)
+        get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description)
         song = Music.objects.filter(musicid = l[0])[0]
         playlistsong_exists = PlaylistSong.objects.filter(playlistid=get_new_playlist).values('serialid')
         length = (len(playlistsong_exists))
@@ -282,7 +283,7 @@ def add_playlist_basic(request):
     elif (title and description and len(l)==0):
         print("I AM IN 2")
 
-        get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description,photo = image)
+        get_new_playlist = Playlist.objects.create(title = title,user = request.user,description=description)
 
         response ={'msg':'Your form has been submitted successfully'}
         # print("YOLOOOOO")

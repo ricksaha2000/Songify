@@ -8,7 +8,7 @@ class Playlist(models.Model):
     title = models.CharField(max_length=200)
     user  = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
-    photo = models.ImageField(upload_to='album/')
+    photo = models.ImageField(upload_to='album/',blank=True,null=True)
     published_at = models.DateTimeField(default=datetime.now , blank=True )
 
 
