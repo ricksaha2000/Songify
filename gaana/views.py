@@ -11,6 +11,7 @@ from playlist.models import Playlist
 from playlist_song.models import PlaylistSong
 from django.http import JsonResponse
 from recently_played.models import RecentlyPlayed
+
 def home(request):
     if not request.user.is_authenticated:
         return redirect('/')

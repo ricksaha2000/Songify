@@ -84,8 +84,8 @@ urlpatterns = [
 
     #AJAX VIEWS END
     path('users/',include('users.urls')),
-
-
+    path('', include('spotify_app.urls', namespace='spotify_app')),
+    path('social/', include('social_django.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

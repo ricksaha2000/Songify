@@ -194,6 +194,8 @@ INSTALLED_APPS = [
     'user_follow',
     'saveUserPlaylist',
     'recently_played',
+    'spotify_app',
+    'social_django',
 
 
 
@@ -292,3 +294,46 @@ STATICFILES_DIRS=[(os.path.join(BASE_DIR,'music/static'))]
 # Media Folder Settings
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_SPOTIFY_KEY = '5fe40e82ba784e6e8c10e465af890764'  # was this:  os.environ['SPOTIPY_CLIENT_ID']
+SOCIAL_AUTH_SPOTIFY_SECRET = '40fa3b85075c45e88877adf8d562fb38'  # was this: os.environ['SPOTIPY_CLIENT_SECRET']
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.spotify.SpotifyOAuth2',
+)
+
+SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
+# SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
+LOGIN_REDIRECT_URL = '/playlist'
+LOGOUT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+
+SOCIAL_AUTH_DISCONNECT_PIPELINE = (
+    # Verifies that the social association can be disconnected from the current
+    # user (ensure that the user login mechanism is not compromised by this
+    # disconnection)
+
+    # Collects the social associations to disconnect.
+    'social_core.pipeline.disconnect.get_entries',
+
+    # Revoke any access_token when possible.
+    'social_core.pipeline.disconnect.revoke_tokens',
+
+    # Removes the social associations.
+    'social_core.pipeline.disconnect.disconnect',
+)

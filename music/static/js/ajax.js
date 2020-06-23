@@ -186,7 +186,6 @@ function searchSuccess1(data , textStatus,jqXHR)
 }
 
 function song(y){
-    console.log("FUCK");
   console.log(y);
 
 $(document).ready(function() {
