@@ -623,7 +623,7 @@
               </div>
             </div>
             <div class="row no-margin">
-			{%for playlist in playlists %}
+			{%for playlist in playlistss %}
               <div class="col-lg-2 col-md-3 col-sm-6">
                 <div class="song">
                   <figure><img src="/media/content/songs-small-01.jpg" alt="">
@@ -1210,13 +1210,110 @@
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+{% if user.is_authenticated and user.is_spotify %}
           <div style="background-image: url('/media/content/action-call-01.jpg')" class="action-call">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="jumbotron custom-jumbo">
+                        <h1 class="display-4 recommendations-title">Your Spotify</h1>
+                        <h3 class="display-3 recommendations-greeting text-mobile" style="color:black;margin-bottom:10px;">Hi {{ first_name }}!</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% comment %} <p class="text">Choose a playlist you'd like to get recommendations from!</p>
+                                <p class="text">Simply click on a playlist to get a recommendation from its tracks that
+                                    you'll like the most</p>
+                                <p class="text">Here is a list of Spotify's featured playlists right now:</p> {% endcomment %}
+                                {% for pb in playlist_batches %}
+
+                                    <div class="container playlist-thumb-container">
+                                        <div class="row justify-content-md-around" >
+                                            {% if pb.0.playlist_featured %}
+                                                <div class="col-lg-4">
+                                                    <div class="card playlist-thumb playlist-thumb-left">
+                                                        <a class="card"
+                                                           href="{% url "spotify_app:playlist_detail" pb.0.playlist_id %}">
+                                                            <img class="img-responsive"
+                                                                 src="{{ pb.0.playlist_img_src }}">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if pb.1.playlist_featured %}
+                                                <div class="col-lg-4">
+                                                    <div class="card playlist-thumb playlist-thumb-right">
+                                                        <a class="card"
+                                                           href="{% url "spotify_app:playlist_detail" pb.1.playlist_id %}">
+                                                            <img class="img-responsive"
+                                                                 src="{{ pb.1.playlist_img_src }}">
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if pb.2.playlist_featured %}
+                                                <div class="col-lg-4">
+                                                    <div class="card playlist-thumb playlist-thumb-right">
+                                                        <a class="card"
+                                                           href="{% url "spotify_app:playlist_detail" pb.2.playlist_id %}">
+                                                            <img class="img-responsive"
+                                                                 src="{{ pb.2.playlist_img_src }}">
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                            {% comment %} <div class="col-md-6">
+                                <p class="text">Or you can use a playlist of your own choosing!</p>
+                                <p class="text">Go to your Spotify, right click on the three dots, then share, and "Copy
+                                    Spotify URI"</p>
+
+                                <form method="post" class="text custom-playlist-form">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <input type="submit" value="Go to playlist"
+                                           class="btn btn-primary btn custom-playlist-button">
+                                </form>
+
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+{%endif%}
+
+
+
+
+
+
+
+
+
+
+
+          {% comment %} <div style="background-image: url('/media/content/action-call-01.jpg')" class="action-call">
             <h2>The world is</h2>
             <h3>A song</h3>
             <div class="curved-lines"><img src="img/curved-lines.png" alt=""></div>
             <div class="text">So she called softly after it, 'Mouse dear! Do come back again, and we won't talk about cats or dogs either, if you don't like them!' When the Mouse heard this, it turned yes.</div>
             <button class="btn btn-default">Discover</button>
-          </div>
+          </div> {% endcomment %}
 
 
 

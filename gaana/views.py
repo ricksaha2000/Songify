@@ -11,18 +11,55 @@ from playlist.models import Playlist
 from playlist_song.models import PlaylistSong
 from django.http import JsonResponse
 from recently_played.models import RecentlyPlayed
-
+from spotify_app.models import Playlists
+import get_feat_playlists_new_albums
+import spotipy
 def home(request):
+    context = {}
     if not request.user.is_authenticated:
         return redirect('/')
     # songs = Music.objects.order_by('?')[:9]
     albums = Album.objects.all()
     playlists = Playlist.objects.filter(user=request.user)
-    context = {
-        'title':'Home',
-        'albums':albums,
-        'playlists':playlists,
-    }
+
+    if(request.user.is_spotify):
+        print("SPOTIFY MADAFAKA")
+        get_feat_playlists_new_albums.main()
+        context['playlists'] = Playlists.objects.all().order_by('-date_created')[0:10]
+        res = []
+        try:
+            for i, p in enumerate(context['playlists']):
+                if i < len(context['playlists']) - 1:
+                    if i % 3 == 0 or i == 0:
+                        res.append((p, context['playlists'][i + 1], context['playlists'][i + 2]))
+        except IndexError:
+            print('NO FEATURED PLAYLISTS RIGHT NOW')
+        print(res)
+        context['playlist_batches'] = res
+
+        # context['form'] = self.get_form()
+        social = request.user.social_auth.get(provider='spotify')
+        context['token'] = social.extra_data['access_token']
+        social.extra_data['spotify_me'] = spotipy.Spotify(auth=context['token']).me()
+        print(social.extra_data['spotify_me']['display_name'].split()[0])
+        user_instance = User.objects.get(username =social.extra_data['spotify_me']['display_name'].split()[0])
+        user_instance_values = User.objects.filter(username =social.extra_data['spotify_me']['display_name'].split()[0]).values()[0]["is_user"]
+        if(not user_instance_values):
+            user_instance.is_user = True
+            user_instance.is_spotify = True
+            user_instance.save()
+
+        print(user_instance_values)
+        # if(user)
+        context['first_name'] = social.extra_data['spotify_me']['display_name'].split()[0]
+    # context = {
+    #     'title':'Home',
+    #     'albums':albums,
+    #     'playlistss':playlists,
+    # }
+    context['title'] = 'Home'
+    context['albums'] = albums
+    context['playlistss'] = playlists
 
     return render(request , 'songs/index.html' , context)
 

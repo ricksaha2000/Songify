@@ -1,5 +1,5 @@
 from django import forms
-from .models import Playlist
+from .models import Playlists
 
 
 class PlaylistInputForm(forms.ModelForm):
@@ -7,7 +7,7 @@ class PlaylistInputForm(forms.ModelForm):
                                   widget=forms.TextInput(attrs={'placeholder': 'Paste the URI here'}))
 
     class Meta:
-        model = Playlist
+        model = Playlists
         fields = ['playlist_id']
 
     def clean_id(self):

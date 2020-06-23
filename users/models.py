@@ -6,8 +6,9 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
-    is_artist = models.BooleanField(default=False)
-    is_user = models.BooleanField(default=False)
+	is_spotify = models.BooleanField(default=False)
+	is_artist = models.BooleanField(default=False)
+	is_user = models.BooleanField(default=False)
 
 class Profile(models.Model):
 	user = models.OneToOneField(User,on_delete=models.CASCADE)

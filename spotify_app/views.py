@@ -12,7 +12,7 @@ from django.views.generic.edit import FormView, FormMixin
 import get_feat_playlists_new_albums
 from .forms import PlaylistInputForm
 # Create your views here.
-from .models import Playlist, Song
+from .models import Playlists, Song
 from funcy import chunks
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView
@@ -52,16 +52,16 @@ User = get_user_model()
 
 
 class PlaylistListFormView(LoginRequiredMixin, ListView, FormView, FormMixin):
-    model = Playlist
+    model = Playlists
     template_name = 'spotify/index.html'
-    queryset = Playlist.objects.all()
+    queryset = Playlists.objects.all()
     form_class = PlaylistInputForm
     success_url = reverse_lazy('spotify_app:playlist_list')
 
     def get_context_data(self, **kwargs):
         get_feat_playlists_new_albums.main()  # get featured playlists on launch
         context = super().get_context_data(**kwargs)
-        context['playlists'] = Playlist.objects.all().order_by('-date_created')[0:10]
+        context['playlists'] = Playlists.objects.all().order_by('-date_created')[0:10]
         res = []
         try:
             for i, p in enumerate(context['playlists']):
@@ -82,6 +82,7 @@ class PlaylistListFormView(LoginRequiredMixin, ListView, FormView, FormMixin):
         user_instance_values = User.objects.filter(username =social.extra_data['spotify_me']['display_name'].split()[0]).values()[0]["is_user"]
         if(not user_instance_values):
             user_instance.is_user = True
+            user_instance.is_spotify = True
             user_instance.save()
 
         print(user_instance_values)
@@ -120,12 +121,12 @@ class PlaylistListFormView(LoginRequiredMixin, ListView, FormView, FormMixin):
 
 class ChosenPlaylistListView(ListView):
     template_name = 'spotify/recommendations.html'
-    model = Playlist
+    model = Playlists
     playlist_id = None
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['chosen_playlist'] = Playlist.objects.get(
+        context['chosen_playlist'] = Playlists.objects.get(
             playlist_id=self.kwargs['playlist_id'])
 
         return context

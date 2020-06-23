@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "music.settings")
 django.setup()
-from spotify_app.models import Playlist
+from spotify_app.models import Playlists
 import spotipy
 import time
 
@@ -27,7 +27,7 @@ def main():
         playlist_total.extend(payload['items'])
 
     for playlist in playlist_total:
-        temp_obj = Playlist(playlist_id=playlist['id'],
+        temp_obj = Playlists(playlist_id=playlist['id'],
                             playlist_name=playlist['name'],
                             playlist_url=playlist['external_urls']['spotify'],
                             playlist_num_tracks=playlist['tracks']['total'],
