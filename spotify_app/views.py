@@ -16,7 +16,22 @@ from .models import Playlists, Song
 from funcy import chunks
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView
-
+from django.shortcuts import render, redirect
+from gaana.models import Music
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render_to_response
+from album.models import Album
+from users.models import User
+from artist_follow.models import ArtistFollow
+from user_follow.models import UserFollow
+from saveUserPlaylist.models import SaveUserPlaylist
+from playlist.models import Playlist
+from playlist_song.models import PlaylistSong
+from django.http import JsonResponse
+from recently_played.models import RecentlyPlayed
+from spotify_app.models import Playlists
+import get_feat_playlists_new_albums
+import spotipy
 class HomePage(TemplateView):
     template_name = 'spotify/index.html'
 
@@ -119,18 +134,90 @@ class PlaylistListFormView(LoginRequiredMixin, ListView, FormView, FormMixin):
             return self.form_invalid(form)
 
 
-class ChosenPlaylistListView(ListView):
-    template_name = 'spotify/recommendations.html'
-    model = Playlists
-    playlist_id = None
+# class ChosenPlaylistListView(ListView):
+#     template_name = 'spotify/recommendations.html'
+#     model = Playlists
+#     playlist_id = None
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['chosen_playlist'] = Playlists.objects.get(
-            playlist_id=self.kwargs['playlist_id'])
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['chosen_playlist'] = Playlists.objects.get(
+#             playlist_id=self.kwargs['playlist_id'])
 
-        return context
+#         return context
 
+
+
+
+@csrf_exempt
+def index_playlist_spotify(request,playlist_id):
+    if not request.user.is_authenticated:
+        return redirect('/')
+    # songs = PlaylistSong.objects.filter(playlistid = playlistid)
+    chosen_playlist = Playlists.objects.get(playlist_id=playlist_id)
+    # number_of_songs = len(songs)
+    albumies = Album.objects.all()
+    # album = Playlist.objects.get(playlistid = playlistid)
+    # album_username = album.user.username
+    user_username = request.user.username
+
+    # album_all = Album.objects.filter(user__username =album_username)
+    playlists = Playlist.objects.filter(user = request.user.id)
+
+    all_user = UserFollow.objects.filter(user = request.user)
+
+    # artist_id = album.user.id
+    # artist = User.objects.filter(id = artist_id).values()
+    # print(artist)
+    # x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
+    # print(x)
+    recently_played_songs = RecentlyPlayed.objects.filter(user = request.user).order_by('-published_at')
+
+    followed_playlist = SaveUserPlaylist.objects.filter(user = request.user)
+
+    if(True):
+        print("BOOYEAH")
+        context = {
+        'title':'Home',
+        # 'songs':songs,
+        # 'username':album.title,
+        # 'artist_id':album.user.id,
+        'chosen_playlist':chosen_playlist,
+        'albums':albumies,
+        'playlists':playlists,
+        'user_username':user_username,
+        'added':True,
+        'all_users':all_user,
+        'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
+        # "number_of_songs":number_of_songs,
+
+        }
+    else:
+        context = {
+        'title':'Home',
+        # 'songs':songs,
+        # 'username':album.title,
+        # 'artist_id':album.user.id,
+        'chosen_playlist':chosen_playlist,
+
+        'albums':albumies,
+        'playlists':playlists,
+        'user_username':user_username,
+        'added':False,
+        'all_users':all_user,
+        'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
+        # "number_of_songs":number_of_songs,
+
+
+
+        }
+
+
+
+
+    return render(request , 'index_playlist_spotify.html',context)
 
 # class RecommendationsView(ListView):
 #     template_name = 'recommendations.html'

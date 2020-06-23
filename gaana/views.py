@@ -14,6 +14,78 @@ from recently_played.models import RecentlyPlayed
 from spotify_app.models import Playlists
 import get_feat_playlists_new_albums
 import spotipy
+
+@csrf_exempt
+def index_playlist_spotify(request,playlist_id):
+    if not request.user.is_authenticated:
+        return redirect('/')
+    # songs = PlaylistSong.objects.filter(playlistid = playlistid)
+    chosen_playlist = Playlists.objects.get(playlist_id=playlist_id)
+    # number_of_songs = len(songs)
+    albumies = Album.objects.all()
+    # album = Playlist.objects.get(playlistid = playlistid)
+    # album_username = album.user.username
+    user_username = request.user.username
+
+    # album_all = Album.objects.filter(user__username =album_username)
+    playlists = Playlist.objects.filter(user = request.user.id)
+
+    all_user = UserFollow.objects.filter(user = request.user)
+
+    # artist_id = album.user.id
+    # artist = User.objects.filter(id = artist_id).values()
+    # print(artist)
+    # x = ArtistFollow.objects.filter(user = request.user,artist = artist_id)
+    # print(x)
+    recently_played_songs = RecentlyPlayed.objects.filter(user = request.user).order_by('-published_at')
+
+    followed_playlist = SaveUserPlaylist.objects.filter(user = request.user)
+
+    if(True):
+        print("BOOYEAH")
+        context = {
+        'title':'Home',
+        # 'songs':songs,
+        # 'username':album.title,
+        # 'artist_id':album.user.id,
+        'chosen_playlist':chosen_playlist,
+        'albums':albumies,
+        'playlists':playlists,
+        'user_username':user_username,
+        'added':True,
+        'all_users':all_user,
+        'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
+        # "number_of_songs":number_of_songs,
+
+        }
+    else:
+        context = {
+        'title':'Home',
+        # 'songs':songs,
+        # 'username':album.title,
+        # 'artist_id':album.user.id,
+        'chosen_playlist':chosen_playlist,
+
+        'albums':albumies,
+        'playlists':playlists,
+        'user_username':user_username,
+        'added':False,
+        'all_users':all_user,
+        'followed_playlist':followed_playlist,
+        "recently_played_songs":recently_played_songs,
+        # "number_of_songs":number_of_songs,
+
+
+
+        }
+
+
+
+
+    return render(request , 'index_playlist_spotify.html',context)
+
+
 def home(request):
     context = {}
     if not request.user.is_authenticated:
@@ -195,7 +267,7 @@ def index_playlist(request,playlistid):
 
 
 
-    return render(request , 'index_playlist.html',context)
+    return render(request , 'index_playlist_spotify.html',context)
 
 
 @csrf_exempt

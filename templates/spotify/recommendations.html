@@ -1,4 +1,4 @@
-{% extends "spotify/base.html" %}
+{% comment %} {% extends "spotify/base.html" %}
 {% load staticfiles %}
 
 
@@ -48,9 +48,8 @@
                                                     <div class="ajax-button">
                                                         <div class="fa fa-check done"></div>
                                                         <div class="fa fa-close failed"></div>
-                                                        <a href="#"
-                                        {% comment %} {% url "spotify_app:recommendations" chosen_playlist.playlist_id %}" {% endcomment %}
-                                        >
+                                                        <a href="
+                                        {% url "spotify_app:recommendations" chosen_playlist.playlist_id %}">
                                                             <input id="submit" class="submit rec-button" type="button"
                                                                    value="Get recommendations"/></a>
                                                     </div>
@@ -155,4 +154,4 @@
         </div>
     {% endif %}
 {% endblock content %}
-
+ {% endcomment %}
