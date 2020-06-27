@@ -313,6 +313,23 @@
       transform: scaleY(1);
     }
   }
+
+
+.shift-left{
+
+              margin-left:10PX;
+          }
+      @media screen and (min-width:900px) {
+
+          .shift-left{
+
+              margin-left:350px;
+          }
+      }
+
+
+          {% comment %} @media screen and (min-width: 600px) {
+          } {% endcomment %}
   </style>
 
 
@@ -771,7 +788,7 @@
                   <!--        alt="When It's Dark Out" />-->
 
                   <!--    </div>-->
-                    <div>
+                    <div class="shift-left">
                                 <iframe class="embedded-playlist"
                                         src="https://open.spotify.com/embed/user/{{ chosen_playlist.playlist_owner }}/playlist/{{ chosen_playlist.playlist_id }}"
                                         width="500" height="1000"
