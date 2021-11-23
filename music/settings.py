@@ -195,7 +195,7 @@ INSTALLED_APPS = [
     'saveUserPlaylist',
     'recently_played',
     'spotify_app',
-    'social_django',
+    #'social_django',
 
 
 
